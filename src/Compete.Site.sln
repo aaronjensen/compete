@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.Site", "Compete.Site.csproj", "{1D6C3A93-9403-4670-94C1-9C726FA559EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.Site", "Compete.Site\Compete.Site.csproj", "{1D6C3A93-9403-4670-94C1-9C726FA559EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.Core", "..\Compete.Core\Compete.Core.csproj", "{4CA0C384-4196-47D8-8424-6446D8C7F788}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.Core", "Compete.Core\Compete.Core.csproj", "{4CA0C384-4196-47D8-8424-6446D8C7F788}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.Specs", "..\Compete.Specs\Compete.Specs.csproj", "{6FB8E720-12C2-4590-B1A2-DA9C531C154B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.Specs", "Compete.Specs\Compete.Specs.csproj", "{6FB8E720-12C2-4590-B1A2-DA9C531C154B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
