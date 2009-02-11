@@ -19,7 +19,7 @@ namespace Compete.Persistence
       get { return _db; }
     }
 
-    public static void Start()
+    public static void Start(string path)
     {
       var configuration = Db4oFactory.NewConfiguration();
       configuration.DetectSchemaChanges(true);
@@ -27,7 +27,6 @@ namespace Compete.Persistence
       configuration.ActivationDepth(4);
       configuration.ObjectClass(typeof(Entity)).ObjectField("_id").Indexed(true);
       configuration.RefreshClasses();
-      var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
       _db = Db4oFactory.OpenFile(configuration, Path.Combine(path, "Database.yap"));
     }
   }

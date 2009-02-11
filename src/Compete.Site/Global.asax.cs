@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -41,6 +42,10 @@ namespace Compete.Site
     {
       log4net.Config.XmlConfigurator.Configure();
 
+      var path = Path.GetDirectoryName(Server.MapPath("web.config"));
+
+      Database.Start(path);
+      
       _container = CreateContainer();
       _container.Resolve.Object<WebServerStartup>().Start();
 
