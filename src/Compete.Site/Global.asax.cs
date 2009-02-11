@@ -5,12 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Compete.Core;
+using Compete.Persistence;
 using Compete.Site.Startup;
 using Machine.Container;
 using Machine.Container.Plugins;
 using Machine.Container.Services;
 using Machine.MsMvc;
+using Spark;
 using Spark.Web.Mvc;
+using Machine.Core;
 
 namespace Compete.Site
 {
@@ -54,6 +57,7 @@ namespace Compete.Site
       container.PrepareForServices();
       helper.AddServiceCollection(new CoreServices());
       helper.AddServiceCollection(new SiteServices());
+      helper.AddServiceCollection(new PersistenceServices());
       helper.AddServiceCollection(new MsMvcServices());
       container.Start();
       _log.Info("Container Ready");
@@ -66,6 +70,10 @@ namespace Compete.Site
     public void RegisterServices(ContainerRegisterer register)
     {
       register.Type<WebServerStartup>();
+
+      GetType().Assembly.GetExportedTypes().Where(x => typeof(Controller).IsAssignableFrom(x)).Each(
+        x => register.Type(x).AsTransient()
+      );
     }
   }
 }

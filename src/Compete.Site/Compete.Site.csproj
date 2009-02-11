@@ -41,7 +41,7 @@
     </Reference>
     <Reference Include="Machine.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5c474de7a495cff1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Machine\Container\Machine.Core.dll</HintPath>
+      <HintPath>..\..\Libraries\Machine\Machine.Core.dll</HintPath>
     </Reference>
     <Reference Include="Machine.MsMvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -90,6 +90,8 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -121,8 +123,18 @@
       <Project>{4CA0C384-4196-47D8-8424-6446D8C7F788}</Project>
       <Name>Compete.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Compete.Model\Compete.Model.csproj">
+      <Project>{7614EA4E-29EB-4F13-A50D-2794244FE934}</Project>
+      <Name>Compete.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Compete.Persistence\Compete.Persistence.csproj">
+      <Project>{879823D2-3BC2-4F50-944F-7E1A35CF43EB}</Project>
+      <Name>Compete.Persistence</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Home\Index.spark" />
+    <None Include="Views\Layouts\Application.spark" />
     <None Include="Views\Test\Foo.spark" />
   </ItemGroup>
   <ItemGroup>
