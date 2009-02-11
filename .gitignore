@@ -8,6 +8,7 @@ _ReSharper.*
 *.cache
 *~
 *.swp
+*.yap
 /Build
 NDependOut
 
