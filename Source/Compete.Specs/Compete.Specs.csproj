@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\Machine\Specifications\Machine.Specifications.dll</HintPath>
     </Reference>
+    <Reference Include="Machine.Specifications.NUnit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Machine\Specifications\Machine.Specifications.NUnit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -49,10 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Game\CompetitionHalfAssedIntegrationSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\Game\" />
+    <ProjectReference Include="..\Compete.Model\Compete.Model.csproj">
+      <Project>{7614EA4E-29EB-4F13-A50D-2794244FE934}</Project>
+      <Name>Compete.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Compete.SampleGame\Compete.SampleGame.csproj">
+      <Project>{8417B10D-F8DE-4FD9-B368-099B4404DBC7}</Project>
+      <Name>Compete.SampleGame</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

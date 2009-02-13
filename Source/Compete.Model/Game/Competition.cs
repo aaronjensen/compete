@@ -14,10 +14,17 @@ namespace Compete.Model.Game
       _players = new List<IPlayer>();
     }
 
+    public IPlayer Leader
+    {
+      get;
+      private set;
+    }
+
     public void PlayRound()
     {
       var round = new Round(_game, _players);
       round.Play();
+      Leader = round.Winner;
     }
 
     public void AddPlayer(IPlayer player)

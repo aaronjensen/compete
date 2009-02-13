@@ -14,6 +14,11 @@ namespace Compete.Model.Game
       _game = game;
     }
 
+    public IPlayer Winner
+    {
+      get; private set;
+    }
+
     public void Play()
     {
       for (int i = 0; i < _players.Count(); ++i)
@@ -25,7 +30,8 @@ namespace Compete.Model.Game
 
           var match = new Match(_game, player1, player2);
 
-          match.Play();
+          var result = match.Play();
+          Winner = result.Winner;
         }
       }
 
