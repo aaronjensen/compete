@@ -7,7 +7,7 @@ namespace Compete.Model.Game
   {
     readonly IEnumerable<IPlayer> _players;
     readonly IGame _game;
-
+    List<MatchResult> _results = new List<MatchResult>();
     public Round(IGame game, IEnumerable<IPlayer> players)
     {
       _players = players;
@@ -16,11 +16,12 @@ namespace Compete.Model.Game
 
     public IPlayer Winner
     {
-      get; private set;
+      get; private set;      
     }
 
     public void Play()
     {
+      
       for (int i = 0; i < _players.Count(); ++i)
       {
         for (int j = i + 1; j < _players.Count(); ++j)
@@ -31,10 +32,38 @@ namespace Compete.Model.Game
           var match = new Match(_game, player1, player2);
 
           var result = match.Play();
-          Winner = result.Winner;
+          
+          _results.Add(result);
+
+          Winner = CalculateWinner(_results);
         }
       }
 
+    }
+
+    IPlayer CalculateWinner(List<MatchResult> results)
+    {
+      var playerToScoreMap = new Dictionary<IPlayer, int>();
+      foreach (var player in _players)
+        playerToScoreMap.Add(player, 0);
+      
+      foreach (var result in results)
+      {
+        if(result.IsTie)
+        {
+          foreach (var player in result.Players)
+          {
+            playerToScoreMap[player]++;
+          }
+        }
+        else
+        {
+          playerToScoreMap[result.Winner] += 3;
+        }
+        
+      }
+
+      return null;
     }
   }
 }

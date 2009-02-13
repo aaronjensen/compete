@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace Compete.Model.Game
 {
   public class GameResult
@@ -12,16 +15,23 @@ namespace Compete.Model.Game
       get; private set;
     }
 
-    public bool WasTie
+    public bool IsTie
     {
       get; private set;
     }
 
-    public static GameResult Tie()
+    public IEnumerable<IPlayer> Players
     {
+      get; private set;
+    }
+
+    public static GameResult Tie(IEnumerable<IPlayer> players)
+    {
+      
       return new GameResult
       {
-        WasTie = true
+        Players = players,
+        IsTie = true
       };
     }
 
@@ -30,7 +40,8 @@ namespace Compete.Model.Game
       return new GameResult
       {
         Winner = winner, 
-        Loser = loser
+        Loser = loser,
+        Players = new[] {winner, loser}
       };
     }
   }

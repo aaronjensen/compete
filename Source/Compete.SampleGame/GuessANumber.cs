@@ -22,7 +22,7 @@ namespace Compete.SampleGame
 
       if (distance1 == distance2)
       {
-        return GameResult.Tie();
+        return GameResult.Tie(new [] { player1, player2 });
       }
       else if (distance1 < distance2)
       {
