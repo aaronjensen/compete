@@ -1,7 +1,7 @@
 namespace Compete.Model.Game
 {
-  public interface IGame<TGame>
+  public interface IGame
   {
-    GameResult<TGame> Play(IPlayer<TGame> player1, IPlayer<TGame> player2);
+    GameResult Play(IPlayer player1, IPlayer player2);
   }
 }

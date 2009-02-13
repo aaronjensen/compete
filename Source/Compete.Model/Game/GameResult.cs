@@ -1,23 +1,37 @@
 namespace Compete.Model.Game
 {
-  public class GameResult<TGame>
+  public class GameResult
   {
-    readonly IPlayer<TGame> _player1;
-    readonly IPlayer<TGame> _player2;
-
-    public IPlayer<TGame> Winner
+    public IPlayer Winner
     {
-      get { return _player1; }
+      get; private set;
     }
-    
-    public IPlayer<TGame> Loser
+
+    public IPlayer Loser
     {
-      get { return _player1; }
+      get; private set;
     }
 
     public bool WasTie
     {
-      get { return false; }
+      get; private set;
+    }
+
+    public static GameResult Tie()
+    {
+      return new GameResult
+      {
+        WasTie = true
+      };
+    }
+
+    public static GameResult WinnerLoser(IPlayer winner, IPlayer loser)
+    {
+      return new GameResult
+      {
+        Winner = winner, 
+        Loser = loser
+      };
     }
   }
 }

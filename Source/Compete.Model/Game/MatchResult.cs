@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Compete.Model.Game
 {
-  public class MatchResult<TGame>
+  public class MatchResult
   {
-    public MatchResult(IEnumerable<GameResult<TGame>>results)
+    public MatchResult(IEnumerable<GameResult> results)
     {
 
     }

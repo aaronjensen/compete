@@ -1,11 +1,11 @@
 namespace Compete.Model.Game
 {
-  public interface IPlayer<TGame>
+  public interface IPlayer
   {
-    GameAction<TGame> MakeDecision(GameState<TGame> state);
+    GameDecision MakeDecision(GameState state);
   }
 
-  public class GameAction<T>
+  public class GameDecision
   {
   }
 }

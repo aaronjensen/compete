@@ -3,12 +3,12 @@ using System.Linq;
 
 namespace Compete.Model.Game
 {
-  public class Round<TGame>
+  public class Round
   {
-    readonly IEnumerable<IPlayer<TGame>> _players;
-    readonly IGame<TGame> _game;
+    readonly IEnumerable<IPlayer> _players;
+    readonly IGame _game;
 
-    public Round(IGame<TGame> game, IEnumerable<IPlayer<TGame>> players)
+    public Round(IGame game, IEnumerable<IPlayer> players)
     {
       _players = players;
       _game = game;
@@ -23,7 +23,7 @@ namespace Compete.Model.Game
           var player1 = _players.ElementAt(i);
           var player2 = _players.ElementAt(j);
 
-          var match = new Match<TGame>(_game, player1, player2);
+          var match = new Match(_game, player1, player2);
 
           match.Play();
         }

@@ -1,6 +1,6 @@
 namespace Compete.Model.Game
 {
-  public class GameState<TGame>
+  public class GameState
   {
     
   }

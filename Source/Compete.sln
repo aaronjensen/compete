@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.Persistence", "Comp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.GitWrapper", "Compete.GitWrapper\Compete.GitWrapper.csproj", "{1DBC8EBB-468A-4EB9-85B4-196B89C288C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.SampleGame", "Compete.SampleGame\Compete.SampleGame.csproj", "{8417B10D-F8DE-4FD9-B368-099B4404DBC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{1DBC8EBB-468A-4EB9-85B4-196B89C288C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DBC8EBB-468A-4EB9-85B4-196B89C288C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DBC8EBB-468A-4EB9-85B4-196B89C288C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8417B10D-F8DE-4FD9-B368-099B4404DBC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8417B10D-F8DE-4FD9-B368-099B4404DBC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8417B10D-F8DE-4FD9-B368-099B4404DBC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8417B10D-F8DE-4FD9-B368-099B4404DBC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
