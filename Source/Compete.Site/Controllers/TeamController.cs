@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Compete.Model;
-using Compete.Model.Repositories;
+﻿using System.Web.Mvc;
+using Compete.TeamManagement;
 
 namespace Compete.Site.Controllers
 {
   public class TeamController : Controller
   {
-    readonly ITeamRepository _repository;
+    private readonly ITeamManagementService _teamManagementService;
 
-    public TeamController(ITeamRepository repository)
+    public TeamController(ITeamManagementService teamManagementService)
     {
-      _repository = repository;
+      _teamManagementService = teamManagementService;
     }
 
     public ActionResult New(string teamName)
     {
-      var team = new Team(teamName);
-      _repository.Add(team);
+      var result = _teamManagementService.New(teamName);
 
       return Redirect("~/");
     }

@@ -131,6 +131,10 @@
       <Project>{879823D2-3BC2-4F50-944F-7E1A35CF43EB}</Project>
       <Name>Compete.Persistence</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Compete.TeamManagement\Compete.TeamManagement.csproj">
+      <Project>{9ADC69D2-C420-435E-A07D-4B11608F6A4A}</Project>
+      <Name>Compete.TeamManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Index.spark" />
