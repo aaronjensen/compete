@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Model\Game\AggregateResultSpecs.cs" />
     <Compile Include="Model\Game\CompetitionHalfAssedIntegrationSpecs.cs" />
+    <Compile Include="Model\TeamSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
