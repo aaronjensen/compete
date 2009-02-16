@@ -8,6 +8,7 @@ using System.Web.Routing;
 using Compete.Core;
 using Compete.Persistence;
 using Compete.Site.Startup;
+using Compete.TeamManagement;
 using Machine.Container;
 using Machine.Container.Plugins;
 using Machine.Container.Services;
@@ -64,6 +65,7 @@ namespace Compete.Site
       helper.AddServiceCollection(new SiteServices());
       helper.AddServiceCollection(new PersistenceServices());
       helper.AddServiceCollection(new MsMvcServices());
+      helper.AddServiceCollection(new TeamManagementServices());
       container.Start();
       _log.Info("Container Ready");
       return container;

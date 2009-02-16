@@ -2,18 +2,18 @@ using System;
 using Compete.Model;
 using Compete.Model.Repositories;
 
-namespace TeamManagement
+namespace Compete.TeamManagement
 {
-  public interface ITeamManagementService
+  public interface ITeamManagementCommands
   {
     bool New(string teamName);
   }
 
-  public class TeamManagementService : ITeamManagementService
+  public class TeamManagementCommands : ITeamManagementCommands
   {
     private readonly ITeamRepository _repository;
 
-    public TeamManagementService(ITeamRepository teamRepository)
+    public TeamManagementCommands(ITeamRepository teamRepository)
     {
       _repository = teamRepository;
     }
