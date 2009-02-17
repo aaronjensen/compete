@@ -9,6 +9,7 @@ namespace Compete.TeamManagement
     public void RegisterServices(ContainerRegisterer register)
     {
       register.Type<ITeamManagementCommands>().ImplementedBy<TeamManagementCommands>();
+      register.Type<ITeamManagementQueries>().ImplementedBy<TeamManagementQueries>();
     }
   }
 }

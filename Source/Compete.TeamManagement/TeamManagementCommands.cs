@@ -6,7 +6,7 @@ namespace Compete.TeamManagement
 {
   public interface ITeamManagementCommands
   {
-    bool New(string teamName);
+    bool New(string teamName, string longName);
   }
 
   public class TeamManagementCommands : ITeamManagementCommands
@@ -18,12 +18,12 @@ namespace Compete.TeamManagement
       _repository = teamRepository;
     }
 
-    public bool New(string teamName)
+    public bool New(string teamName, string longName)
     {
       Team team;
       try
       {
-        team = new Team(teamName);
+        team = new Team(teamName, longName, new TeamMember[0]);
       }
       catch (ArgumentException e)
       {

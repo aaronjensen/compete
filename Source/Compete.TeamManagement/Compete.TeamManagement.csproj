@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TeamManagementQueries.cs" />
     <Compile Include="TeamManagementServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeamManagementCommands.cs" />
