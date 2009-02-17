@@ -56,5 +56,10 @@ namespace Compete.Persistence.Repositories
 
       return query.Execute().Count;
     }
+
+    public IEnumerable<TType> GetAllOf()
+    {
+      return _db.Query<TType>(typeof(TType));
+    } 
   }
 }
