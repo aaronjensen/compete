@@ -7,6 +7,10 @@ namespace Compete.Model
 {
   public class TeamMember
   {
-    string _name;
+    public string Name { get; private set; }
+    public TeamMember (string name)
+    {
+      Name = name;
+    }
   }
 }

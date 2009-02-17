@@ -9,17 +9,23 @@ namespace Compete.Model
   public class Team : Entity
   {
     string _teamName;
+    private readonly string _longName;
     readonly List<TeamMember> _teamMembers;
     readonly Regex nonWordCharacters = new Regex(@"\W+");
 
-    public Team(string teamName)
+    public string Name { get { return _teamName; } }
+    public string LongName { get { return _longName; } }
+    public IEnumerable<TeamMember> TeamMembers { get { return _teamMembers; } }
+
+    public Team(string teamName, string longName, IEnumerable<TeamMember> teamMembers)
     {
       if (!IsValidTeamName(teamName))
       {
         throw new ArgumentException("Team name must be less than 16 characters and consist of only numbers and letters");
       }
       _teamName = teamName;
-      _teamMembers = new List<TeamMember>();
+      _longName = longName;
+      _teamMembers = new List<TeamMember>(teamMembers);
     }
 
     private bool IsValidTeamName(string name)
