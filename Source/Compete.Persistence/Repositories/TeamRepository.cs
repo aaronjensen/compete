@@ -31,5 +31,10 @@ namespace Compete.Persistence.Repositories
     {
       return _repository.Count();
     }
+
+    public IEnumerable<Team> GetAllTeams()
+    {
+      return _repository.GetAllOf();
+    }
   }
 }

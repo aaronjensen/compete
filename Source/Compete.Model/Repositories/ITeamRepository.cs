@@ -10,5 +10,6 @@ namespace Compete.Model.Repositories
     Team FindById(Guid id);
     void Add(Team team);
     int Count();
+    IEnumerable<Team> GetAllTeams();
   }
 }
