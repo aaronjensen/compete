@@ -36,6 +36,11 @@ namespace Compete.Site
           "{controller}/{action}/{id}",                           // URL with parameters
           new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
       );
+      routes.MapRoute(
+          "TeamSignup",                                              // Route name
+          "TeamSignup",                           // URL with parameters
+          new { controller = "Home", action = "TeamSignup"}  // Parameter defaults
+      );
 
     }
 

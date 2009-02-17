@@ -1,6 +1,3 @@
-﻿<form action="~/Team/New" method="POST">
-  <label for="teamName">Team name:</label><input type="text" name="teamName"/ >
-  <input type="submit" value="Create" />
-</form>
-
+﻿<a href="~/Home/TeamSignup">Team Signup</a>
+<br />
 Teams: ${#teamCount}

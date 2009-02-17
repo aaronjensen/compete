@@ -14,7 +14,7 @@ namespace Compete.Site.Controllers
 
     public ActionResult New(string teamName)
     {
-      var result = _teamManagementCommands.New(teamName);
+      var result = _teamManagementCommands.New(teamName, "");
 
       return Redirect("~/");
     }
