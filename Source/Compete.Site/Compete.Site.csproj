@@ -137,6 +137,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Home\TeamSignup.spark" />
     <None Include="Views\Home\Index.spark" />
     <None Include="Views\Layouts\Application.spark" />
     <None Include="Views\Test\Foo.spark" />

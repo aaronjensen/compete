@@ -1,0 +1,6 @@
+﻿<form action="~/Team/New" method="POST">
+  <label for="teamName">Team name:</label><input type="text" name="teamName" />
+  <input type="submit" value="Create" />
+</form>
+
+Teams: ${#teamCount}
