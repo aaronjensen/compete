@@ -14,11 +14,9 @@ namespace Compete.Site.Controllers
       _teamManagementCommands = teamManagementCommands;
     }
 
-    public ActionResult New(FormCollection form)
+    public ActionResult New(string teamName, string longName, string teamMember)
     {
-      var teamName = form["teamName"];
-      var longName = form["longName"];
-      var teamMembers = form["teamMember"].Split(',').Where(x=>!x.Equals(string.Empty));
+      var teamMembers = teamMember.Split(',').Where(x=>!x.Equals(string.Empty));
 
       var result = _teamManagementCommands.New(teamName, longName, teamMembers);
 
