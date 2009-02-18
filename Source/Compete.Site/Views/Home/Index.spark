@@ -1,3 +1,17 @@
-﻿<a href="~/Home/TeamSignup">Team Signup</a>
-<br />
-Teams: ${#teamCount}
+﻿<viewdata 
+  TeamSummaries="System.Collections.Generic.IEnumerable[[Compete.Model.Reports.TeamSummary]]"
+  />
+<label>Teams</label>
+<table style="border:1px solid black">
+  <tr style="background-color:#ccc;">
+    <td>Name</td>
+    <td>Long Name</td>
+    <td># of members</td>
+  </tr>
+  <tr each='var team in TeamSummaries'>
+    <td>${team.Name}</td>
+    <td>${team.LongName}</td>
+    <td>${team.TeamMembers.Count()}</td>
+  </tr>
+</table>
+<a href="~/Home/TeamSignup">Team Signup</a>

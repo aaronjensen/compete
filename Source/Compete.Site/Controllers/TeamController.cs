@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Compete.TeamManagement;
 
 namespace Compete.Site.Controllers
@@ -12,9 +14,13 @@ namespace Compete.Site.Controllers
       _teamManagementCommands = teamManagementCommands;
     }
 
-    public ActionResult New(string teamName)
+    public ActionResult New(FormCollection form)
     {
-      var result = _teamManagementCommands.New(teamName, "");
+      var teamName = form["teamName"];
+      var longName = form["longName"];
+      var teamMembers = form["teamMember"].Split(',').Where(x=>!x.Equals(string.Empty));
+
+      var result = _teamManagementCommands.New(teamName, longName, teamMembers);
 
       return Redirect("~/");
     }

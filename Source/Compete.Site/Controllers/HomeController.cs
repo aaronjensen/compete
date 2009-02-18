@@ -21,7 +21,7 @@ namespace Compete.Site.Controllers
 
     public ActionResult Index()
     {
-      this.ViewData["teamSummaries"] = _teamManagementQueries.GetTeamSummaries();
+      this.ViewData["TeamSummaries"] = _teamManagementQueries.GetTeamSummaries();
       ViewData["teamCount"] = _repository.Count();
 
       return View();
