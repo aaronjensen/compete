@@ -1,13 +1,21 @@
-﻿<form action="~/Team/New" method="POST">
-  <label for="teamName">Team name:</label><input type="text" name="teamName" /><p>1-16 characters. Letters, numbers and underscores only.</p>
-  <br />
-  <label for="longName">Long team name:</label><input type="text" name="longName" /><p>No character restrictions.</p>
-  <br />
-  <label for="teamMembers">TeamMembers:</label>
-  <br />
-  <input type="text" name="teamMember" />
-  <br />
-  <input type="text" name="teamMember" />
-  <br />
-  <input type="submit" value="Create" />
-</form>
+﻿<script type="text/javascript">
+  var foo = ['bar', 'foo'];
+</script>
+<div>
+  <form action="~/Team/New" method="post">
+    <label for="teamName">Team name:</label><input type="text" name="teamName" /><p>1-16 characters. Letters, numbers and underscores only.</p>
+    <br />
+    <label for="longName">Long team name:</label><input type="text" name="longName" /><p>No character restrictions.</p>
+    <br />
+    <label for="password">Password:</label><input type="password" name="password" />
+    <br />
+    <label for="passwordAgain">Again with the Password:</label><input type="password" name="passwordAgain" />
+    <br />
+    <br />
+    <label for="teamMembers">TeamMembers:</label>
+    <br />
+    <input class="teamMembers" type="text" name="teamMember" /><br />
+    <input class="teamMembers last" type="text" name="teamMember" /><br />
+    <input id="submitButton" type="submit" value="Create" />
+  </form>
+</div>
