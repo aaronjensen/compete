@@ -26,11 +26,11 @@ namespace Compete.SampleGame
       }
       else if (distance1 < distance2)
       {
-        return GameResult.WinnerLoser(player1, player2);
+        return GameResult.WinnerAndLoser(player1, player2);
       }
       else
       {
-        return GameResult.WinnerLoser(player2, player1);
+        return GameResult.WinnerAndLoser(player2, player1);
       }
     }
   }

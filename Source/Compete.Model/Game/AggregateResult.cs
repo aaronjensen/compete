@@ -27,7 +27,16 @@ namespace Compete.Model.Game
         }
       });
 
-      //playerToScoreMap.OrderByDescending(x => x.Value)
+      var winners = playerToScoreMap.GroupBy(x => x.Value).OrderByDescending(x => x.Key).First();
+
+      if (winners.Count() == playerToScoreMap.Count)
+      {
+        IsTie = true;
+      }
+      else
+      {
+        Winner = winners.First().Key;
+      }
     }
 
     //public IEnumerable<PlayerStanding> 

@@ -12,7 +12,7 @@ namespace Compete.Specs.Model.Game
   {
     Establish context = () =>
     {
-      result = new AggregateResult(new [] { GameResult.WinnerLoser(player1, player2) });
+      result = new AggregateResult(new [] { GameResult.WinnerAndLoser(player1, player2) });
     };
 
     It should_have_the_same_winner_as_the_single_result = () =>
@@ -23,18 +23,50 @@ namespace Compete.Specs.Model.Game
   }
 
   public class when_aggregating_results_from_a_single_result_with_a_tie
+    : AggregateResultSpecs
   {
-    It should_be_a_tie;
+    Establish context = () =>
+    {
+      result = new AggregateResult(new [] { GameResult.Tie(new [] { player1, player2 }) } );
+    };
+
+    It should_be_a_tie = ()=>
+      result.IsTie.ShouldBeTrue();
   }
 
   public class when_aggregating_results_from_two_results_with_opposing_winners
+    : AggregateResultSpecs
   {
-    It should_be_a_tie;
+    Establish context = () =>
+    {
+      result = new AggregateResult(new []
+      {
+        GameResult.WinnerAndLoser(player1, player2),
+        GameResult.WinnerAndLoser(player2, player1)
+      } );
+    };
+
+    It should_be_a_tie = ()=>
+      result.IsTie.ShouldBeTrue();
   }
 
   public class when_aggregating_results_from_two_results_with_a_clear_winner
+    : AggregateResultSpecs
   {
-    It should_indicate_the_winner;
+    Establish context = () =>
+    {
+      result = new AggregateResult(new []
+      {
+        GameResult.WinnerAndLoser(player1, player2),
+        GameResult.WinnerAndLoser(player1, player2)
+      } );
+    };
+
+    It should_indicate_the_winner =()=>
+      result.Winner.ShouldEqual(player1);
+
+    It should_be_not_be_a_tie = () =>
+      result.IsTie.ShouldBeFalse();
   }
 
   public class AggregateResultSpecs

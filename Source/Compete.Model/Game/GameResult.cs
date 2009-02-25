@@ -27,7 +27,6 @@ namespace Compete.Model.Game
 
     public static GameResult Tie(IEnumerable<IPlayer> players)
     {
-      
       return new GameResult
       {
         Players = players,
@@ -35,7 +34,7 @@ namespace Compete.Model.Game
       };
     }
 
-    public static GameResult WinnerLoser(IPlayer winner, IPlayer loser)
+    public static GameResult WinnerAndLoser(IPlayer winner, IPlayer loser)
     {
       return new GameResult
       {
