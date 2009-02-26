@@ -19,6 +19,7 @@ namespace Compete.Site.Controllers
     [AcceptVerbs(HttpVerbs.Get)]
     public ActionResult Index()
     {
+      this.ViewData["ErrorMessage"] = "none";
       return View();
     }
 
@@ -29,6 +30,13 @@ namespace Compete.Site.Controllers
       var teamName = form["teamName"];
       var longName = form["teamName"];
       var password = form["password"];
+      var passwordAgain = form["passwordAgain"];
+
+      if (!passwordAgain.Equals(password))
+      {
+        this.ViewData["ErrorMessage"] = "Passwords do not match";
+        return View();
+      }
 
       var teamMembers = teamMember.Split(',').Where(x=>!x.Equals(string.Empty));
 

@@ -1,4 +1,8 @@
-﻿<h1>Create Team</h1>
+﻿<viewdata ErrorMessage="string" />
+<h1>Create Team</h1>
+  <test if="ErrorMessage != 'none'" >
+    <p style="color:Red; font-weight:bold;"> ${ErrorMessage} </p>
+  </test>
 <div>
   <form action="~/CreateTeam" method="post">
     <label for="teamName">Team name:</label><input type="text" name="teamName" /><p>1-16 characters. Letters, numbers and underscores only.</p>
