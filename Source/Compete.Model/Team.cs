@@ -18,6 +18,12 @@ namespace Compete.Model
     public string LongName { get { return _longName; } }
     public IEnumerable<TeamMember> TeamMembers { get { return _teamMembers; } }
 
+    public List<TeamStanding> _standings;
+    public IEnumerable<TeamStanding> Standings
+    {
+      get { return _standings; }
+    }
+
     public Team(string teamName, string longName, IEnumerable<TeamMember> teamMembers, string passwordHash)
     {
       if (!IsValidTeamName(teamName))
@@ -28,6 +34,8 @@ namespace Compete.Model
       _longName = longName;
       _password = passwordHash;
       _teamMembers = new List<TeamMember>(teamMembers);
+
+      _standings = new List<TeamStanding>();
     }
 
     private bool IsValidTeamName(string name)
@@ -61,6 +69,13 @@ namespace Compete.Model
     public bool Authenticate(string passwordHash)
     {
       return passwordHash == _password;
+    }
+
+    public void AddStanding(int rank, int wins, int losses, int ties)
+    {
+      var lastStanding = _standings.Last();
+      var standing = new TeamStanding(rank, wins, losses, ties, rank - lastStanding.Rank);
+      _standings.Add(standing);
     }
   }
 }
