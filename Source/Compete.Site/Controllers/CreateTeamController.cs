@@ -10,10 +10,12 @@ namespace Compete.Site.Controllers
   public class CreateTeamController : Controller
   {
     readonly ITeamManagementCommands _teamManagementCommands;
+    private readonly ITeamManagementQueries _teamManagementQueries;
 
-    public CreateTeamController(ITeamManagementCommands teamManagementCommands)
+    public CreateTeamController(ITeamManagementCommands teamManagementCommands, ITeamManagementQueries teamManagementQueries)
     {
       _teamManagementCommands = teamManagementCommands;
+      _teamManagementQueries = teamManagementQueries;
     }
 
     [AcceptVerbs(HttpVerbs.Get)]
@@ -35,6 +37,12 @@ namespace Compete.Site.Controllers
       if (!passwordAgain.Equals(password))
       {
         this.ViewData["ErrorMessage"] = "Passwords do not match";
+        return View();
+      }
+
+      if (!_teamManagementQueries.TeamNameIsAvailable(teamName))
+      {
+        this.ViewData["ErrorMessage"] = "Team name '" + teamName + "' is already taken, sorry.";
         return View();
       }
 
