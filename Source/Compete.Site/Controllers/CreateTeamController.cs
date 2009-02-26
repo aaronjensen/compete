@@ -23,8 +23,13 @@ namespace Compete.Site.Controllers
     }
 
     [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Index(string teamName, string longName, string teamMember, string password)
+    public ActionResult Index(FormCollection form)
     {
+      var teamMember = form["teamMember"];
+      var teamName = form["teamName"];
+      var longName = form["teamName"];
+      var password = form["password"];
+
       var teamMembers = teamMember.Split(',').Where(x=>!x.Equals(string.Empty));
 
       var result = _teamManagementCommands.New(teamName, longName, teamMembers, password);
