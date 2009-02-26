@@ -28,7 +28,7 @@ namespace Compete.Site.Infrastructure
 
     public bool IsCurrentlySignedIn
     {
-      get { return HttpContext.Current.User != null; }
+      get { return HttpContext.Current.User.Identity.IsAuthenticated; }
     }
 
     public string SignedInUserName
