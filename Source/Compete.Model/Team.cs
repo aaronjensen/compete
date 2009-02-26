@@ -73,8 +73,14 @@ namespace Compete.Model
 
     public void AddStanding(int rank, int wins, int losses, int ties)
     {
-      var lastStanding = _standings.Last();
-      var standing = new TeamStanding(rank, wins, losses, ties, rank - lastStanding.Rank);
+      var lastStanding = _standings.LastOrDefault();
+      var lastChange = 0;
+      if (lastStanding != null)
+      {
+        lastChange = rank - lastStanding.Rank;
+      }
+        
+      var standing = new TeamStanding(rank, wins, losses, ties, lastChange);
       _standings.Add(standing);
     }
   }

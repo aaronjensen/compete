@@ -39,7 +39,11 @@ namespace Compete.TeamManagement
       var teams = _teamRepository.GetAllTeams();
       return teams.Select(x =>
                            {
-                             var standing = x.Standings.Last();
+                             var standing = x.Standings.LastOrDefault();
+                             if (standing == null)
+                             {
+                               return new TeamStandingSummary(x.Name, 0, 0, 0, 0, 0);
+                             }
                              return new TeamStandingSummary(
                                x.Name, 
                                standing.Rank, 
