@@ -1,8 +1,10 @@
-﻿<script type="text/javascript">
+﻿<h1>Create Team</h1>
+<script type="text/javascript">
   var foo = ['bar', 'foo'];
 </script>
+
 <div>
-  <form action="~/Team/New" method="post">
+  <form action="~/CreateTeam" method="post">
     <label for="teamName">Team name:</label><input type="text" name="teamName" /><p>1-16 characters. Letters, numbers and underscores only.</p>
     <br />
     <label for="longName">Long team name:</label><input type="text" name="longName" /><p>No character restrictions.</p>

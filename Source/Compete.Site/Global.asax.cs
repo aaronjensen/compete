@@ -55,7 +55,9 @@ namespace Compete.Site
       _container = CreateContainer();
       _container.Resolve.Object<WebServerStartup>().Start();
 
-      ViewEngines.Engines.Add(new SparkViewFactory());
+      var settings = new SparkSettings().SetAutomaticEncoding(true);
+
+      ViewEngines.Engines.Add(new SparkViewFactory(settings));
 
       RegisterRoutes(RouteTable.Routes);
     }

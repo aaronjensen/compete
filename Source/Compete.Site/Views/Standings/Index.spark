@@ -1,0 +1,26 @@
+﻿<h1>Standings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Place</th>
+      <th>Team</th>
+      <th>W-L-T</th>
+      <th>Last change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="first">
+      <td>#1</td>
+      <td>Foo</td>
+      <td>27-13-2</td>
+      <td><span class="plus">+</span>4</td>
+    </tr>
+    <tr class="my_team">
+      <td>#2</td>
+      <td>Bar</td>
+      <td>27-13-2</td>
+      <td><span class="minus">-</span>4</td>
+    </tr>
+  </tbody>
+</table>
