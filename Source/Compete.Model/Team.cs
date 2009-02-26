@@ -18,7 +18,7 @@ namespace Compete.Model
     public string LongName { get { return _longName; } }
     public IEnumerable<TeamMember> TeamMembers { get { return _teamMembers; } }
 
-    public Team(string teamName, string longName, IEnumerable<TeamMember> teamMembers, string password)
+    public Team(string teamName, string longName, IEnumerable<TeamMember> teamMembers, string passwordHash)
     {
       if (!IsValidTeamName(teamName))
       {
@@ -26,8 +26,7 @@ namespace Compete.Model
       }
       _teamName = teamName;
       _longName = longName;
-      // TODO: Encrypt? heh.
-      _password = password;
+      _password = passwordHash;
       _teamMembers = new List<TeamMember>(teamMembers);
     }
 
@@ -59,9 +58,9 @@ namespace Compete.Model
       _teamMembers.Remove(teamMember);
     }
 
-    public bool Authenticate(string password)
+    public bool Authenticate(string passwordHash)
     {
-      return password == _password;
+      return passwordHash == _password;
     }
   }
 }
