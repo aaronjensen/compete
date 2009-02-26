@@ -6,26 +6,42 @@
   <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
 </head>
 <body>
-  <ul class="links">
-    <li>
-      <a href="~/Standings">Standings</a>
-    </li>
-    <li>
-      <a href="~/MyTeam">My Team</a>
-    </li>
-    <li>
-      <a href="~/CreateTeam">Create Team</a>
-    </li>
-    <li>
-      <a href="~/Login">Login</a>
-    </li>
-    <li>
-      <a href="~/LogOut">Logout</a>
-    </li>
-  </ul>
+  <div id="top">
+    <div class="content">
+      <div id="menu">
+        <ul>
+          <li>
+            <a href="~/Standings"><span>Standings</span></a>
+          </li>
+          <li>
+            <a href="~/MyTeam"><span>My Team</span></a>
+          </li>
+          <li>
+            <a href="~/CreateTeam"><span>Create Team</span></a>
+          </li>
+          <li>
+            <a href="~/Login"><span>Login</span></a>
+          </li>
+          <li>
+            <a href="~/LogOut"><span>Logout</span></a>
+          </li>
+        </ul>
+      </div>
+      
+      <h1><a href="~/" title="">Compete</a></h1>
+      <h2>Rock, Paper, Scissors PRO!</h2>
+    </div>
+  </div>
 
-  <div id="middle">
-    <use:view />
+  <div class="content">
+    <div id="main">
+      <div class="right_side">
+      </div>
+      
+      <div id="left_side">
+        <use:view />
+      </div>
+    </div>
   </div>
   
 </body>
