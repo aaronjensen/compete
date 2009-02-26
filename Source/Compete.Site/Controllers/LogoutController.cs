@@ -7,7 +7,7 @@ using Compete.Site.Infrastructure;
 
 namespace Compete.Site.Controllers
 {
-  public class LogoutController : Controller
+  public class LogoutController : CompeteController
   {
     readonly IFormsAuthentication _authentication;
 

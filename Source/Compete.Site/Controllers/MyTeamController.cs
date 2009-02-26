@@ -9,7 +9,7 @@ using Compete.Site.Filters;
 namespace Compete.Site.Controllers
 {
   [RequireAuthenticationFilter]
-  public class MyTeamController : Controller
+  public class MyTeamController : CompeteController
   {
     static readonly string _filePath = @"C:\compete";
 

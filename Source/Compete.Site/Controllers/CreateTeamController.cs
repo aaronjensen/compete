@@ -7,7 +7,7 @@ using Compete.TeamManagement;
 
 namespace Compete.Site.Controllers
 {
-  public class CreateTeamController : Controller
+  public class CreateTeamController : CompeteController
   {
     readonly ITeamManagementCommands _teamManagementCommands;
     private readonly ITeamManagementQueries _teamManagementQueries;

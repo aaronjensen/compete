@@ -8,7 +8,7 @@ using Compete.TeamManagement;
 
 namespace Compete.Site.Controllers
 {
-  public class LoginController : Controller
+  public class LoginController : CompeteController
   {
     readonly ITeamManagementCommands _teamCommands;
     readonly IFormsAuthentication _formsAuthentication;

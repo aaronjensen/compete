@@ -6,11 +6,7 @@ using System.Web.Mvc;
 
 namespace Compete.Site.Controllers
 {
-  public class TestController : CompeteController
+  public class CompeteController : Controller
   {
-    public ActionResult Foo()
-    {
-      return View();
-    }
   }
 }

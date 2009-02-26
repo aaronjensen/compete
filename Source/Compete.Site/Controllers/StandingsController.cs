@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Compete.Site.Controllers
 {
-  public class StandingsController : Controller
+  public class StandingsController : CompeteController
   {
     private readonly ITeamManagementQueries _teamManagementQueries;
 
