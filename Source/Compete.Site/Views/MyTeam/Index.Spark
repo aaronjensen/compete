@@ -1,4 +1,4 @@
-﻿<h1>My Team</h1>
+﻿<h2>My Team</h2>
 
 <form method="post" action="~/MyTeam/UploadDll" enctype="multipart/form-data">
   <input type="file" id="file" name="file" />

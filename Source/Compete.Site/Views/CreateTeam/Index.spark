@@ -1,5 +1,5 @@
 ﻿<viewdata ErrorMessage="string" />
-<h1>Create Team</h1>
+<h2>Create Team</h2>
   <test if="ErrorMessage != 'none'" >
     <p style="color:Red; font-weight:bold;"> ${ErrorMessage} </p>
   </test>
