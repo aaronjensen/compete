@@ -10,6 +10,7 @@ namespace Compete.Model
   {
     string _teamName;
     private readonly string _longName;
+    readonly string _password;
     readonly List<TeamMember> _teamMembers;
     readonly Regex nonWordCharacters = new Regex(@"\W+");
 
@@ -17,7 +18,7 @@ namespace Compete.Model
     public string LongName { get { return _longName; } }
     public IEnumerable<TeamMember> TeamMembers { get { return _teamMembers; } }
 
-    public Team(string teamName, string longName, IEnumerable<TeamMember> teamMembers)
+    public Team(string teamName, string longName, IEnumerable<TeamMember> teamMembers, string password)
     {
       if (!IsValidTeamName(teamName))
       {
@@ -25,6 +26,8 @@ namespace Compete.Model
       }
       _teamName = teamName;
       _longName = longName;
+      // TODO: Encrypt? heh.
+      _password = password;
       _teamMembers = new List<TeamMember>(teamMembers);
     }
 
@@ -54,6 +57,11 @@ namespace Compete.Model
     public void RemoveTeamMember(TeamMember teamMember)
     {
       _teamMembers.Remove(teamMember);
+    }
+
+    public bool Authenticate(string password)
+    {
+      return password == _password;
     }
   }
 }

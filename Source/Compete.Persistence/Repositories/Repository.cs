@@ -44,9 +44,9 @@ namespace Compete.Persistence.Repositories
       return found[0];
     }
 
-    public void Add(Team team)
+    public void Add(TType obj)
     {
-      _db.Store(team);
+      _db.Store(obj);
     }
 
     public int Count()

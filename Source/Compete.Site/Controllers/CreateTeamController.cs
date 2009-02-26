@@ -23,11 +23,22 @@ namespace Compete.Site.Controllers
     }
 
     [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Index(string teamName, string longName, string teamMember)
+    public ActionResult Index(string teamName, string longName, string teamMember, string password)
     {
       var teamMembers = teamMember.Split(',').Where(x=>!x.Equals(string.Empty));
 
-      var result = _teamManagementCommands.New(teamName, longName, teamMembers);
+      var result = _teamManagementCommands.New(teamName, longName, teamMembers, password);
+
+      if (!result)
+      {
+        throw new Exception("Crazy wild error creating a team");
+      }
+      
+      result = _teamManagementCommands.Authenticate(teamName, password);
+      if (!result)
+      {
+        throw new Exception("Weird, I seriously just added this team, I should be able to log you in...");
+      }
 
       return Redirect("~/MyTeam");
     }

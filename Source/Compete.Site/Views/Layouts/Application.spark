@@ -15,6 +15,12 @@
     <li>
       <a href="~/CreateTeam">Create Team</a>
     </li>
+    <li>
+      <a href="~/Login">Login</a>
+    </li>
+    <li>
+      <a href="~/LogOut">Logout</a>
+    </li>
   </ul>
 
   <use:view />

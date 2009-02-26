@@ -13,6 +13,7 @@ namespace Compete.Specs.Model
     protected static Team team;
     protected static string teamName;
     protected static string longTeamName = "The Who Cares";
+    protected static string password = "password1";
     protected static IEnumerable<TeamMember> teamMembers = new TeamMember[0];
   }
 
@@ -22,7 +23,7 @@ namespace Compete.Specs.Model
       teamName = "more than sixteen characters";
 
     Because of = () =>
-      result = Catch.Exception(()=> new Team(teamName, longTeamName, teamMembers));
+      result = Catch.Exception(()=> new Team(teamName, longTeamName, teamMembers, password));
 
     It should_not_allow_the_team_to_be_created = () =>
       result.GetType().ShouldEqual(typeof(ArgumentException));
@@ -34,7 +35,7 @@ namespace Compete.Specs.Model
       teamName = "_%abc 123";
 
     Because of = () =>
-      result = Catch.Exception(() => new Team(teamName, longTeamName, teamMembers));
+      result = Catch.Exception(() => new Team(teamName, longTeamName, teamMembers, password));
 
     It should_not_allow_the_team_to_be_created = () =>
       result.GetType().ShouldEqual(typeof(ArgumentException));
@@ -46,7 +47,7 @@ namespace Compete.Specs.Model
       teamName = "";
 
     Because of = () =>
-      result = Catch.Exception(() => new Team(teamName, longTeamName, teamMembers));
+      result = Catch.Exception(() => new Team(teamName, longTeamName, teamMembers, password));
 
     It should_not_allow_the_team_to_be_created = () =>
       result.GetType().ShouldEqual(typeof(ArgumentException));

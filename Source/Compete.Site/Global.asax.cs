@@ -7,12 +7,14 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Compete.Core;
 using Compete.Persistence;
+using Compete.Site.Infrastructure;
 using Compete.Site.Startup;
 using Compete.TeamManagement;
 using Machine.Container;
 using Machine.Container.Plugins;
 using Machine.Container.Services;
 using Machine.MsMvc;
+using Microsoft.Practices.ServiceLocation;
 using Spark;
 using Spark.Web.Mvc;
 using Machine.Core;
@@ -55,16 +57,14 @@ namespace Compete.Site
       _container = CreateContainer();
       _container.Resolve.Object<WebServerStartup>().Start();
 
-      var settings = new SparkSettings().SetAutomaticEncoding(true);
-
-      ViewEngines.Engines.Add(new SparkViewFactory(settings));
+      ViewEngines.Engines.Add(new SparkViewFactory());
 
       RegisterRoutes(RouteTable.Routes);
     }
 
     protected static IMachineContainer CreateContainer()
     {
-      IMachineContainer container = new MachineContainer();
+      var container = new MachineContainer();
       ContainerRegistrationHelper helper = new ContainerRegistrationHelper(container);
       container.Initialize();
       container.PrepareForServices();
@@ -75,6 +75,10 @@ namespace Compete.Site
       helper.AddServiceCollection(new TeamManagementServices());
       container.Start();
       _log.Info("Container Ready");
+
+      IoC.Container = container;
+      var adapter = new CommonServiceLocatorAdapter(container);
+      ServiceLocator.SetLocatorProvider(() => adapter);
       return container;
     }
   }
@@ -84,6 +88,7 @@ namespace Compete.Site
     public void RegisterServices(ContainerRegisterer register)
     {
       register.Type<WebServerStartup>();
+      register.Type<IFormsAuthentication>().ImplementedBy<FormsAuthenticationService>();
 
       GetType().Assembly.GetExportedTypes().Where(x => typeof(Controller).IsAssignableFrom(x)).Each(
         x => register.Type(x).AsTransient()
