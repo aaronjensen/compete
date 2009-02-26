@@ -14,4 +14,3 @@
     <td>${team.TeamMembers.Count()}</td>
   </tr>
 </table>
-<a href="~/Home/TeamSignup">Team Signup</a>
