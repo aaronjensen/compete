@@ -19,8 +19,7 @@ namespace Compete.Site.Controllers
 
     public ActionResult Index()
     {
-      var standings = _teamManagementQueries.GetTeamStandings();
-      JavaScriptConvert.SerializeObject(standings);
+      ViewData["TeamStandings"] = JavaScriptConvert.SerializeObject(_teamManagementQueries.GetTeamStandings());
       return View();
     }
   }
