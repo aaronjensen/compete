@@ -1,29 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Web;
 
 namespace Compete.Site.Infrastructure
 {
-  public class AssemblyServiceCollectionFinder
+  public class DynamicAssemblyTypeFinder
   {
     readonly List<Assembly> _assemblies = new List<Assembly>();
-    readonly string _rootPath;
 
-    public AssemblyServiceCollectionFinder()
+    public void AddAssembly(string assemblyPath)
     {
-      _rootPath = System.IO.Path.GetDirectoryName(typeof(AssemblyServiceCollectionFinder).Assembly.Location);
-    }
-
-    public void AddAllAssemblies(string path)
-    {
-      foreach (string assemblyPath in Directory.GetFiles(path, "*.dll"))
-      {
-        Assembly assembly = Assembly.LoadFrom(assemblyPath);
-        _assemblies.Add(assembly);
-      }
+      Assembly assembly = Assembly.LoadFrom(assemblyPath);
+      _assemblies.Add(assembly);
     }
 
     public IEnumerable<T> Create<T>()

@@ -116,7 +116,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AppDomainHelper.cs" />
-    <Compile Include="Infrastructure\AssemblyServiceCollectionFinder.cs" />
+    <Compile Include="Infrastructure\DynamicAssemblyTypeFinder.cs" />
     <Compile Include="Infrastructure\FormsAuthenticationService.cs" />
     <Compile Include="Models\PlayerFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
