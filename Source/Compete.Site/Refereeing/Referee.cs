@@ -1,7 +1,6 @@
 ﻿using System;
 
 using Compete.Model.Game;
-using Compete.Site.Controllers;
 using Compete.Site.Infrastructure;
 using Compete.Site.Models;
 
