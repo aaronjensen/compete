@@ -108,6 +108,7 @@
     <Compile Include="Controllers\MyTeamController.cs" />
     <Compile Include="Controllers\StandingsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\UploadBotController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

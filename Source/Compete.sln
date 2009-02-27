@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissorsPro.Specs"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissorsPro.AlwaysThrows", "..\..\rock_paper_scissors_pro\Source\RockPaperScissorsPro.AlwaysThrows\RockPaperScissorsPro.AlwaysThrows.csproj", "{7D605349-4906-44A8-9ED9-17FDDD6974FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.Uploader", "Compete.Uploader\Compete.Uploader.csproj", "{388E347E-EBEB-4F3E-9A44-AA1E8E4DA5CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{7D605349-4906-44A8-9ED9-17FDDD6974FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D605349-4906-44A8-9ED9-17FDDD6974FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D605349-4906-44A8-9ED9-17FDDD6974FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{388E347E-EBEB-4F3E-9A44-AA1E8E4DA5CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{388E347E-EBEB-4F3E-9A44-AA1E8E4DA5CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{388E347E-EBEB-4F3E-9A44-AA1E8E4DA5CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{388E347E-EBEB-4F3E-9A44-AA1E8E4DA5CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

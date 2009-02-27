@@ -1,6 +1,6 @@
 ﻿<h2>My Team</h2>
 
-<form method="post" action="~/MyTeam/UploadDll" enctype="multipart/form-data">
+<form method="post" action="~/UploadBot" enctype="multipart/form-data">
   <input type="file" id="file" name="file" />
   <input id="submitButton" type="submit" value="Upload"/>
 </form>
