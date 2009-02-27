@@ -8,6 +8,7 @@ namespace Compete.Site.Infrastructure
 {
   public class DynamicAssemblyTypeFinder
   {
+    static readonly log4net.ILog _log = log4net.LogManager.GetLogger(typeof(DynamicAssemblyTypeFinder));
     readonly List<Assembly> _assemblies = new List<Assembly>();
 
     public void AddAssembly(AssemblyFile assemblyFile)
@@ -38,7 +39,7 @@ namespace Compete.Site.Infrastructure
       {
         foreach (Type type in assembly.GetExportedTypes())
         {
-          if (typeof(T).IsAssignableFrom(type))
+          if (typeof(T).IsAssignableFrom(type) && !type.IsAbstract)
           {
             yield return type;
           }
