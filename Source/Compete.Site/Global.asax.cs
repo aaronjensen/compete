@@ -48,6 +48,7 @@ namespace Compete.Site
 
       var path = Path.GetDirectoryName(Server.MapPath("~/Web.config"));
 
+      AppDomainHelper.Setup(path);
       Database.Start(path);
       
       _container = CreateContainer();

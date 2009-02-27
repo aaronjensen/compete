@@ -13,13 +13,18 @@ namespace Compete.Site.Controllers
   [RequireAuthenticationFilter]
   public class CompetitionController : CompeteController
   {
-    readonly CompetitionFactory _competitionFactory = new CompetitionFactory(new AssemblyFileRepository());
-
     public ActionResult Index()
     {
-      Competition competition = _competitionFactory.CreateCompetition();
-      competition.PlayRound();
+      RoundResult rr = AppDomainHelper.InSeparateAppDomain<RoundResult>(RunRound);
       return View();
+    }
+
+    private static RoundResult RunRound()
+    {
+      CompetitionFactory competitionFactory = new CompetitionFactory(new AssemblyFileRepository());
+      Competition competition = competitionFactory.CreateCompetition();
+      competition.PlayRound();
+      return new RoundResult();
     }
   }
 

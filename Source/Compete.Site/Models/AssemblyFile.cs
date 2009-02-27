@@ -8,37 +8,39 @@ namespace Compete.Site.Models
 {
   public class AssemblyFileRepository
   {
-    private const string _directory = @"C:\Compete";
+    public const string Directory = @"C:\Compete";
 
     public void Add(HttpPostedFileBase file, string fileName)
     {
-      if (!Directory.Exists(_directory))
+      if (!System.IO.Directory.Exists(Directory))
       {
-        Directory.CreateDirectory(_directory);
+        System.IO.Directory.CreateDirectory(Directory);
       }
-      string savedFileName = Path.Combine(_directory, fileName);
+      string savedFileName = Path.Combine(Directory, fileName);
       file.SaveAs(savedFileName);
     }
 
     public ICollection<AssemblyFile> FindAllGames()
     {
-      return FindAllPlayers(Path.Combine(_directory, "Games")).ToArray();
+      return FindAllPlayers(Path.Combine(Directory, "Games")).ToArray();
     }
 
     public ICollection<AssemblyFile> FindAllPlayers()
     {
-      return FindAllPlayers(_directory).ToArray();
+      return FindAllPlayers(Directory).ToArray();
     }
 
     private static IEnumerable<AssemblyFile> FindAllPlayers(string directory)
     {
-      foreach (string path in Directory.GetFiles(directory, "*.dll"))
+      foreach (string path in System.IO.Directory.GetFiles(directory, "*.dll"))
       {
         yield return new AssemblyFile(path);
       }
     }
   }
 
+
+  [Serializable]
   public class AssemblyFile
   {
     readonly string _path;
