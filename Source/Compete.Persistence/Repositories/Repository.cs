@@ -49,6 +49,11 @@ namespace Compete.Persistence.Repositories
       _db.Store(obj);
     }
 
+    public void Remove(TType obj)
+    {
+      _db.Delete(obj);
+    }
+
     public int Count()
     {
       var query = _db.Query();

@@ -15,6 +15,7 @@ namespace Compete.Persistence
     public void RegisterServices(ContainerRegisterer register)
     {
       register.Type<ITeamRepository>().ImplementedBy<TeamRepository>();
+      register.Type<IConfigurationRepository>().ImplementedBy<ConfigurationRepository>();
       register.Type<IObjectContainer>().Is(Database.Db);
     }
   }

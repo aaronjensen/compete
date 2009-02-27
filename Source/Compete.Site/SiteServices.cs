@@ -15,6 +15,7 @@ namespace Compete.Site
       register.Type<WebServerStartup>();
       register.Type<IFormsAuthentication>().ImplementedBy<FormsAuthenticationService>();
       register.Type<ISignin>().ImplementedBy<SigninService>();
+      register.Type<IInitialSetup>().ImplementedBy<InitialSetupService>();
 
       GetType().Assembly.GetExportedTypes().Where(x => typeof(Controller).IsAssignableFrom(x)).Each(
         x => register.Type(x).AsTransient()

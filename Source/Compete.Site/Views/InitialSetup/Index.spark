@@ -1,0 +1,20 @@
+﻿<h2>Initial Setup</h2>
+${#error}
+
+<form action="~/InitialSetup" method="post">
+  <fieldset>
+    <ol>
+      <li>
+        <label for="password">Admin Password:</label>
+        <input type="password" name="password" />
+      </li>
+      <li>
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" name="confirmPassword" />
+      </li>
+      <li>
+        <input id="submitButton" type="submit" value="Login" />
+      </li>
+    </ol>
+  </fieldset>
+</form>
