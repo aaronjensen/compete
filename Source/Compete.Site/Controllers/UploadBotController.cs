@@ -15,10 +15,9 @@ namespace Compete.Site.Controllers
     [AcceptVerbs(HttpVerbs.Post)]
     public ActionResult Index(string teamName, string password)
     {
-
       if (Request.Files.Count != 1)
       {
-        throw new FileLoadException("only one file at a time, please. you loaded "+Request.Files.Count+".");
+        throw new FileLoadException("only one file at a time, please. you loaded " + Request.Files.Count + ".");
       }
 
       foreach (string file in Request.Files)
@@ -33,8 +32,7 @@ namespace Compete.Site.Controllers
         {
           throw new ArgumentException("only .dll files only, please");
         }
-
-        _assemblyFileRepository.Add(hpf, hpf.FileName);
+        _assemblyFileRepository.Add(hpf, teamName);
       }
       return Redirect("~/MyTeam");
     }
