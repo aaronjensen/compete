@@ -259,7 +259,7 @@ padding : 20px 0 0 0;
 #left_side h2 {
 background : inherit;
 padding : 0;
-margin : 0;
+margin : 0 0 4px 0;
 font : 1.8em verdana, Arial, Sans-Serif;
 }
 #left_side .mpart h3 {
@@ -337,4 +337,22 @@ float : right;
 #footer a {
 text-decoration : none;
 background : inherit;
+}
+
+table { 
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 4px;
+  border-bottom: solid 2px #393939;
+}
+
+table th {
+  background-color: #515151;
+}
+
+table td {
+  color: #222;
+  background-color: #DDD;
 }

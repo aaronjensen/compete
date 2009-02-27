@@ -2,8 +2,19 @@
 ${#error}
 
 <form action="~/Login" method="post">
-  <label for="teamName">Team name (the short one):</label><input type="text" name="teamName" />
-  <label for="password">Password:</label><input type="password" name="password" />
-  
-  <input id="submitButton" type="submit" value="Login" />
+  <fieldset>
+    <ol>
+      <li>
+        <label for="teamName">Team name (the short one):</label>
+        <input type="text" name="teamName" />
+      </li>
+      <li>
+        <label for="password">Password:</label>
+        <input type="password" name="password" />
+      </li>
+      <li>
+        <input id="submitButton" type="submit" value="Login" />
+      </li>
+    </ol>
+  </fieldset>
 </form>

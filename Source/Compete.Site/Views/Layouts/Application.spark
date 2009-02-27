@@ -4,6 +4,11 @@
   <title>Compete</title>
   <script language="javascript" src="/scripts/jquery-1.2.6.min.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/required-fields-star2.css" />
+  <!--[if lte IE 7]>
+  <link rel="stylesheet" type="text/css" href="~/Content/required-fields-star2-ie.css" />
+  <![endif]-->
+
 </head>
 <body>
   <div id="top">
