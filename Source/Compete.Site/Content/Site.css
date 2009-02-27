@@ -356,3 +356,8 @@ table td {
   color: #222;
   background-color: #DDD;
 }
+
+tr.highlight td {
+  color:#000;
+  background-color:#ffcc33;
+}
