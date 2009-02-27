@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Compete.Model.Game
 {
@@ -13,10 +14,15 @@ namespace Compete.Model.Game
       _game = game;
     }
 
-    public IPlayer Leader
+    public IEnumerable<IPlayer> Leaders
     {
-      get;
-      private set;
+      get
+      {
+        if (_rounds.Count > 0)
+          return _rounds.Last().Leaders;
+
+        return new IPlayer[0];
+      }
     }
 
     public void PlayRound()
@@ -24,7 +30,6 @@ namespace Compete.Model.Game
       var round = new Round(_game, _players);
       round.Play();
       _rounds.Add(round);
-      Leader = round.Winner;
     }
 
     public void AddPlayer(IPlayer player)

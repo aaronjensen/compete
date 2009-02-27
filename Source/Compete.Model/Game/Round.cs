@@ -1,8 +1,65 @@
 using System.Collections.Generic;
 using System.Linq;
+using Machine.Core;
 
 namespace Compete.Model.Game
 {
+  public class RoundResult
+  {
+    IOrderedEnumerable<PlayerStanding> _standings;
+
+    public RoundResult(IEnumerable<PlayerStanding> standings)
+    {
+      _standings = standings.OrderByDescending(x => x.Score);
+    }
+
+    public IEnumerable<IPlayer> Leaders
+    {
+      get
+      {
+        return _standings.Where(x => x.Score == _standings.First().Score).Select(x => x.Player);
+      }
+    }
+  }
+
+  public class PlayerStanding
+  {
+    readonly IPlayer _player;
+
+    public PlayerStanding(IPlayer player)
+    {
+      _player = player;
+    }
+
+    public IPlayer Player
+    {
+      get { return _player; }
+    }
+
+    public int Score
+    {
+      get
+      {
+        return Wins * 3 + Ties;
+      }
+    }
+
+    public int Wins
+    {
+      get; set;
+    }
+
+    public int Losses
+    {
+      get; set;
+    }
+
+    public int Ties
+    {
+      get; set;
+    }
+  }
+
   public class Round
   {
     readonly IEnumerable<IPlayer> _players;
@@ -14,13 +71,20 @@ namespace Compete.Model.Game
       _game = game;
     }
 
-    public IPlayer Winner
+    public IEnumerable<IPlayer> Leaders
     {
-      get; private set;      
+      get { return Result.Leaders; }
     }
 
-    public void Play()
+    public RoundResult Result
     {
+      get; private set;
+    }
+
+    public RoundResult Play()
+    {
+      var playerStandings = new Dictionary<IPlayer, PlayerStanding>();
+      _players.Each(x => playerStandings[x] = new PlayerStanding(x));
       
       for (int i = 0; i < _players.Count(); ++i)
       {
@@ -32,38 +96,22 @@ namespace Compete.Model.Game
           var match = new Match(_game, player1, player2);
 
           var result = match.Play();
-          
-          _results.Add(result);
 
-          Winner = CalculateWinner(_results);
-        }
-      }
-
-    }
-
-    IPlayer CalculateWinner(List<AggregateResult> results)
-    {
-      var playerToScoreMap = new Dictionary<IPlayer, int>();
-      foreach (var player in _players)
-        playerToScoreMap.Add(player, 0);
-      
-      foreach (var result in results)
-      {
-        if(result.IsTie)
-        {
-          foreach (var player in result.Players)
+          foreach (var player in new [] {player1, player2})
           {
-            playerToScoreMap[player]++;
+            if (result.Winner == player)
+              playerStandings[player].Wins++;
+            else if (result.Loser == player)
+              playerStandings[player].Losses++;
+            else if (result.IsTie)
+              playerStandings[player].Ties++;
           }
         }
-        else
-        {
-          playerToScoreMap[result.Winner] += 3;
-        }
-        
       }
 
-      return null;
+      Result = new RoundResult(playerStandings.Values);
+
+      return Result;
     }
   }
 }

@@ -13,10 +13,10 @@ namespace Compete.Model.Game
       _player2 = player2;
     }
 
-    public AggregateResult Play()
+    public GameResult Play()
     {
       var gameResult = _game.Play(_player1, _player2);
-      return new AggregateResult(new [] { gameResult });
+      return gameResult;
     }
   }
 }
