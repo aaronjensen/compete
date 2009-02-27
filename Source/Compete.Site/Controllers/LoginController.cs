@@ -10,13 +10,11 @@ namespace Compete.Site.Controllers
 {
   public class LoginController : CompeteController
   {
-    readonly ITeamManagementCommands _teamCommands;
-    readonly IFormsAuthentication _formsAuthentication;
+    readonly ISignin _signin;
 
-    public LoginController(ITeamManagementCommands teamCommands, IFormsAuthentication formsAuthentication)
+    public LoginController(ISignin signin)
     {
-      _teamCommands = teamCommands;
-      _formsAuthentication = formsAuthentication;
+      _signin = signin;
     }
 
     [AcceptVerbs(HttpVerbs.Get)]
@@ -28,11 +26,10 @@ namespace Compete.Site.Controllers
     [AcceptVerbs(HttpVerbs.Post)]
     public ActionResult Index(string teamName, string password, string returnUrl)
     {
-      var result = _teamCommands.Authenticate(teamName, password);
+      var result = _signin.Signin(teamName, password);
 
       if (result)
       {
-        _formsAuthentication.SignIn(teamName);
         if (String.IsNullOrEmpty(returnUrl))
         {
           return Redirect("~/MyTeam");

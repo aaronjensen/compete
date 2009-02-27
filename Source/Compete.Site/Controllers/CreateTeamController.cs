@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Compete.Site.Infrastructure;
 using Compete.TeamManagement;
 
 namespace Compete.Site.Controllers
@@ -11,11 +12,13 @@ namespace Compete.Site.Controllers
   {
     readonly ITeamManagementCommands _teamManagementCommands;
     private readonly ITeamManagementQueries _teamManagementQueries;
+    readonly ISignin _signin;
 
-    public CreateTeamController(ITeamManagementCommands teamManagementCommands, ITeamManagementQueries teamManagementQueries)
+    public CreateTeamController(ITeamManagementCommands teamManagementCommands, ITeamManagementQueries teamManagementQueries, ISignin signin)
     {
       _teamManagementCommands = teamManagementCommands;
       _teamManagementQueries = teamManagementQueries;
+      _signin = signin;
     }
 
     [AcceptVerbs(HttpVerbs.Get)]
@@ -55,7 +58,7 @@ namespace Compete.Site.Controllers
         throw new Exception("Crazy wild error creating a team");
       }
       
-      result = _teamManagementCommands.Authenticate(teamName, password);
+      result = _signin.Signin(teamName, password);
       if (!result)
       {
         throw new Exception("Weird, I seriously just added this team, I should be able to log you in...");

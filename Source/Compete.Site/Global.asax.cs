@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Compete.Core;
 using Compete.Persistence;
-using Compete.Site.Infrastructure;
 using Compete.Site.Startup;
 using Compete.TeamManagement;
 using Machine.Container;
-using Machine.Container.Plugins;
 using Machine.Container.Services;
 using Machine.MsMvc;
 using Microsoft.Practices.ServiceLocation;
 using Spark;
 using Spark.Web.Mvc;
-using Machine.Core;
 
 namespace Compete.Site
 {
@@ -80,19 +76,6 @@ namespace Compete.Site
       var adapter = new CommonServiceLocatorAdapter(container);
       ServiceLocator.SetLocatorProvider(() => adapter);
       return container;
-    }
-  }
-
-  public class SiteServices : IServiceCollection
-  {
-    public void RegisterServices(ContainerRegisterer register)
-    {
-      register.Type<WebServerStartup>();
-      register.Type<IFormsAuthentication>().ImplementedBy<FormsAuthenticationService>();
-
-      GetType().Assembly.GetExportedTypes().Where(x => typeof(Controller).IsAssignableFrom(x)).Each(
-        x => register.Type(x).AsTransient()
-      );
     }
   }
 }

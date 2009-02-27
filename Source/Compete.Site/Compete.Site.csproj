@@ -118,11 +118,25 @@
     <Compile Include="Infrastructure\AppDomainHelper.cs" />
     <Compile Include="Infrastructure\DynamicAssemblyTypeFinder.cs" />
     <Compile Include="Infrastructure\FormsAuthenticationService.cs" />
+    <Compile Include="Infrastructure\SigninService.cs" />
     <Compile Include="Models\AssemblyFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteServices.cs" />
     <Compile Include="Startup\WebServerStartup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\commentb.gif" />
+    <Content Include="Content\images\commentb.jpg" />
+    <Content Include="Content\images\contact.gif" />
+    <Content Include="Content\images\home.gif" />
+    <Content Include="Content\images\rmenuhead.gif" />
+    <Content Include="Content\images\rss.jpg" />
+    <Content Include="Content\images\sitemap.gif" />
+    <Content Include="Content\images\tabl.gif" />
+    <Content Include="Content\images\tabr.gif" />
+    <Content Include="Content\images\topbg.gif" />
+    <Content Include="Content\required-fields-star2-ie.css" />
+    <Content Include="Content\required-fields-star2.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -156,6 +170,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\images\Database.yap" />
+    <None Include="Content\images\Thumbs.db" />
     <None Include="Views\Competition\Index.spark" />
     <None Include="Views\CreateTeam\Index.spark" />
     <None Include="Views\Home\Index.spark" />
