@@ -26,11 +26,12 @@ namespace Compete.Model.Game
       }
     }
 
-    public void PlayRound()
+    public RoundResult PlayRound()
     {
       var round = new Round(_game, _players);
-      round.Play();
+      RoundResult rr = round.Play();
       _rounds.Add(round);
+      return rr;
     }
 
     public void AddPlayer(BotPlayer player)

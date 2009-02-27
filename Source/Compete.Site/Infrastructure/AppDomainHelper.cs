@@ -20,11 +20,6 @@ namespace Compete.Site.Infrastructure
       }
     }
 
-    public static O InSeparateAppDomain<O>(Func<O> method)
-    {
-      return InSeparateAppDomain<object, O>(null, (x) => method());
-    }
-
     public static O InSeparateAppDomain<I, O>(I parameter, Func<I, O> method)
     {
       AppDomainSetup setup = new AppDomainSetup();

@@ -16,16 +16,16 @@ namespace Compete.Site.Controllers
   {
     public ActionResult Index()
     {
-      RoundResult rr = AppDomainHelper.InSeparateAppDomain<RoundResult>(RunRound);
+      RoundResult rr = AppDomainHelper.InSeparateAppDomain<object, RoundResult>(null, RunRound);
+      _log.Info(rr);
       return View();
     }
 
-    private static RoundResult RunRound()
+    private static RoundResult RunRound(object notUsed)
     {
       CompetitionFactory competitionFactory = new CompetitionFactory(new AssemblyFileRepository());
       Competition competition = competitionFactory.CreateCompetition();
-      competition.PlayRound();
-      return null;
+      return competition.PlayRound();
     }
   }
 

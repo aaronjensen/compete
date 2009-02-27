@@ -4,21 +4,28 @@ using System.Linq;
 
 using Machine.Core;
 
+using Compete.Core;
+
 namespace Compete.Model.Game
 {
   [Serializable]
   public class RoundResult
   {
-    readonly IOrderedEnumerable<TeamStanding> _standings;
+    readonly TeamStanding[] _standings;
+
+    public TeamStanding[] Standings
+    {
+      get { return _standings; }
+    }
 
     public RoundResult(IEnumerable<TeamStanding> standings)
     {
-      _standings = standings.OrderByDescending(x => x.Score);
+      _standings = standings.OrderByDescending(x => x.Score).ToArray();
     }
 
-    public IEnumerable<string> Leaders
+    public override string ToString()
     {
-      get { return _standings.Where(x => x.Score == _standings.First().Score).Select(x => x.Name); }
+      return _standings.Select(x => x.ToString()).Join(", ");
     }
   }
 
@@ -69,11 +76,16 @@ namespace Compete.Model.Game
       _game = game;
     }
 
+    private IEnumerable<string> LeaderTeamNames
+    {
+      get { return Result.Standings.Where(x => x.Score == Result.Standings.First().Score).Select(x => x.Name); }
+    }
+
     public IEnumerable<BotPlayer> Leaders
     {
       get
       {
-        foreach (string name in Result.Leaders)
+        foreach (string name in LeaderTeamNames)
         {
           foreach (BotPlayer player in _players)
           {
