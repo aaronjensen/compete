@@ -2,19 +2,51 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Compete.Model;
+using Compete.Model.Repositories;
+using Compete.Site.Infrastructure;
 using Compete.Site.Models;
+using Compete.TeamManagement;
 
 namespace Compete.Site.Controllers
 {
   public class UploadBotController : CompeteController
   {
+    readonly ITeamManagementCommands _teamCommands;
+    readonly IFormsAuthentication _formsAuthentication;
     readonly AssemblyFileRepository _assemblyFileRepository = new AssemblyFileRepository();
+
+    public UploadBotController(ITeamManagementCommands teamCommands, IFormsAuthentication formsAuthentication)
+    {
+      _teamCommands = teamCommands;
+      _formsAuthentication = formsAuthentication;
+    }
 
     [AcceptVerbs(HttpVerbs.Post)]
     public ActionResult Index(string teamName, string password)
     {
+      if (string.IsNullOrEmpty(teamName) || string.IsNullOrEmpty(password))
+      {
+        teamName = _formsAuthentication.SignedInUserName;
+      }
+      else
+      {
+        if (!_teamCommands.Authenticate(teamName, password))
+        {
+          teamName = null;
+        }
+      }
+
+      if (string.IsNullOrEmpty(teamName))
+      {
+        Response.StatusCode = (int)HttpStatusCode.Forbidden;
+        Response.Write("Invalid teamname or password.");
+        return new EmptyResult();
+      }
+
       if (Request.Files.Count != 1)
       {
         throw new FileLoadException("only one file at a time, please. you loaded " + Request.Files.Count + ".");
@@ -32,7 +64,7 @@ namespace Compete.Site.Controllers
         {
           throw new ArgumentException("only .dll files only, please");
         }
-        _assemblyFileRepository.Add(hpf, teamName);
+        _assemblyFileRepository.Add(hpf, teamName + ".dll");
       }
       return Redirect("~/MyTeam");
     }
