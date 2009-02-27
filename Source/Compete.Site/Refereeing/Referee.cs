@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 using Compete.Model.Game;
 using Compete.Site.Infrastructure;
@@ -20,11 +21,11 @@ namespace Compete.Site.Refereeing
     {
       using (StagingArea staging = new StagingArea(_files))
       {
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
         RoundResult rr = AppDomainHelper.InSeparateAppDomain<AssemblyFile[], RoundResult>(staging.Root, _files, RunRound);
-        if (rr != null)
-        {
-          _log.Info("RR: " + rr);
-        }
+        sw.Stop();
+        _log.Info("RR: " + rr + " completed in " + sw.Elapsed);
       }
     }
 
