@@ -2,8 +2,6 @@
 using System.IO;
 using System.Security.Policy;
 
-using Compete.Site.Models;
-
 namespace Compete.Site.Infrastructure
 {
   public static class AppDomainHelper
@@ -20,11 +18,11 @@ namespace Compete.Site.Infrastructure
       }
     }
 
-    public static O InSeparateAppDomain<I, O>(I parameter, Func<I, O> method)
+    public static O InSeparateAppDomain<I, O>(string applicationBase, I parameter, Func<I, O> method)
     {
       AppDomainSetup setup = new AppDomainSetup();
       Evidence evidence = AppDomain.CurrentDomain.Evidence;
-      setup.ApplicationBase = AssemblyFileRepository.Directory;
+      setup.ApplicationBase = applicationBase;
       AppDomain domain = AppDomain.CreateDomain(Guid.NewGuid().ToString(), evidence, setup);
       try
       {
@@ -34,6 +32,11 @@ namespace Compete.Site.Infrastructure
         Sandbox<I, O> sandbox = (Sandbox<I, O>)domain.CreateInstanceAndUnwrap(sandboxAssemblyName, sandboxTypeName);
         O value = sandbox.Apply(parameter, method);
         return value;
+      }
+      catch (Exception error)
+      {
+        _log.Error(error);
+        return default(O);
       }
       finally
       {

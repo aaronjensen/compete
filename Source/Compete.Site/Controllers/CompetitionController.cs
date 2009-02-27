@@ -3,46 +3,36 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+
 using Compete.Bot;
 using Compete.Model.Game;
 using Compete.Site.Filters;
 using Compete.Site.Infrastructure;
 using Compete.Site.Models;
+using Compete.Site.Refereeing;
 
 namespace Compete.Site.Controllers
 {
   [RequireAuthenticationFilter]
   public class CompetitionController : CompeteController
   {
+    readonly AssemblyFileRepository _assemblyFileRepository = new AssemblyFileRepository();
+
     public ActionResult Index()
     {
-      RoundResult rr = AppDomainHelper.InSeparateAppDomain<object, RoundResult>(null, RunRound);
-      _log.Info(rr);
+      Referee referee = new Referee(_assemblyFileRepository.FindAllGamesAndPlayers().ToArray());
+      RefereeThread thread = new RefereeThread(referee);
+      thread.Start();
       return View();
-    }
-
-    private static RoundResult RunRound(object notUsed)
-    {
-      CompetitionFactory competitionFactory = new CompetitionFactory(new AssemblyFileRepository());
-      Competition competition = competitionFactory.CreateCompetition();
-      return competition.PlayRound();
     }
   }
 
   public class CompetitionFactory
   {
-    readonly AssemblyFileRepository _assemblyFileRepository;
-
-    public CompetitionFactory(AssemblyFileRepository assemblyFileRepository)
-    {
-      _assemblyFileRepository = assemblyFileRepository;
-    }
-
-    public Competition CreateCompetition()
+    public Competition CreateCompetition(AssemblyFile[] files)
     {
       DynamicAssemblyTypeFinder dynamicAssemblyTypeFinder = new DynamicAssemblyTypeFinder();
-      dynamicAssemblyTypeFinder.AddAll(_assemblyFileRepository.FindAllGames());
-      dynamicAssemblyTypeFinder.AddAll(_assemblyFileRepository.FindAllPlayers());
+      dynamicAssemblyTypeFinder.AddAll(files);
       IGame game = dynamicAssemblyTypeFinder.Create<IGame>().Single();
       Competition competition = new Competition(game);
       foreach (IBotFactory botFactory in dynamicAssemblyTypeFinder.Create<IBotFactory>())

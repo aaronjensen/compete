@@ -12,12 +12,19 @@ namespace Compete.Site.Models
 
     public void Add(HttpPostedFileBase file, string fileName)
     {
-      if (!System.IO.Directory.Exists(Directory))
-      {
-        System.IO.Directory.CreateDirectory(Directory);
-      }
+      DirectoryHelpers.CreateIfNecessary(Directory);
+      DirectoryHelpers.CreateIfNecessary(Directory, "Bots");
+      DirectoryHelpers.CreateIfNecessary(Directory, "Games");
       string savedFileName = Path.Combine(Directory, fileName);
       file.SaveAs(savedFileName);
+    }
+    
+    public ICollection<AssemblyFile> FindAllGamesAndPlayers()
+    {
+      List<AssemblyFile> files = new List<AssemblyFile>();
+      files.AddRange(FindAllGames());
+      files.AddRange(FindAllPlayers());
+      return files;
     }
 
     public ICollection<AssemblyFile> FindAllGames()
@@ -27,7 +34,7 @@ namespace Compete.Site.Models
 
     public ICollection<AssemblyFile> FindAllPlayers()
     {
-      return FindAllPlayers(Directory).ToArray();
+      return FindAllPlayers(Path.Combine(Directory, "Bots")).ToArray();
     }
 
     private static IEnumerable<AssemblyFile> FindAllPlayers(string directory)
@@ -39,6 +46,21 @@ namespace Compete.Site.Models
     }
   }
 
+  public static class DirectoryHelpers
+  {
+    public static void CreateIfNecessary(string full)
+    {
+      if (!Directory.Exists(full))
+      {
+        Directory.CreateDirectory(full);
+      }
+    }
+    public static void CreateIfNecessary(string path, string relative)
+    {
+      string full = Path.Combine(path, relative);
+      CreateIfNecessary(full);
+    }
+  }
 
   [Serializable]
   public class AssemblyFile

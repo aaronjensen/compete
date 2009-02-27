@@ -63,6 +63,11 @@ namespace Compete.Model.Game
     {
       get; set;
     }
+
+    public override string ToString()
+    {
+      return _name + ": " + this.Score;
+    }
   }
 
   public class Round
