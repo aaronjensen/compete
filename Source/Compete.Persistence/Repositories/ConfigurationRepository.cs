@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using Compete.Model;
 using Compete.Model.Repositories;
+
 using Db4objects.Db4o;
 
 namespace Compete.Persistence.Repositories
