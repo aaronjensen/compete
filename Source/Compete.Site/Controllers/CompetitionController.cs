@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -46,7 +47,8 @@ namespace Compete.Site.Controllers
       Competition competition = new Competition(game);
       foreach (IBotFactory botFactory in dynamicAssemblyTypeFinder.Create<IBotFactory>())
       {
-        competition.AddPlayer(new BotPlayer("", botFactory.CreateBot()));
+        string teamName = Path.GetFileName(botFactory.GetType().Assembly.Location);
+        competition.AddPlayer(new BotPlayer(teamName, botFactory.CreateBot()));
       }
       return competition;
     }
