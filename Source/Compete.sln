@@ -17,6 +17,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.SampleGame", "Compe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.TeamManagement", "Compete.TeamManagement\Compete.TeamManagement.csproj", "{9ADC69D2-C420-435E-A07D-4B11608F6A4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissorsPro", "..\..\rock_paper_scissors_pro\Source\RockPaperScissorsPro\RockPaperScissorsPro.csproj", "{146770EE-181F-4C9F-951A-FB7F608B0505}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissorsPro.Specs", "..\..\rock_paper_scissors_pro\Source\RockPaperScissorsPro.Specs\RockPaperScissorsPro.Specs.csproj", "{500A1C5F-353C-4F79-B276-4B9515BC334C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissorsPro.AlwaysThrows", "..\..\rock_paper_scissors_pro\Source\RockPaperScissorsPro.AlwaysThrows\RockPaperScissorsPro.AlwaysThrows.csproj", "{7D605349-4906-44A8-9ED9-17FDDD6974FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +61,18 @@ Global
 		{9ADC69D2-C420-435E-A07D-4B11608F6A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ADC69D2-C420-435E-A07D-4B11608F6A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ADC69D2-C420-435E-A07D-4B11608F6A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{146770EE-181F-4C9F-951A-FB7F608B0505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{146770EE-181F-4C9F-951A-FB7F608B0505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{146770EE-181F-4C9F-951A-FB7F608B0505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{146770EE-181F-4C9F-951A-FB7F608B0505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500A1C5F-353C-4F79-B276-4B9515BC334C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500A1C5F-353C-4F79-B276-4B9515BC334C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500A1C5F-353C-4F79-B276-4B9515BC334C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500A1C5F-353C-4F79-B276-4B9515BC334C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D605349-4906-44A8-9ED9-17FDDD6974FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D605349-4906-44A8-9ED9-17FDDD6974FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D605349-4906-44A8-9ED9-17FDDD6974FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D605349-4906-44A8-9ED9-17FDDD6974FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
