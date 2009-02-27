@@ -19,7 +19,7 @@ namespace Compete.Site.Refereeing
       Competition competition = new Competition(game);
       foreach (IBotFactory botFactory in dynamicAssemblyTypeFinder.Create<IBotFactory>())
       {
-        string teamName = Path.GetFileName(botFactory.GetType().Assembly.Location);
+        string teamName = Path.GetFileNameWithoutExtension(botFactory.GetType().Assembly.Location);
         competition.AddPlayer(new BotPlayer(teamName, botFactory.CreateBot()));
       }
       return competition;
