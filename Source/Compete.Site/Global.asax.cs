@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.IO;
 using System.Web.Mvc;
 using System.Web.Routing;
+
 using Compete.Core;
 using Compete.Persistence;
 using Compete.Site.Infrastructure;
 using Compete.Site.Startup;
 using Compete.TeamManagement;
+
 using Machine.Container;
 using Machine.Container.Services;
 using Machine.MsMvc;
+
 using Microsoft.Practices.ServiceLocation;
 
 using Spark.Web.Mvc;
 
 namespace Compete.Site
 {
-  // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-  // visit http://go.microsoft.com/?LinkId=9394801
-
   public class MvcApplication : System.Web.HttpApplication
   {
     private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(typeof(MvcApplication));
@@ -48,7 +48,7 @@ namespace Compete.Site
 
       var path = Path.GetDirectoryName(Server.MapPath("~/Web.config"));
 
-      AppDomainHelper.Setup(path);
+      AppDomainHelper.Start(path);
       Database.Start(path);
       
       _container = CreateContainer();

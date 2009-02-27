@@ -9,14 +9,14 @@ namespace Compete.Site.Infrastructure
   public static class AppDomainHelper
   {
     static readonly log4net.ILog _log = log4net.LogManager.GetLogger(typeof(AppDomainHelper));
+    private static string _binaryDirectory;
 
-    public static void Setup(string from)
+    public static void CopyDependencies(string to)
     {
-      foreach (string path in Directory.GetFiles(Path.Combine(from, "Bin"), "*.dll"))
+      foreach (string path in Directory.GetFiles(Path.Combine(_binaryDirectory, "Bin"), "*.dll"))
       {
         _log.Info("Copying " + path);
-        File.Copy(path, Path.Combine(             AssemblyFileRepository.Directory,            Path.GetFileName(path)), true);
-        File.Copy(path, Path.Combine(Path.Combine(AssemblyFileRepository.Directory, @"Games"), Path.GetFileName(path)), true);
+        File.Copy(path, Path.Combine(to, Path.GetFileName(path)), true);
       }
     }
 
@@ -39,6 +39,11 @@ namespace Compete.Site.Infrastructure
       {
         AppDomain.Unload(domain);
       }
+    }
+
+    public static void Start(string path)
+    {
+      _binaryDirectory = path;
     }
   }
 
