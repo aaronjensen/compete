@@ -1,4 +1,4 @@
-﻿<viewdata TeamStandings="string" />
+﻿<viewdata TeamStandings="string" Username="string"/>
 <h2>Standings</h2>
 <table class="standings_table">
   <thead>
@@ -18,13 +18,16 @@
         path = path.substring(0, path.length - 1);
       }
       
+  var username = '${Username}';
+  
   var standings = ${TeamStandings};
   
   var processStandings = function(standings) {
     $('.standing').remove();
     
     $.each(standings, function(index, standing) {
-      $('.standings').append('<tr class="standing"><td>#'+standing.Rank+'</td><td>'+standing.Name+'</td><td>'+standing.Wins+'-'+standing.Losses+'-'+standing.Ties+'</td><td>'+standing.LastChange+'</td></tr>');
+      var highlight = standing.Name == username ? 'highlight' : '';
+      $('.standings').append('<tr class="standing '+ highlight +'"> <td>#'+standing.Rank+'</td><td>'+standing.Name+'</td><td>'+standing.Wins+'-'+standing.Losses+'-'+standing.Ties+'</td><td>'+standing.LastChange+'</td></tr>');
     });
   }
   
@@ -32,7 +35,6 @@
     var standings = $.getJSON(path+"/Standings/Latest", {}, function(data) {
       processStandings(data);
     });
-    $('.standings_table').after("<p>callback!</p>");
   }
   
   processStandings(standings);
