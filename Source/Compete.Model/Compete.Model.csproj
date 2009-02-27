@@ -54,6 +54,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Game\AggregateResult.cs" />
     <Compile Include="Game\Competition.cs" />
+    <Compile Include="Game\IPlayerFactory.cs" />
     <Compile Include="Game\MatchResult.cs" />
     <Compile Include="Game\GameResult.cs" />
     <Compile Include="Game\GameState.cs" />
