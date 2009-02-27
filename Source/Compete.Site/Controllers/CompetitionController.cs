@@ -22,7 +22,7 @@ namespace Compete.Site.Controllers
 
     public ActionResult Index()
     {
-      Referee referee = new Referee(_assemblyFileRepository.FindAllGamesAndPlayers().ToArray());
+      var referee = new Referee(_assemblyFileRepository.FindAllGamesAndPlayers().ToArray());
       _refereeThread.Start(referee);
       return RedirectToReferrer();
     }

@@ -19,11 +19,11 @@ namespace Compete.Site.Refereeing
 
     public void Start()
     {
-      using (StagingArea staging = new StagingArea(_files))
+      using (var staging = new StagingArea(_files))
       {
-        Stopwatch sw = new Stopwatch();
+        var sw = new Stopwatch();
         sw.Start();
-        RoundResult rr = AppDomainHelper.InSeparateAppDomain<AssemblyFile[], RoundResult>(staging.Root, _files, RunRound);
+        var rr = AppDomainHelper.InSeparateAppDomain<AssemblyFile[], RoundResult>(staging.Root, _files, RunRound);
         sw.Stop();
         _log.Info("RR: " + rr + " completed in " + sw.Elapsed);
       }
@@ -31,8 +31,8 @@ namespace Compete.Site.Refereeing
 
     private static RoundResult RunRound(AssemblyFile[] files)
     {
-      CompetitionFactory competitionFactory = new CompetitionFactory();
-      Competition competition = competitionFactory.CreateCompetition(files);
+      var competitionFactory = new CompetitionFactory();
+      var competition = competitionFactory.CreateCompetition(files);
       return competition.PlayRound();
     }
   }
