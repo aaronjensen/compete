@@ -12,6 +12,7 @@ namespace Compete.TeamManagement
     IEnumerable<TeamSummary> GetTeamSummaries();
     bool TeamNameIsAvailable(string name);
     IEnumerable<TeamStandingSummary> GetTeamStandings();
+    IEnumerable<string> GetAllTeamNames();
   }
 
   public class TeamManagementQueries : ITeamManagementQueries
@@ -52,6 +53,12 @@ namespace Compete.TeamManagement
                                standing.Ties, 
                                standing.LastChange);
                            });
+    }
+
+    public IEnumerable<string> GetAllTeamNames()
+    {
+      var teams = _teamRepository.GetAllTeams();
+      return teams.Select(x => x.Name);
     }
   }
 }

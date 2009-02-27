@@ -27,16 +27,25 @@ namespace Compete.Model.Game
       }
     }
 
-    public RoundResult PlayRound()
+    public IEnumerable<MatchResult> PlayRound(IEnumerable<string> teamNames)
+    {
+      var teams = _players.Where(x => teamNames.Contains(x.TeamName));
+
+      return PlayRound(teams);
+    }
+
+    IEnumerable<MatchResult> PlayRound(IEnumerable<BotPlayer> teams)
     {
       if (_players.Count == 0)
       {
         throw new InvalidOperationException("No players in game!");
       }
-      var round = new Round(_game, _players);
-      RoundResult rr = round.Play();
+
+      var round = new Round(_game, _players, teams);
+      var matchResults = round.Play();
       _rounds.Add(round);
-      return rr;
+
+      return matchResults;
     }
 
     public void AddPlayer(BotPlayer player)

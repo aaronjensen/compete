@@ -12,7 +12,7 @@ namespace Compete.Site.Refereeing
   public class RefereeThread : IRefereeThread
   {
     static readonly log4net.ILog _log = log4net.LogManager.GetLogger(typeof(RefereeThread));
-    readonly Thread _thread = new Thread(Main);
+    Thread _thread;
     Referee _currentlyRunning;
 
     public bool IsRunning
@@ -27,6 +27,8 @@ namespace Compete.Site.Refereeing
         _log.Info("Not starting, already running...");
         return false;
       }
+
+      _thread = new Thread(Main);
       _log.Info("Starting:");
       _currentlyRunning = referee;
       _thread.Start(this);
@@ -35,7 +37,7 @@ namespace Compete.Site.Refereeing
 
     protected virtual void Run()
     {
-      _currentlyRunning.Start();
+      _currentlyRunning.StartRound();
       _currentlyRunning = null;
     }
 

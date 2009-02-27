@@ -72,12 +72,14 @@ namespace Compete.Model.Game
 
   public class Round
   {
-    readonly IEnumerable<BotPlayer> _players;
+    readonly IEnumerable<BotPlayer> _allPlayers;
+    readonly IEnumerable<BotPlayer> _playersToEvaluate;
     readonly IGame _game;
 
-    public Round(IGame game, IEnumerable<BotPlayer> players)
+    public Round(IGame game, IEnumerable<BotPlayer> allPlayers, IEnumerable<BotPlayer> playersToEvaluate)
     {
-      _players = players;
+      _allPlayers = allPlayers;
+      _playersToEvaluate = playersToEvaluate;
       _game = game;
     }
 
@@ -92,7 +94,7 @@ namespace Compete.Model.Game
       {
         foreach (string name in LeaderTeamNames)
         {
-          foreach (BotPlayer player in _players)
+          foreach (BotPlayer player in _allPlayers)
           {
             if (player.TeamName == name)
             {
@@ -108,37 +110,46 @@ namespace Compete.Model.Game
       get; private set;
     }
 
-    public RoundResult Play()
+    public IEnumerable<MatchResult> Play()
     {
       var playerStandings = new Dictionary<BotPlayer, TeamStanding>();
-      _players.Each(x => playerStandings[x] = new TeamStanding(x.TeamName));
-      
-      for (int i = 0; i < _players.Count(); ++i)
+      _allPlayers.Each(x => playerStandings[x] = new TeamStanding(x.TeamName));
+
+      var matchResults = new List<MatchResult>();
+
+      for (int i = 0; i < _allPlayers.Count(); ++i)
       {
-        for (int j = i + 1; j < _players.Count(); ++j)
+        for (int j = i + 1; j < _allPlayers.Count(); ++j)
         {
-          var player1 = _players.ElementAt(i);
-          var player2 = _players.ElementAt(j);
+          var player1 = _allPlayers.ElementAt(i);
+          var player2 = _allPlayers.ElementAt(j);
+
+          if (!_playersToEvaluate.Contains(player1) 
+            && !_playersToEvaluate.Contains(player2))
+            continue;
 
           var match = new Match(_game, player1, player2);
 
           var result = match.Play();
 
-          foreach (var player in new [] {player1, player2})
-          {
-            if (result.Winner == player)
-              playerStandings[player].Wins++;
-            else if (result.Loser == player)
-              playerStandings[player].Losses++;
-            else if (result.IsTie)
-              playerStandings[player].Ties++;
-          }
+          matchResults.Add(result.ToMatchResult());
         }
       }
 
-      Result = new RoundResult(playerStandings.Values);
+      return matchResults;
+    }
+  }
 
-      return Result;
+  public static class ResultMapping
+  {
+    public static MatchResult ToMatchResult(this GameResult gameResult)
+    {
+      if (gameResult.IsTie)
+      {
+        return MatchResult.Tie(gameResult.Players.First().TeamName, gameResult.Players.Last().TeamName);
+      }
+
+      return MatchResult.WinnerAndLoser(gameResult.Winner.TeamName, gameResult.Loser.TeamName);
     }
   }
 }

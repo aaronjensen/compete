@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Compete.Model.Game
 {
+  [Serializable]
   public class MatchResult
   {
     public string TeamName1
