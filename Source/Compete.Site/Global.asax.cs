@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Compete.Core;
 using Compete.Persistence;
+using Compete.Site.Infrastructure;
 using Compete.Site.Startup;
 using Compete.TeamManagement;
 using Machine.Container;
 using Machine.Container.Services;
 using Machine.MsMvc;
 using Microsoft.Practices.ServiceLocation;
-using Spark;
+
 using Spark.Web.Mvc;
 
 namespace Compete.Site

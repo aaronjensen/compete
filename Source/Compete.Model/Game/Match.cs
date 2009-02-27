@@ -2,11 +2,11 @@ namespace Compete.Model.Game
 {
   public class Match
   {
-    readonly IPlayer _player1;
-    readonly IPlayer _player2;
+    readonly BotPlayer _player1;
+    readonly BotPlayer _player2;
     readonly IGame _game;
 
-    public Match(IGame game, IPlayer player1, IPlayer player2)
+    public Match(IGame game, BotPlayer player1, BotPlayer player2)
     {
       _game = game;
       _player1 = player1;

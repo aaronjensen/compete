@@ -24,7 +24,7 @@ namespace Compete.Site.Controllers
       CompetitionFactory competitionFactory = new CompetitionFactory(new AssemblyFileRepository());
       Competition competition = competitionFactory.CreateCompetition();
       competition.PlayRound();
-      return new RoundResult();
+      return null;
     }
   }
 
@@ -44,9 +44,9 @@ namespace Compete.Site.Controllers
       dynamicAssemblyTypeFinder.AddAll(_assemblyFileRepository.FindAllPlayers());
       IGame game = dynamicAssemblyTypeFinder.Create<IGame>().Single();
       Competition competition = new Competition(game);
-      foreach (IPlayerFactory playerFactory in dynamicAssemblyTypeFinder.Create<IPlayerFactory>())
+      foreach (IBotFactory botFactory in dynamicAssemblyTypeFinder.Create<IBotFactory>())
       {
-        competition.AddPlayer(playerFactory.CreatePlayer());
+        competition.AddPlayer(new BotPlayer("", botFactory.CreateBot()));
       }
       return competition;
     }

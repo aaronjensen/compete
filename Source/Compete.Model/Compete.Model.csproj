@@ -55,14 +55,14 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Game\AggregateResult.cs" />
     <Compile Include="Game\Competition.cs" />
-    <Compile Include="Game\IPlayerFactory.cs" />
+    <Compile Include="Game\IBot.cs" />
+    <Compile Include="Game\IBotFactory.cs" />
     <Compile Include="Game\GameResult.cs" />
     <Compile Include="Game\GameState.cs" />
     <Compile Include="Game\IGame.cs" />
     <Compile Include="Game\Match.cs" />
-    <Compile Include="Game\Player.cs" />
+    <Compile Include="Game\BotPlayer.cs" />
     <Compile Include="Game\Round.cs" />
-    <Compile Include="Game\RoundResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\TeamStandingSummary.cs" />
     <Compile Include="Reports\TeamSummary.cs" />

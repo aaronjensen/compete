@@ -9,7 +9,7 @@ namespace Compete.SampleGame
   /*
   public class GuessANumberBelowTenOrSomethingBitch : IGame
   {
-    public GameResult Play(IPlayer player1, IPlayer player2)
+    public GameResult Play(BotPlayer player1, BotPlayer player2)
     {
       var random = new Random();
       var number = random.Next(10);

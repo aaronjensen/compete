@@ -71,18 +71,14 @@ namespace Compete.Specs.Model.Game
 
   public class AggregateResultSpecs
   {
-    protected static IPlayer player1;
-    protected static IPlayer player2;
+    protected static BotPlayer player1;
+    protected static BotPlayer player2;
     protected static AggregateResult result;
 
     Establish context = () =>
     {
-      player1 = new Player();
-      player2 = new Player();
+      player1 = new BotPlayer("A", null);
+      player2 = new BotPlayer("B", null);
     };
-  }
-
-  public class Player : IPlayer
-  {
   }
 }

@@ -1,47 +1,45 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Machine.Core;
 
 namespace Compete.Model.Game
 {
+  [Serializable]
   public class RoundResult
   {
-    IOrderedEnumerable<PlayerStanding> _standings;
+    readonly IOrderedEnumerable<TeamStanding> _standings;
 
-    public RoundResult(IEnumerable<PlayerStanding> standings)
+    public RoundResult(IEnumerable<TeamStanding> standings)
     {
       _standings = standings.OrderByDescending(x => x.Score);
     }
 
-    public IEnumerable<IPlayer> Leaders
+    public IEnumerable<string> Leaders
     {
-      get
-      {
-        return _standings.Where(x => x.Score == _standings.First().Score).Select(x => x.Player);
-      }
+      get { return _standings.Where(x => x.Score == _standings.First().Score).Select(x => x.Name); }
     }
   }
 
-  public class PlayerStanding
+  [Serializable]
+  public class TeamStanding
   {
-    readonly IPlayer _player;
+    readonly string _name;
 
-    public PlayerStanding(IPlayer player)
+    public TeamStanding(string name)
     {
-      _player = player;
+      _name = name;
     }
 
-    public IPlayer Player
+    public string Name
     {
-      get { return _player; }
+      get { return _name; }
     }
 
     public int Score
     {
-      get
-      {
-        return Wins * 3 + Ties;
-      }
+      get { return Wins * 3 + Ties; }
     }
 
     public int Wins
@@ -62,18 +60,30 @@ namespace Compete.Model.Game
 
   public class Round
   {
-    readonly IEnumerable<IPlayer> _players;
+    readonly IEnumerable<BotPlayer> _players;
     readonly IGame _game;
-    List<AggregateResult> _results = new List<AggregateResult>();
-    public Round(IGame game, IEnumerable<IPlayer> players)
+
+    public Round(IGame game, IEnumerable<BotPlayer> players)
     {
       _players = players;
       _game = game;
     }
 
-    public IEnumerable<IPlayer> Leaders
+    public IEnumerable<BotPlayer> Leaders
     {
-      get { return Result.Leaders; }
+      get
+      {
+        foreach (string name in Result.Leaders)
+        {
+          foreach (BotPlayer player in _players)
+          {
+            if (player.TeamName == name)
+            {
+              yield return player;
+            }
+          }
+        }
+      }
     }
 
     public RoundResult Result
@@ -83,8 +93,8 @@ namespace Compete.Model.Game
 
     public RoundResult Play()
     {
-      var playerStandings = new Dictionary<IPlayer, PlayerStanding>();
-      _players.Each(x => playerStandings[x] = new PlayerStanding(x));
+      var playerStandings = new Dictionary<BotPlayer, TeamStanding>();
+      _players.Each(x => playerStandings[x] = new TeamStanding(x.TeamName));
       
       for (int i = 0; i < _players.Count(); ++i)
       {

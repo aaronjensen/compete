@@ -7,11 +7,11 @@ namespace Compete.Model.Game
 {
   public class AggregateResult
   {
-    readonly Dictionary<IPlayer, int> _playerToScoreMap;
+    readonly Dictionary<BotPlayer, int> _playerToScoreMap;
 
     public AggregateResult(IEnumerable<GameResult> results)
     {
-      _playerToScoreMap = new Dictionary<IPlayer, int>();
+      _playerToScoreMap = new Dictionary<BotPlayer, int>();
       results.SelectMany(x => x.Players).Each(x => _playerToScoreMap[x] = 0);
 
       results.Each(result =>
@@ -41,12 +41,12 @@ namespace Compete.Model.Game
       }
     }
 
-    public IEnumerable<IPlayer> Players
+    public IEnumerable<BotPlayer> Players
     {
       get { return _playerToScoreMap.Keys; }
     }
 
-    public IPlayer Winner
+    public BotPlayer Winner
     {
       get; private set;
     }

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace Compete.Model.Game
 {
-  public interface IPlayerFactory
+  public interface IBot
   {
-    IPlayer CreatePlayer();
   }
 }

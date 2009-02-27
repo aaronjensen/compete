@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Compete.Model.Game
 {
-  [Serializable]
-  public class RoundResult
+  public interface IBotFactory
   {
+    IBot CreateBot();
   }
 }

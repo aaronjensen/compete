@@ -5,12 +5,12 @@ namespace Compete.Model.Game
 {
   public class GameResult
   {
-    public IPlayer Winner
+    public BotPlayer Winner
     {
       get; private set;
     }
 
-    public IPlayer Loser
+    public BotPlayer Loser
     {
       get; private set;
     }
@@ -20,12 +20,12 @@ namespace Compete.Model.Game
       get; private set;
     }
 
-    public IEnumerable<IPlayer> Players
+    public IEnumerable<BotPlayer> Players
     {
       get; private set;
     }
 
-    public static GameResult Tie(params IPlayer[] players)
+    public static GameResult Tie(params BotPlayer[] players)
     {
       return new GameResult
       {
@@ -34,7 +34,7 @@ namespace Compete.Model.Game
       };
     }
 
-    public static GameResult WinnerAndLoser(IPlayer winner, IPlayer loser)
+    public static GameResult WinnerAndLoser(BotPlayer winner, BotPlayer loser)
     {
       return new GameResult
       {

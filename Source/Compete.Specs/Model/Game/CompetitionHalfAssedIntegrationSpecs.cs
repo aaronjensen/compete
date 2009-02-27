@@ -51,7 +51,7 @@ namespace Compete.Specs.Model.Game
     static GuessingPlayer unstupidPlayer;
   }
 
-  class GuessingPlayer : IPlayer
+  class GuessingPlayer : BotPlayer
   {
     readonly int _guessAlways;
 
