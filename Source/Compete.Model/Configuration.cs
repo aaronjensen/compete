@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Compete.Model
 {
@@ -9,7 +7,12 @@ namespace Compete.Model
   {
     public string AdminPassword
     {
-      get; set;
+      set; private get;
+    }
+
+    public object IsAdminPassword(string password)
+    {
+      return AdminPassword.Equals(password);
     }
   }
 }

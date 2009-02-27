@@ -16,7 +16,7 @@
       <div id="menu">
         <ul>
           <li>
-            <a href="~/Competition"><span>Start Competition</span></a>
+            <a href="~/Administrator"><span>Administrator</span></a>
           </li>
           <li>
             <a href="~/Standings"><span>Standings</span></a>

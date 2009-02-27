@@ -10,7 +10,7 @@ namespace Compete.Persistence.Repositories
 {
   public class ConfigurationRepository : IConfigurationRepository
   {
-    Repository<Configuration> _repository;
+    readonly Repository<Configuration> _repository;
 
     public ConfigurationRepository(IObjectContainer objectContainer)
     {

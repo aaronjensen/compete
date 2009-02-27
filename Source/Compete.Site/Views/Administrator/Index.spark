@@ -1,0 +1,6 @@
+﻿<h2>Administrator</h2>
+<ul>
+	<li>
+		<a href="~/Competition"><span>Start Competition</span></a>
+	</li>
+</ul>

@@ -13,6 +13,7 @@ namespace Compete.Site
     public void RegisterServices(ContainerRegisterer register)
     {
       register.Type<WebServerStartup>();
+      register.Type<AdministratorAuthentication>();
       register.Type<IFormsAuthentication>().ImplementedBy<FormsAuthenticationService>();
       register.Type<ISignin>().ImplementedBy<SigninService>();
       register.Type<IInitialSetup>().ImplementedBy<InitialSetupService>();

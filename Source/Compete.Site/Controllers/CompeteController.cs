@@ -15,5 +15,19 @@ namespace Compete.Site.Controllers
     {
       _log = log4net.LogManager.GetLogger(GetType());
     }
+
+    public ActionResult RedirectToReferrer(Func<ActionResult> noReferrer)
+    {
+      if (this.Request.UrlReferrer == null)
+      {
+        return noReferrer();
+      }
+      return Redirect(this.Request.UrlReferrer.AbsoluteUri);
+    }
+
+    public ActionResult RedirectToReferrer()
+    {
+      return RedirectToReferrer(() => RedirectToAction("Index", "Home"));
+    }
   }
 }

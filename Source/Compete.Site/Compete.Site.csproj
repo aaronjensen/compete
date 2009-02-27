@@ -98,6 +98,8 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AdministratorController.cs" />
+    <Compile Include="Controllers\AdministratorLoginController.cs" />
     <Compile Include="Controllers\CompeteController.cs" />
     <Compile Include="Controllers\CompetitionController.cs" />
     <Compile Include="Controllers\CreateTeamController.cs" />
@@ -115,9 +117,11 @@
     </Compile>
     <Compile Include="Filters\RequireAuthenticationFilterAttribute.cs" />
     <Compile Include="Filters\RequireInitialSetupFilterAttribute.cs" />
+    <Compile Include="Filters\RequireAdministratorPrivilegesFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AdministratorAuthentication.cs" />
     <Compile Include="Infrastructure\AppDomainHelper.cs" />
     <Compile Include="Infrastructure\DynamicAssemblyTypeFinder.cs" />
     <Compile Include="Infrastructure\FormsAuthenticationService.cs" />
@@ -188,6 +192,8 @@
   <ItemGroup>
     <None Include="Content\images\Database.yap" />
     <None Include="Content\images\Thumbs.db" />
+    <None Include="Views\AdministratorLogin\Index.spark" />
+    <None Include="Views\Administrator\Index.spark" />
     <None Include="Views\Competition\Index.spark" />
     <None Include="Views\CreateTeam\Index.spark" />
     <None Include="Views\Home\Index.spark" />
