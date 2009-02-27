@@ -118,7 +118,7 @@
     <Compile Include="Infrastructure\AppDomainHelper.cs" />
     <Compile Include="Infrastructure\DynamicAssemblyTypeFinder.cs" />
     <Compile Include="Infrastructure\FormsAuthenticationService.cs" />
-    <Compile Include="Models\PlayerFile.cs" />
+    <Compile Include="Models\AssemblyFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup\WebServerStartup.cs" />
   </ItemGroup>

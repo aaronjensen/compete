@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web;
 
 namespace Compete.Site.Models
 {
-  public class PlayerFileRepository
+  public class AssemblyFileRepository
   {
     private const string _directory = @"C:\Compete";
 
@@ -19,18 +20,26 @@ namespace Compete.Site.Models
       file.SaveAs(savedFileName);
     }
 
-    public ICollection<PlayerFile> FindAll()
+    public ICollection<AssemblyFile> FindAllGames()
     {
-      List<PlayerFile> playerFiles = new List<PlayerFile>();
-      foreach (string path in Directory.GetFiles(_directory, "*.dll"))
+      return FindAllPlayers(Path.Combine(_directory, "Games")).ToArray();
+    }
+
+    public ICollection<AssemblyFile> FindAllPlayers()
+    {
+      return FindAllPlayers(_directory).ToArray();
+    }
+
+    private static IEnumerable<AssemblyFile> FindAllPlayers(string directory)
+    {
+      foreach (string path in Directory.GetFiles(directory, "*.dll"))
       {
-        playerFiles.Add(new PlayerFile(path));
+        yield return new AssemblyFile(path);
       }
-      return playerFiles;
     }
   }
 
-  public class PlayerFile
+  public class AssemblyFile
   {
     readonly string _path;
 
@@ -39,7 +48,7 @@ namespace Compete.Site.Models
       get { return _path; }
     }
 
-    public PlayerFile(string path)
+    public AssemblyFile(string path)
     {
       _path = path;
     }

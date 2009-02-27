@@ -12,7 +12,7 @@ namespace Compete.Site.Controllers
   [RequireAuthenticationFilter]
   public class MyTeamController : CompeteController
   {
-    readonly PlayerFileRepository _playerFileRepository = new PlayerFileRepository();
+    readonly AssemblyFileRepository _assemblyFileRepository = new AssemblyFileRepository();
 
     public ActionResult Index()
     {
@@ -39,7 +39,7 @@ namespace Compete.Site.Controllers
           throw new ArgumentException("only .dll files only, please");
         }
 
-        _playerFileRepository.Add(hpf, hpf.FileName);
+        _assemblyFileRepository.Add(hpf, hpf.FileName);
       }
       return Redirect("~/MyTeam");
     }
