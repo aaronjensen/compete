@@ -1,6 +1,6 @@
 ﻿<viewdata TeamStandings="string" />
 <h2>Standings</h2>
-<table>
+<table class="standings_table">
   <thead>
     <tr>
       <th>Place</th>
@@ -13,6 +13,11 @@
   </tbody>
 </table>
 <script type="text/javascript">
+  var path = "${Request.ApplicationPath}";
+      if (path[path.length - 1] == '/') {
+        path = path.substring(0, path.length - 1);
+      }
+      
   var standings = ${TeamStandings};
   
   var processStandings = function(standings) {
@@ -23,6 +28,14 @@
     });
   }
   
+  var fetchStandings = function() {
+    var standings = $.getJSON(path+"/Standings/Latest", {}, function(data) {
+      processStandings(data);
+    });
+    $('.standings_table').after("<p>callback!</p>");
+  }
+  
   processStandings(standings);
- 
+  
+  setInterval(fetchStandings, 30000);
 </script>
