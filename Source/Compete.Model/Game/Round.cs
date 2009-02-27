@@ -7,7 +7,7 @@ namespace Compete.Model.Game
   {
     readonly IEnumerable<IPlayer> _players;
     readonly IGame _game;
-    List<MatchResult> _results = new List<MatchResult>();
+    List<AggregateResult> _results = new List<AggregateResult>();
     public Round(IGame game, IEnumerable<IPlayer> players)
     {
       _players = players;
@@ -41,7 +41,7 @@ namespace Compete.Model.Game
 
     }
 
-    IPlayer CalculateWinner(List<MatchResult> results)
+    IPlayer CalculateWinner(List<AggregateResult> results)
     {
       var playerToScoreMap = new Dictionary<IPlayer, int>();
       foreach (var player in _players)

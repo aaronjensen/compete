@@ -6,6 +6,7 @@ using Compete.Model.Game;
 
 namespace Compete.SampleGame
 {
+  /*
   public class GuessANumberBelowTenOrSomethingBitch : IGame
   {
     public GameResult Play(IPlayer player1, IPlayer player2)
@@ -48,5 +49,5 @@ namespace Compete.SampleGame
     {
       get { return _guessedNumber; }
     }
-  }
+  }*/
 }

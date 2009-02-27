@@ -7,10 +7,12 @@ namespace Compete.Model.Game
 {
   public class AggregateResult
   {
+    readonly Dictionary<IPlayer, int> _playerToScoreMap;
+
     public AggregateResult(IEnumerable<GameResult> results)
     {
-      var playerToScoreMap = new Dictionary<IPlayer, int>();
-      results.SelectMany(x => x.Players).Each(x => playerToScoreMap[x] = 0);
+      _playerToScoreMap = new Dictionary<IPlayer, int>();
+      results.SelectMany(x => x.Players).Each(x => _playerToScoreMap[x] = 0);
 
       results.Each(result =>
       {
@@ -18,18 +20,18 @@ namespace Compete.Model.Game
         {
           result.Players.Each(player =>
           {
-            playerToScoreMap[player]++;
+            _playerToScoreMap[player]++;
           });
         }
         else
         {
-          playerToScoreMap[result.Winner] += 3;
+          _playerToScoreMap[result.Winner] += 3;
         }
       });
 
-      var winners = playerToScoreMap.GroupBy(x => x.Value).OrderByDescending(x => x.Key).First();
+      var winners = _playerToScoreMap.GroupBy(x => x.Value).OrderByDescending(x => x.Key).First();
 
-      if (winners.Count() == playerToScoreMap.Count)
+      if (winners.Count() == _playerToScoreMap.Count)
       {
         IsTie = true;
       }
@@ -39,7 +41,10 @@ namespace Compete.Model.Game
       }
     }
 
-    //public IEnumerable<PlayerStanding> 
+    public IEnumerable<IPlayer> Players
+    {
+      get { return _playerToScoreMap.Keys; }
+    }
 
     public IPlayer Winner
     {

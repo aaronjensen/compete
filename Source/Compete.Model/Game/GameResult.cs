@@ -25,7 +25,7 @@ namespace Compete.Model.Game
       get; private set;
     }
 
-    public static GameResult Tie(IEnumerable<IPlayer> players)
+    public static GameResult Tie(params IPlayer[] players)
     {
       return new GameResult
       {

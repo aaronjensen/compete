@@ -84,9 +84,5 @@ namespace Compete.Specs.Model.Game
 
   public class Player : IPlayer
   {
-    public GameDecision MakeDecision(GameState state)
-    {
-      return null;
-    }
   }
 }
