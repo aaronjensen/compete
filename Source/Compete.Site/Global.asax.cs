@@ -46,7 +46,7 @@ namespace Compete.Site
     {
       log4net.Config.XmlConfigurator.Configure();
 
-      var path = Path.GetDirectoryName(Server.MapPath("web.config"));
+      var path = Path.GetDirectoryName(Server.MapPath("~/Web.config"));
 
       Database.Start(path);
       
