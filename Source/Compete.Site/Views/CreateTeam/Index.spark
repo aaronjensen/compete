@@ -60,7 +60,7 @@
   }
   
   var addTeamMember = function() {
-    $('#submitButton').before('<input class="teamMembers" type="text" name="teamMember" /><br />');
+    $('#submitButton').parent().before('<li><label>&nbsp;</label><input class="teamMembers" type="text" name="teamMember" /></li>');
     $('.teamMembers').keyup(rebind())
   }
 
