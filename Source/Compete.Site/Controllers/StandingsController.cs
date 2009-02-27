@@ -22,5 +22,12 @@ namespace Compete.Site.Controllers
       ViewData["TeamStandings"] = JavaScriptConvert.SerializeObject(_teamManagementQueries.GetTeamStandings());
       return View();
     }
+
+    [AcceptVerbs(HttpVerbs.Get)]
+    public ActionResult Latest()
+    {
+      var standings = _teamManagementQueries.GetTeamStandings();
+      return Json(standings);
+    }
   }
 }
