@@ -13,7 +13,7 @@ namespace Compete.Site.Infrastructure
 
     public void AddAssembly(AssemblyFile assemblyFile)
     {
-      Assembly assembly = Assembly.LoadFrom(assemblyFile.Path);
+      Assembly assembly = Assembly.LoadFile(assemblyFile.Path);
       _assemblies.Add(assembly);
     }
 
