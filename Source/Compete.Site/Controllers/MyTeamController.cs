@@ -5,13 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Compete.Site.Filters;
+using Compete.Site.Models;
 
 namespace Compete.Site.Controllers
 {
   [RequireAuthenticationFilter]
   public class MyTeamController : CompeteController
   {
-    static readonly string _filePath = @"C:\compete";
+    readonly PlayerFileRepository _playerFileRepository = new PlayerFileRepository();
 
     public ActionResult Index()
     {
@@ -38,11 +39,7 @@ namespace Compete.Site.Controllers
           throw new ArgumentException("only .dll files only, please");
         }
 
-        string savedFileName = Path.Combine(  
-             _filePath,   
-             Path.GetFileName(hpf.FileName));  
-        
-        hpf.SaveAs(savedFileName);  
+        _playerFileRepository.Add(hpf, hpf.FileName);
       }
       return Redirect("~/MyTeam");
     }
