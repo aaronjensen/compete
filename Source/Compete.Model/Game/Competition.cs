@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,6 +29,10 @@ namespace Compete.Model.Game
 
     public RoundResult PlayRound()
     {
+      if (_players.Count == 0)
+      {
+        throw new InvalidOperationException("No players in game!");
+      }
       var round = new Round(_game, _players);
       RoundResult rr = round.Play();
       _rounds.Add(round);
