@@ -1,7 +1,10 @@
 using System.Linq;
 using System.Web.Mvc;
+
 using Compete.Site.Infrastructure;
+using Compete.Site.Refereeing;
 using Compete.Site.Startup;
+
 using Machine.Container;
 using Machine.Container.Plugins;
 using Machine.Core;
@@ -14,6 +17,7 @@ namespace Compete.Site
     {
       register.Type<WebServerStartup>();
       register.Type<AdministratorAuthentication>();
+      register.Type<RefereeThread>();
       register.Type<IFormsAuthentication>().ImplementedBy<FormsAuthenticationService>();
       register.Type<ISignin>().ImplementedBy<SigninService>();
       register.Type<IInitialSetup>().ImplementedBy<InitialSetupService>();

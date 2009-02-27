@@ -8,11 +8,11 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace Compete.Site.Filters
 {
-  public class RequireAdministratorPrivilegesFilter : ActionFilterAttribute
+  public class RequireAdministratorPrivilegesFilterAttribute : ActionFilterAttribute
   {
     readonly IAdministratorAuthentication _administratorAuthentication;
 
-    public RequireAdministratorPrivilegesFilter()
+    public RequireAdministratorPrivilegesFilterAttribute()
     {
       _administratorAuthentication = ServiceLocator.Current.GetInstance<IAdministratorAuthentication>();
     }

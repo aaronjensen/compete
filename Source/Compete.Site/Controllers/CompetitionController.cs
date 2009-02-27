@@ -13,12 +13,17 @@ namespace Compete.Site.Controllers
   public class CompetitionController : CompeteController
   {
     readonly AssemblyFileRepository _assemblyFileRepository = new AssemblyFileRepository();
+    readonly IRefereeThread _refereeThread;
+
+    public CompetitionController(IRefereeThread refereeThread)
+    {
+      _refereeThread = refereeThread;
+    }
 
     public ActionResult Index()
     {
       Referee referee = new Referee(_assemblyFileRepository.FindAllGamesAndPlayers().ToArray());
-      RefereeThread thread = new RefereeThread(referee);
-      thread.Start();
+      _refereeThread.Start(referee);
       return RedirectToReferrer();
     }
   }

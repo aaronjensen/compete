@@ -115,9 +115,10 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Filters\ProvideRefereeStatusFilterAttribute.cs" />
     <Compile Include="Filters\RequireAuthenticationFilterAttribute.cs" />
     <Compile Include="Filters\RequireInitialSetupFilterAttribute.cs" />
-    <Compile Include="Filters\RequireAdministratorPrivilegesFilter.cs" />
+    <Compile Include="Filters\RequireAdministratorPrivilegesFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -7,6 +7,7 @@ using Compete.Site.Filters;
 namespace Compete.Site.Controllers
 {
   [RequireInitialSetupFilter]
+  [ProvideRefereeStatusFilter]
   public class CompeteController : Controller
   {
     protected readonly log4net.ILog _log;
