@@ -64,6 +64,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Compete.Bot\Compete.Bot.csproj">
+      <Project>{DFF95378-F0D3-4B1B-AE0D-78388420C235}</Project>
+      <Name>Compete.Bot</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Compete.Model\Compete.Model.csproj">
       <Project>{7614EA4E-29EB-4F13-A50D-2794244FE934}</Project>
       <Name>Compete.Model</Name>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Compete.Model.Game
+namespace Compete.Bot
 {
   public interface IBot
   {

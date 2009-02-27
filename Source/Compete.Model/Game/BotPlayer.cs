@@ -1,3 +1,5 @@
+using Compete.Bot;
+
 namespace Compete.Model.Game
 {
   public class BotPlayer

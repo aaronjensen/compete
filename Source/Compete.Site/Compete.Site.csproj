@@ -156,6 +156,10 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Compete.Bot\Compete.Bot.csproj">
+      <Project>{DFF95378-F0D3-4B1B-AE0D-78388420C235}</Project>
+      <Name>Compete.Bot</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Compete.Core\Compete.Core.csproj">
       <Project>{4CA0C384-4196-47D8-8424-6446D8C7F788}</Project>
       <Name>Compete.Core</Name>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
-
+using Compete.Bot;
 using Compete.Model.Game;
 using Compete.Site.Filters;
 using Compete.Site.Infrastructure;

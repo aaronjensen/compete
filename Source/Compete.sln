@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.Uploader", "Compete
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissorsPro.Wrapper", "..\..\rock_paper_scissors_pro\Source\RockPaperScissorsPro.Wrapper\RockPaperScissorsPro.Wrapper.csproj", "{5E4C63FB-EBCA-466E-BCBE-87CAA965871E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compete.Bot", "Compete.Bot\Compete.Bot.csproj", "{DFF95378-F0D3-4B1B-AE0D-78388420C235}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{5E4C63FB-EBCA-466E-BCBE-87CAA965871E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E4C63FB-EBCA-466E-BCBE-87CAA965871E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E4C63FB-EBCA-466E-BCBE-87CAA965871E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFF95378-F0D3-4B1B-AE0D-78388420C235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFF95378-F0D3-4B1B-AE0D-78388420C235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFF95378-F0D3-4B1B-AE0D-78388420C235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFF95378-F0D3-4B1B-AE0D-78388420C235}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
