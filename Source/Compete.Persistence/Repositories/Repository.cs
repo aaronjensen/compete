@@ -47,11 +47,13 @@ namespace Compete.Persistence.Repositories
     public void Add(TType obj)
     {
       _db.Store(obj);
+      _db.Commit();
     }
 
     public void Remove(TType obj)
     {
       _db.Delete(obj);
+      _db.Commit();
     }
 
     public int Count()

@@ -23,6 +23,7 @@ namespace Compete.Persistence
       configuration.DetectSchemaChanges(true);
       configuration.AllowVersionUpdates(true);
       configuration.ActivationDepth(4);
+      configuration.UpdateDepth(4);
       configuration.ObjectClass(typeof(Entity)).ObjectField("_id").Indexed(true);
       configuration.RefreshClasses();
       _db = Db4oFactory.OpenFile(configuration, Path.Combine(path, "Database.yap"));
