@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4CA0C384-4196-47D8-8424-6446D8C7F788}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -50,8 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreServices.cs" />
+    <Compile Include="Infrastructure\IAdministratorAuthentication.cs" />
+    <Compile Include="Infrastructure\IFormsAuthenticationService.cs" />
+    <Compile Include="Infrastructure\IInitialSetup.cs" />
+    <Compile Include="Infrastructure\IScoreKeeper.cs" />
     <Compile Include="MoreEnumerables.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Compete.Model\Compete.Model.csproj">
+      <Project>{7614EA4E-29EB-4F13-A50D-2794244FE934}</Project>
+      <Name>Compete.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
