@@ -18,6 +18,11 @@ namespace Compete.Model
     {
     }
 
+    public IEnumerable<MatchResult> GetMatchResultsForTeam(string teamName)
+    {
+      return _last.Where(x => x.TeamName1 == teamName || x.TeamName2 == teamName);
+    }
+
     public void Include(IEnumerable<MatchResult> toBeIncluded)
     {
       foreach (var old in _last.ToArray())
