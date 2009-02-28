@@ -10,4 +10,7 @@
 	<li if="!configuration.UploadsAreEnabled">
 		<a href="~/Configuration/EnableUploads"><span>Enable Uploads</span></a>
 	</li>
+	<li>
+	  <span>Current round: ${configuration.RoundNumber}</span> - <a href="~/Configuration/AdvanceToNextRound"><span>Advance To Next Round</span></a>
+	</li>
 </ul>

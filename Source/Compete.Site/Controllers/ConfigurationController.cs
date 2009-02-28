@@ -37,5 +37,15 @@ namespace Compete.Site.Controllers
 
       return Redirect("~/Administrator");
     }
+
+    public ActionResult AdvanceToNextRound()
+    {
+      var configuration = _configurationRepository.GetConfiguration();
+      configuration.AdvanceToNextRound();
+
+      _configurationRepository.SetConfiguration(configuration);
+
+      return Redirect("~/Administrator");
+    }
   }
 }

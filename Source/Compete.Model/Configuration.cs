@@ -25,7 +25,7 @@ namespace Compete.Model
 
     public void AdvanceToNextRound()
     {
-      roundNumber++;
+      roundNumber += 1;
     }
 
     public string AdminPassword
