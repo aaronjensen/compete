@@ -1,33 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 using Compete.Site.Filters;
-using Compete.Site.Models;
-using Compete.Site.Refereeing;
-using Compete.TeamManagement;
+using Compete.Site.Infrastructure;
 
 namespace Compete.Site.Controllers
 {
   [RequireAdministratorPrivilegesFilter]
   public class CompetitionController : CompeteController
   {
-    readonly AssemblyFileRepository _assemblyFileRepository = new AssemblyFileRepository();
-    readonly IRefereeThread _refereeThread;
-    readonly ITeamManagementQueries _teamManagementQueries;
+    readonly MatchStarter _matchStarter;
 
-    public CompetitionController(IRefereeThread refereeThread, ITeamManagementQueries teamManagementQueries)
+    public CompetitionController(MatchStarter matchStarter)
     {
-      _refereeThread = refereeThread;
-      _teamManagementQueries = teamManagementQueries;
+      _matchStarter = matchStarter;
     }
 
     public ActionResult Index()
     {
-      var teamNames = _teamManagementQueries.GetAllTeamNames();
-      var parameters = new RoundParameters(_assemblyFileRepository.FindAllGamesAndPlayers().ToArray(), teamNames.ToArray());
-      _refereeThread.Start(parameters);
+      _matchStarter.QueueForAll();
       return RedirectToReferrer();
     }
   }

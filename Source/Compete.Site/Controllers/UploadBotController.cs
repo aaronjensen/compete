@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Compete.Model;
+
 using Compete.Model.Repositories;
 using Compete.Site.Infrastructure;
 using Compete.Site.Models;
@@ -19,12 +18,14 @@ namespace Compete.Site.Controllers
     readonly IFormsAuthentication _formsAuthentication;
     readonly IConfigurationRepository _configurationRepository;
     readonly AssemblyFileRepository _assemblyFileRepository = new AssemblyFileRepository();
+    readonly MatchStarter _matchStarter;
 
-    public UploadBotController(ITeamManagementCommands teamCommands, IFormsAuthentication formsAuthentication, IConfigurationRepository configurationRepository)
+    public UploadBotController(ITeamManagementCommands teamCommands, IFormsAuthentication formsAuthentication, IConfigurationRepository configurationRepository, MatchStarter matchStarter)
     {
       _teamCommands = teamCommands;
       _formsAuthentication = formsAuthentication;
       _configurationRepository = configurationRepository;
+      _matchStarter = matchStarter;
     }
 
     [AcceptVerbs(HttpVerbs.Post)]
@@ -76,6 +77,7 @@ namespace Compete.Site.Controllers
           throw new ArgumentException("only .dll files only, please");
         }
         _assemblyFileRepository.Add(hpf, teamName + ".dll");
+        _matchStarter.Queue(teamName);
       }
       return Redirect("~/MyTeam");
     }
