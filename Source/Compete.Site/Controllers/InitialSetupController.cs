@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using Compete.Model;
 using Compete.Model.Repositories;
+using Compete.Site.Filters;
 
 namespace Compete.Site.Controllers
 {
+  [ProvideRefereeStatusFilter]
   public class InitialSetupController : Controller
   {
     readonly IConfigurationRepository _configurationRepository;
