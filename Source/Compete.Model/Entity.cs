@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Compete.Model
 {
   public class Entity
   {
-    Guid _id = new Guid();
+    readonly Guid _id;
+
+    public Entity()
+      : this(Guid.NewGuid())
+    {
+    }
+
+    public Entity(Guid id)
+    {
+      _id = id;
+    }
   }
 }

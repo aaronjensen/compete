@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Compete.Model;
 using Compete.Model.Reports;
 using Compete.Model.Repositories;
 
@@ -17,11 +17,13 @@ namespace Compete.TeamManagement
 
   public class TeamManagementQueries : ITeamManagementQueries
   {
-    private readonly ITeamRepository _teamRepository;
+    readonly ITeamRepository _teamRepository;
+    readonly ILeaderboardRepository _leaderboardRepository;
 
-    public TeamManagementQueries(ITeamRepository teamRepository)
+    public TeamManagementQueries(ITeamRepository teamRepository, ILeaderboardRepository leaderboardRepository)
     {
       _teamRepository = teamRepository;
+      _leaderboardRepository = leaderboardRepository;
     }
 
     public IEnumerable<TeamSummary> GetTeamSummaries()
@@ -38,20 +40,11 @@ namespace Compete.TeamManagement
     public IEnumerable<TeamStandingSummary> GetTeamStandings()
     {
       var teams = _teamRepository.GetAllTeams();
+      var leaderboard = _leaderboardRepository.GetLeaderboard();
+      TeamStandings teamStandings = leaderboard.ToStandings();
       return teams.Select(x =>
                            {
-                             var standing = x.Standings.LastOrDefault();
-                             if (standing == null)
-                             {
-                               return new TeamStandingSummary(x.Name, 0, 0, 0, 0, 0);
-                             }
-                             return new TeamStandingSummary(
-                               x.Name, 
-                               standing.Rank, 
-                               standing.Wins, 
-                               standing.Losses, 
-                               standing.Ties, 
-                               standing.LastChange);
+                             return new TeamStandingSummary(x.Name, 0, 0, 0, 0, 0);
                            });
     }
 

@@ -19,7 +19,12 @@ namespace Compete.Persistence.Repositories
 
     public Leaderboard GetLeaderboard()
     {
-      return _repository.FindById(Guid.Empty);
+      var value = _repository.FindById(Guid.Empty);
+      if (value == null)
+      {
+        return new Leaderboard();
+      }
+      return value;
     }
 
     public void SetLeaderboard(Leaderboard leaderboard)
@@ -29,7 +34,8 @@ namespace Compete.Persistence.Repositories
       {
         _repository.Remove(value);
       }
-      _repository.Add(value);
+      System.Diagnostics.Debugger.Break();
+      _repository.Add(leaderboard);
     }
   }
 }

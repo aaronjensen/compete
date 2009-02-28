@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Compete.Model.Game
 {
@@ -58,7 +56,7 @@ namespace Compete.Model.Game
     public bool IsSameMatchup(MatchResult matchResult)
     {
       return matchResult.TeamName1 == TeamName1 && matchResult.TeamName2 == TeamName2
-        || matchResult.TeamName1 == TeamName2 && matchResult.TeamName2 == TeamName1;
+          || matchResult.TeamName1 == TeamName2 && matchResult.TeamName2 == TeamName1;
     }
   }
 }

@@ -29,7 +29,7 @@ namespace Compete.Site.Refereeing
         sw.Start();
         var rr = AppDomainHelper.InSeparateAppDomain<RoundParameters, IEnumerable<MatchResult>>(staging.Root, new RoundParameters(_files, _teamNames.ToArray()), RunRound);
         sw.Stop();
-        _log.Info("RR: " + rr + " completed in " + sw.Elapsed);
+        Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<IScoreKeeper>().Record(rr);
       }
     }
 

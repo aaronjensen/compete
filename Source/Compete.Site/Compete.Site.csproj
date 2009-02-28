@@ -126,6 +126,7 @@
     <Compile Include="Infrastructure\DynamicAssemblyTypeFinder.cs" />
     <Compile Include="Infrastructure\FormsAuthenticationService.cs" />
     <Compile Include="Infrastructure\InitialSetupService.cs" />
+    <Compile Include="Infrastructure\ScoreKeeper.cs" />
     <Compile Include="Infrastructure\SigninService.cs" />
     <Compile Include="Models\AssemblyFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

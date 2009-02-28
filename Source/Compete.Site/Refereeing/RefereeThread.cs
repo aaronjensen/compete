@@ -37,8 +37,19 @@ namespace Compete.Site.Refereeing
 
     protected virtual void Run()
     {
-      _currentlyRunning.StartRound();
-      _currentlyRunning = null;
+      try
+      {
+        _currentlyRunning.StartRound();
+      }
+      catch (Exception error)
+      {
+        System.Diagnostics.Debug.WriteLine(error);
+        throw;
+      }
+      finally
+      {
+        _currentlyRunning = null;
+      }
     }
 
     private static void Main(object parameter)

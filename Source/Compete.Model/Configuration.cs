@@ -5,6 +5,11 @@ namespace Compete.Model
 {
   public class Configuration : Entity
   {
+    public Configuration()
+      : base(Guid.Empty)
+    {
+    }
+
     public string AdminPassword
     {
       set; private get;

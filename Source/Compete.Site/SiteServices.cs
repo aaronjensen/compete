@@ -18,6 +18,7 @@ namespace Compete.Site
       register.Type<WebServerStartup>();
       register.Type<AdministratorAuthentication>();
       register.Type<RefereeThread>();
+      register.Type<ScoreKeeper>();
       register.Type<IFormsAuthentication>().ImplementedBy<FormsAuthenticationService>();
       register.Type<ISignin>().ImplementedBy<SigninService>();
       register.Type<IInitialSetup>().ImplementedBy<InitialSetupService>();
