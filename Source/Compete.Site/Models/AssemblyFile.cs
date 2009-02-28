@@ -15,7 +15,7 @@ namespace Compete.Site.Models
       DirectoryHelpers.CreateIfNecessary(Directory);
       DirectoryHelpers.CreateIfNecessary(Directory, "Bots");
       DirectoryHelpers.CreateIfNecessary(Directory, "Games");
-      string savedFileName = Path.Combine(Directory, fileName);
+      string savedFileName = Path.Combine(Path.Combine(Directory, "Bots"), fileName);
       file.SaveAs(savedFileName);
     }
     
@@ -29,15 +29,15 @@ namespace Compete.Site.Models
 
     public ICollection<AssemblyFile> FindAllGames()
     {
-      return FindAllPlayers(Path.Combine(Directory, "Games")).ToArray();
+      return FindAllDlls(Path.Combine(Directory, "Games")).ToArray();
     }
 
     public ICollection<AssemblyFile> FindAllPlayers()
     {
-      return FindAllPlayers(Path.Combine(Directory, "Bots")).ToArray();
+      return FindAllDlls(Path.Combine(Directory, "Bots")).ToArray();
     }
 
-    private static IEnumerable<AssemblyFile> FindAllPlayers(string directory)
+    private static IEnumerable<AssemblyFile> FindAllDlls(string directory)
     {
       foreach (string path in System.IO.Directory.GetFiles(directory, "*.dll"))
       {
