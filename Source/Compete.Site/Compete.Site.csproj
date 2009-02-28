@@ -138,6 +138,7 @@
     <Compile Include="Refereeing\StagingArea.cs" />
     <Compile Include="SiteServices.cs" />
     <Compile Include="Startup\WebServerStartup.cs" />
+    <None Include="Views\GameLog\NoMatch.spark" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\commentb.gif" />

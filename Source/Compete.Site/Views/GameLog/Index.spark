@@ -1,5 +1,12 @@
-﻿<h2>Game Log</h2>
+﻿<viewdata result="Compete.Model.Game.MatchResult" />
+<h2>Game Log</h2>
 
-${#teamName}
-<br/>
-${#otherTeamName}
+<if condition="result.IsTie">
+<h3>${result.TeamName1} (T) vs. ${result.TeamName2} (T)</h3>
+<else />
+<h3>${result.TeamName1} (${result.TeamName1 == result.WinnerTeamName ? "W" : "L"}) vs. ${result.TeamName2} (${result.TeamName2 == result.WinnerTeamName ? "W" : "L"})</h3>
+</if>
+
+<pre class="log">
+  ${result.Log}
+</pre>

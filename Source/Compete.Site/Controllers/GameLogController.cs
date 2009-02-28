@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Compete.Model.Repositories;
 using Compete.Site.Infrastructure;
 
 namespace Compete.Site.Controllers
@@ -11,11 +12,13 @@ namespace Compete.Site.Controllers
   {
     readonly IAdministratorAuthentication _administratorAuthentication;
     readonly IFormsAuthentication _formsAuthentication;
+    readonly ILeaderboardRepository _leaderboardRepository;
 
-    public GameLogController(IAdministratorAuthentication administratorAuthentication, IFormsAuthentication formsAuthentication)
+    public GameLogController(IAdministratorAuthentication administratorAuthentication, IFormsAuthentication formsAuthentication, ILeaderboardRepository leaderboardRepository)
     {
       _administratorAuthentication = administratorAuthentication;
       _formsAuthentication = formsAuthentication;
+      _leaderboardRepository = leaderboardRepository;
     }
 
     public ActionResult Index(string teamName, string otherTeamName)
@@ -30,8 +33,14 @@ namespace Compete.Site.Controllers
         return View("Nope");
       }
 
-      ViewData["teamName"] = teamName;
-      ViewData["otherTeamName"] = otherTeamName;
+      var leaderboard = _leaderboardRepository.GetLeaderboard();
+      var result = leaderboard.GetMatchResultsForMatchBetween(teamName, otherTeamName);
+
+      if (result == null)
+        return View("NoMatch");
+
+      ViewData["result"] = result;
+      ViewData["log"] = result.Log;
       return View();
     }
 

@@ -69,6 +69,15 @@ namespace Compete.Model
         _scores[mr.TeamName2].Add(mr);
       }
     }
+
+    public MatchResult GetMatchResultsForMatchBetween(string teamName, string otherTeamName)
+    {
+      return
+        _last.Where(
+          x =>
+            (x.TeamName1 == teamName && x.TeamName2 == otherTeamName) ||
+            (x.TeamName1 == otherTeamName && x.TeamName2 == teamName)).FirstOrDefault();
+    }
   }
 
   public static class ScoreMappings
