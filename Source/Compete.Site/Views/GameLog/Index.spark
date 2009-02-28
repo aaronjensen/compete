@@ -8,5 +8,5 @@
 </if>
 
 <pre class="log">
-  ${result.Log}
+${result.Log}
 </pre>
