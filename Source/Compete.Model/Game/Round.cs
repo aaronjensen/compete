@@ -146,10 +146,10 @@ namespace Compete.Model.Game
     {
       if (gameResult.IsTie)
       {
-        return MatchResult.Tie(gameResult.Players.First().TeamName, gameResult.Players.Last().TeamName);
+        return MatchResult.Tie(gameResult.Players.First().TeamName, gameResult.Players.Last().TeamName, gameResult.Log);
       }
 
-      return MatchResult.WinnerAndLoser(gameResult.Winner.TeamName, gameResult.Loser.TeamName);
+      return MatchResult.WinnerAndLoser(gameResult.Winner.TeamName, gameResult.Loser.TeamName, gameResult.Log);
     }
   }
 }

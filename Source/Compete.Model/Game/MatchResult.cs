@@ -31,17 +31,23 @@ namespace Compete.Model.Game
       get; private set;
     }
 
-    public static MatchResult Tie(string teamName1, string teamName2)
+    public string Log
+    {
+      get; private set;
+    }
+
+    public static MatchResult Tie(string teamName1, string teamName2, string log)
     {
       return new MatchResult()
       {
         TeamName1 = teamName1,
         TeamName2 = teamName2,
-        IsTie = true
+        IsTie = true,
+        Log = log
       };
     }
 
-    public static MatchResult WinnerAndLoser(string winnerTeamName, string loserTeamName)
+    public static MatchResult WinnerAndLoser(string winnerTeamName, string loserTeamName, string log)
     {
       return new MatchResult()
       {
@@ -49,7 +55,8 @@ namespace Compete.Model.Game
         TeamName2 = loserTeamName,
         IsTie = false,
         WinnerTeamName = winnerTeamName,
-        LoserTeamName = loserTeamName
+        LoserTeamName = loserTeamName,
+        Log = log
       };
     }
 
