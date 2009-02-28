@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Compete.Core.Infrastructure;
 using Compete.TeamManagement;
 
 namespace Compete.Site.Infrastructure

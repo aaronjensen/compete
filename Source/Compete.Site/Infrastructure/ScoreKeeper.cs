@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Compete.Core.Infrastructure;
 using Compete.Model;
 using Compete.Model.Game;
 using Compete.Model.Repositories;
 
 namespace Compete.Site.Infrastructure
 {
-  public interface IScoreKeeper
-  {
-    void Record(IEnumerable<MatchResult> newResults);
-  }
 
   public class ScoreKeeper : IScoreKeeper
   {

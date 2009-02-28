@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-
+using Compete.Core.Infrastructure;
 using Compete.Model.Game;
 using Compete.Site.Infrastructure;
 using Compete.Site.Models;

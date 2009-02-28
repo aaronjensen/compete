@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-
+using Compete.Core.Infrastructure;
 using Compete.Site.Infrastructure;
 
 namespace Compete.Site.Controllers

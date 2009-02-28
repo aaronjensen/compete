@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Web.Mvc;
-
+using Compete.Core.Infrastructure;
 using Compete.Site.Infrastructure;
 using Compete.Site.Refereeing;
 using Compete.Site.Startup;

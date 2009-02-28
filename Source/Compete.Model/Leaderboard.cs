@@ -4,7 +4,6 @@ using System.Linq;
 
 using Compete.Model.Game;
 using Compete.Model.Reports;
-using Compete.Core;
 
 namespace Compete.Model
 {

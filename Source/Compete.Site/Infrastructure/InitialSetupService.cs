@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Compete.Core.Infrastructure;
 using Compete.Model;
 using Compete.Model.Repositories;
 
 namespace Compete.Site.Infrastructure
 {
-  public interface IInitialSetup
-  {
-    bool IsDone { get; }
-  }
 
   public class InitialSetupService : IInitialSetup
   {

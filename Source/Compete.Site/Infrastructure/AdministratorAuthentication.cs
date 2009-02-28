@@ -1,15 +1,10 @@
 ﻿using System;
+using Compete.Core.Infrastructure;
 using Compete.Model;
 using Compete.Model.Repositories;
 
 namespace Compete.Site.Infrastructure
 {
-  public interface IAdministratorAuthentication
-  {
-    bool IsAdministrator { get; }
-    void Signin(string password);
-  }
-
   public class AdministratorAuthentication : IAdministratorAuthentication
   {
     readonly IConfigurationRepository _configurationRepository;

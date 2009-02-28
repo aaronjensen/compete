@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using Compete.Model;
+using Compete.Core.Infrastructure;
+using Compete.Model;
 
 using Compete.Model.Repositories;
 using Compete.Site.Infrastructure;

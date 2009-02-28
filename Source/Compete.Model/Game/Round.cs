@@ -4,8 +4,6 @@ using System.Linq;
 
 using Machine.Core;
 
-using Compete.Core;
-
 namespace Compete.Model.Game
 {
   [Serializable]
@@ -25,7 +23,7 @@ namespace Compete.Model.Game
 
     public override string ToString()
     {
-      return _standings.Select(x => x.ToString()).Join(", ");
+      return String.Join(", ",_standings.Select(x => x.ToString()).ToArray());
     }
   }
 

@@ -2,16 +2,10 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
+using Compete.Core.Infrastructure;
 
 namespace Compete.Site.Infrastructure
 {
-  public interface IFormsAuthentication
-  {
-    void SignIn(string userName);
-    void SignOut();
-    bool IsCurrentlySignedIn { get; }
-    string SignedInUserName { get; }
-  }
 
   public class FormsAuthenticationService : IFormsAuthentication
   {
