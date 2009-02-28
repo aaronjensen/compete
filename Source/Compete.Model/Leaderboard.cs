@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Compete.Model.Game;
+using Compete.Model.Reports;
+using Compete.Core;
 
 namespace Compete.Model
 {
   public class Leaderboard : Entity
   {
     readonly List<MatchResult> _last = new List<MatchResult>();
+    readonly Dictionary<string, TotalTeamScore> _scores = new Dictionary<string, TotalTeamScore>();
 
     public Leaderboard()
       : base(Guid.Empty)
@@ -17,7 +20,6 @@ namespace Compete.Model
 
     public void Include(IEnumerable<MatchResult> toBeIncluded)
     {
-      System.Diagnostics.Debug.WriteLine("Has : " + _last.Count);
       foreach (var old in _last.ToArray())
       {
         foreach (var mr in toBeIncluded)
@@ -29,20 +31,38 @@ namespace Compete.Model
         }
       }
       _last.AddRange(toBeIncluded);
-      System.Diagnostics.Debug.WriteLine("Now Has : " + _last.Count);
+      Refresh();
     }
 
-    public TeamStandings ToStandings()
+    public IEnumerable<TeamStandingSummary> ToStandingSummary(IEnumerable<string> teamNames)
     {
-      Dictionary<string, TotalTeamScore> scores = new Dictionary<string, TotalTeamScore>(); 
+      List<string> remainingNames = new List<string>(teamNames);
+      int rank = 1;
+      foreach (var group in _scores.Values.OrderByDescending(x => x.Score).GroupBy(x => x.Score))
+      {
+        foreach (var score in group)
+        {
+          remainingNames.Remove(score.TeamName);
+          yield return new TeamStandingSummary(score.TeamName, rank, score.Wins, score.Losses, score.Ties, score.Score);
+        }
+        rank++;
+      }
+      foreach (string notFound in remainingNames)
+      {
+        yield return new TeamStandingSummary(notFound);
+      }
+    }
+
+    private void Refresh()
+    {
+      _scores.Clear();
       foreach (var mr in _last)
       {
-        if (!scores.ContainsKey(mr.TeamName1)) scores[mr.TeamName1] = new TotalTeamScore(mr.TeamName1);
-        if (!scores.ContainsKey(mr.TeamName2)) scores[mr.TeamName2] = new TotalTeamScore(mr.TeamName2);
-        scores[mr.TeamName1].Add(mr);
-        scores[mr.TeamName2].Add(mr);
+        if (!_scores.ContainsKey(mr.TeamName1)) _scores[mr.TeamName1] = new TotalTeamScore(mr.TeamName1);
+        if (!_scores.ContainsKey(mr.TeamName2)) _scores[mr.TeamName2] = new TotalTeamScore(mr.TeamName2);
+        _scores[mr.TeamName1].Add(mr);
+        _scores[mr.TeamName2].Add(mr);
       }
-      return new TeamStandings(scores.Values);
     }
   }
 
@@ -70,6 +90,26 @@ namespace Compete.Model
     int _losses;
     int _ties;
 
+    public string TeamName
+    {
+      get { return _teamName; }
+    }
+
+    public int Wins
+    {
+      get { return _wins; }
+    }
+
+    public int Losses
+    {
+      get { return _losses; }
+    }
+
+    public int Ties
+    {
+      get { return _ties; }
+    }
+
     public int Score
     {
       get { return _ties + _wins * 3; }
@@ -94,22 +134,6 @@ namespace Compete.Model
       {
         _ties++;
       }
-    }
-  }
-
-  public class TeamStandings
-  {
-    readonly TeamStanding[] _standings;
-
-    public TeamStandings(IEnumerable<TotalTeamScore> scores)
-    {
-      //scores.OrderByDescending(x => x.Score).Select()
-      //var nameAndScore = scores.Select(x => new { TeamName = x.Key, Score = x.Value }).OrderByDescending(x => x.Score);
-    }
-
-    public IEnumerable<TeamStanding> Leaders()
-    {
-      return _standings;
     }
   }
 }

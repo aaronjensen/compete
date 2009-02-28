@@ -34,7 +34,6 @@ namespace Compete.Persistence.Repositories
       {
         _repository.Remove(value);
       }
-      System.Diagnostics.Debugger.Break();
       _repository.Add(leaderboard);
     }
   }

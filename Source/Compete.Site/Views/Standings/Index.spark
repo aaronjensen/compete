@@ -7,7 +7,7 @@
       <th>Place</th>
       <th>Team</th>
       <th>W-L-T</th>
-      <th>Last change</th>
+      <th>Score</th>
     </tr>
   </thead>
   <tbody class="standings">
@@ -28,7 +28,7 @@
     
     $.each(standings, function(index, standing) {
       var highlight = standing.Name == username ? 'highlight' : '';
-      $('.standings').append('<tr class="standing '+ highlight +'"> <td class="standing_rank">#'+standing.Rank+'</td><td>'+standing.Name+'</td><td>'+standing.Wins+'-'+standing.Losses+'-'+standing.Ties+'</td><td>'+standing.LastChange+'</td></tr>');
+      $('.standings').append('<tr class="standing '+ highlight +'"> <td class="standing_rank">#'+standing.Rank+'</td><td>'+standing.Name+'</td><td>'+standing.Wins+'-'+standing.Losses+'-'+standing.Ties+'</td><td>'+standing.Score+'</td></tr>');
       $('.standing').tsort('.standing_copy', {order:"desc"});
     });
   }
