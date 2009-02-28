@@ -19,5 +19,16 @@ namespace Compete.Core
       }
       return sb.ToString();
     }
+
+    public static IEnumerable<O> SelectWithIndex<I, O>(this IEnumerable<I> collection, Func<int, I, O> func)
+    {
+      int index = 0;
+      IEnumerator<I> enumerator = collection.GetEnumerator();
+      while (enumerator.MoveNext())
+      {
+        yield return func(index, enumerator.Current);
+        index++;
+      }
+    }
   }
 }
