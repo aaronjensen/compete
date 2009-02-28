@@ -1,2 +1,2 @@
 iisreset
-del Source\Compete.Site\Database.yap
+del c:\Compete\Database.yap
