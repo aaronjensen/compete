@@ -10,7 +10,7 @@
   </tr>
   <tr each='var team in TeamSummaries'>
     <td>${team.Name}</td>
-    <td>${team.LongName}</td>
+    <td>${team.DisplayName}</td>
     <td>${team.TeamMembers.Count()}</td>
   </tr>
 </table>

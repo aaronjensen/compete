@@ -8,13 +8,13 @@ namespace Compete.Model.Reports
   public class TeamSummary
   {
     public string Name { get; set; }
-    public string LongName { get; set; }
+    public string DisplayName { get; set; }
     public IEnumerable<string> TeamMembers { get; set; }
 
-    public TeamSummary(string teamName, string longName, IEnumerable<string> teamMembers)
+    public TeamSummary(string teamName, string displayName, IEnumerable<string> teamMembers)
     {
       Name = teamName;
-      LongName = longName;
+      DisplayName = displayName;
       TeamMembers = teamMembers;
     }
   }

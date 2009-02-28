@@ -39,10 +39,9 @@ namespace Compete.Site.Controllers
       var results = leaderboard.GetMatchResultsForTeam(currentTeam.Name);
 
       ViewData["currentTeam"] = currentTeam;
-      ViewData["results"] = results;
+      ViewData["results"] = results.Select(x => new RecentMatch(currentTeam.Name, x));
 
       return View();
     }
-
   }
 }

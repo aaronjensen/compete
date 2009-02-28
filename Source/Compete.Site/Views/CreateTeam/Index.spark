@@ -8,8 +8,8 @@
     <fieldset>
       <ol>
         <li>
-          <label for="longName">Team Display Name:</label>
-          <input type="text" name="longName" />
+          <label for="displayName">Team Display Name:</label>
+          <input type="text" name="displayName" />
           <p>No character restrictions.</p>
         </li>
         

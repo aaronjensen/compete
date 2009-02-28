@@ -7,13 +7,13 @@ namespace Compete.Model
   public class Team : Entity
   {
     string _teamName;
-    private readonly string _longName;
+    private readonly string _displayName;
     readonly string _password;
     readonly List<TeamMember> _teamMembers;
     readonly Regex nonWordCharacters = new Regex(@"\W+");
 
     public string Name { get { return _teamName; } }
-    public string LongName { get { return _longName; } }
+    public string DisplayName { get { return _displayName; } }
     public IEnumerable<TeamMember> TeamMembers { get { return _teamMembers; } }
 
     public Team(string teamName, string longName, IEnumerable<TeamMember> teamMembers, string passwordHash)
@@ -23,7 +23,7 @@ namespace Compete.Model
         throw new ArgumentException("Team name must be less than 16 characters and consist of only numbers and letters");
       }
       _teamName = teamName;
-      _longName = longName;
+      _displayName = longName;
       _password = passwordHash;
       _teamMembers = new List<TeamMember>(teamMembers);
     }

@@ -33,7 +33,7 @@ namespace Compete.Site.Controllers
     {
       var teamMember = form["teamMember"];
       var teamName = form["teamName"];
-      var longName = form["teamName"];
+      var dispalyName = form["displayName"];
       var password = form["password"];
       var passwordAgain = form["passwordAgain"];
 
@@ -51,7 +51,7 @@ namespace Compete.Site.Controllers
 
       var teamMembers = teamMember.Split(',').Where(x=>!x.Equals(string.Empty));
 
-      var result = _teamManagementCommands.New(teamName, longName, teamMembers, password);
+      var result = _teamManagementCommands.New(teamName, dispalyName, teamMembers, password);
 
       if (!result)
       {

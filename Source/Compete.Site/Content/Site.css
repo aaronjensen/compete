@@ -357,6 +357,11 @@ table td {
   background-color: #DDD;
 }
 
+table td a, table td a:visited, table td a:hover {
+  color: #333;
+  font-weight: bold;
+}
+
 tr.highlight td {
   color:#000;
   background-color:#ffcc33;

@@ -1,6 +1,20 @@
-﻿<h2>My Team</h2>
+﻿<viewdata results="IEnumerable<Compete.Site.Controllers.RecentMatch>" />
+<h2>${#currentTeam.DisplayName}</h2>
 
 <form method="post" action="~/UploadBot" enctype="multipart/form-data">
   <input type="file" id="file" name="file" />
   <input id="submitButton" type="submit" value="Upload"/>
 </form>
+
+<h3 if="results.Any()">Most recent matches</h3>
+<table if="results.Any()">
+	<tr>
+		<th>Opponent</th>
+		<th>Result</th>
+		<th>Log</th>
+	<tr each='var match in results'>
+		<td>${match.OpponentTeamName}</td>
+		<td>${match.Result}</td>
+		<td><a href="~/GameLog/${#currentTeam.Name}.vs.${match.OpponentTeamName}">Log</a></td>
+	</tr>
+</table>
