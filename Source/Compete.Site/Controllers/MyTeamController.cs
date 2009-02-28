@@ -18,12 +18,14 @@ namespace Compete.Site.Controllers
     readonly ITeamRepository _teamRepository;
     readonly ILeaderboardRepository _leaderboardRepository;
     readonly IFormsAuthentication _formsAuthentication;
+    private readonly IConfigurationRepository _configurationRepository;
 
-    public MyTeamController(ITeamRepository teamRepository, ILeaderboardRepository leaderboardRepository, IFormsAuthentication formsAuthentication)
+    public MyTeamController(ITeamRepository teamRepository, ILeaderboardRepository leaderboardRepository, IFormsAuthentication formsAuthentication, IConfigurationRepository configurationRepository)
     {
       _teamRepository = teamRepository;
       _leaderboardRepository = leaderboardRepository;
       _formsAuthentication = formsAuthentication;
+      _configurationRepository = configurationRepository;
     }
 
     public ActionResult Index()
@@ -38,8 +40,10 @@ namespace Compete.Site.Controllers
 
       var results = leaderboard.GetMatchResultsForTeam(currentTeam.Name);
 
+
       ViewData["currentTeam"] = currentTeam;
       ViewData["results"] = results.Select(x => new RecentMatch(currentTeam.Name, x));
+      ViewData["currentRound"] = _configurationRepository.GetConfiguration().RoundNumber;
 
       return View();
     }
