@@ -17,9 +17,6 @@ namespace Compete.Site.Controllers
   [RequireAuthenticationFilter]
   public class MyTeamController : CompeteController
   {
-    readonly ITeamRepository _teamRepository;
-    readonly ILeaderboardRepository _leaderboardRepository;
-    readonly IFormsAuthentication _formsAuthentication;
     private readonly IConfigurationRepository _configurationRepository;
     private readonly ITeamManagementQueries _teamManagementQueries;
 
@@ -33,10 +30,8 @@ namespace Compete.Site.Controllers
     {
       var currentTeam = _teamManagementQueries.GetMyTeamName();
       if (currentTeam == null)
-        throw new Exception("Cannot find team " + _formsAuthentication.SignedInUserName);
+        throw new Exception("Cannot find team " + currentTeam);
       var currentTeamDisplayName = _teamManagementQueries.GetMyTeamDisplayName();
-
-      var results = _teamManagementQueries.GetMyRecentMatches();
 
       ViewData["currentTeam"] = currentTeam;
       ViewData["currentTeamDisplayName"] = currentTeamDisplayName;

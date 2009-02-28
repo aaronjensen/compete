@@ -1,4 +1,4 @@
-﻿<viewdata results="IEnumerable<Compete.Site.Controllers.RecentMatch>" currentRound="System.Int32" />
+﻿<viewdata results="IEnumerable<Compete.Model.Game.RecentMatch>" currentRound="System.Int32" />
 <h2>${#currentTeamDisplayName}</h2>
 
 <h4>Instructions</h4>
