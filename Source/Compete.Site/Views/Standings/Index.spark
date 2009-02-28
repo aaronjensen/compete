@@ -14,13 +14,21 @@
   </tbody>
 </table>
 <script type="text/javascript">
+  function toRankString(rank)
+  {
+    if (rank >= 1)
+    {
+      return "#" + rank;
+    }
+    return "N/A";
+  }
+  
   var path = "${Request.ApplicationPath}";
-      if (path[path.length - 1] == '/') {
-        path = path.substring(0, path.length - 1);
-      }
+  if (path[path.length - 1] == '/') {
+    path = path.substring(0, path.length - 1);
+  }
       
   var username = '${Username}';
-  
   var standings = ${TeamStandings};
   
   var processStandings = function(standings) {
@@ -28,13 +36,13 @@
     
     $.each(standings, function(index, standing) {
       var highlight = standing.Name == username ? 'highlight' : '';
-      $('.standings').append('<tr class="standing '+ highlight +'"> <td class="standing_rank">#'+standing.Rank+'</td><td>'+standing.Name+'</td><td>'+standing.Wins+'-'+standing.Losses+'-'+standing.Ties+'</td><td>'+standing.Score+'</td></tr>');
+      $('.standings').append('<tr class="standing '+ highlight +'"> <td class="standing_rank">' + toRankString(standing.Rank) + '</td><td>'+standing.Name+'</td><td>'+standing.Wins+'-'+standing.Losses+'-'+standing.Ties+'</td><td>'+standing.Score+'</td></tr>');
       $('.standing').tsort('.standing_copy', {order:"desc"});
     });
   }
   
   var fetchStandings = function() {
-    var standings = $.getJSON(path+"/Standings/Latest", {}, function(data) {
+    var standings = $.getJSON(path + "/Standings/Latest", {}, function(data) {
       processStandings(data);
     });
   }
