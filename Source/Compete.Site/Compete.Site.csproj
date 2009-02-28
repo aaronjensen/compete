@@ -102,6 +102,7 @@
     <Compile Include="Controllers\AdministratorLoginController.cs" />
     <Compile Include="Controllers\CompeteController.cs" />
     <Compile Include="Controllers\CompetitionController.cs" />
+    <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\CreateTeamController.cs" />
     <Compile Include="Controllers\GameLogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

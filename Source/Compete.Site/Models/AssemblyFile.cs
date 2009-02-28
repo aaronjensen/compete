@@ -16,6 +16,7 @@ namespace Compete.Site.Models
       DirectoryHelpers.CreateIfNecessary(Directory, "Bots");
       DirectoryHelpers.CreateIfNecessary(Directory, "Games");
       string savedFileName = Path.Combine(Path.Combine(Directory, "Bots"), fileName);
+      File.Delete(savedFileName);
       file.SaveAs(savedFileName);
     }
     

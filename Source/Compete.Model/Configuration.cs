@@ -15,6 +15,21 @@ namespace Compete.Model
       set; private get;
     }
 
+    public void EnableUploads()
+    {
+      UploadsAreEnabled = true;
+    }
+
+    public void DisableUploads()
+    {
+      UploadsAreEnabled = false;
+    }
+
+    public bool UploadsAreEnabled
+    {
+      get; private set;
+    }
+
     public object IsAdminPassword(string password)
     {
       return AdminPassword.Equals(password);

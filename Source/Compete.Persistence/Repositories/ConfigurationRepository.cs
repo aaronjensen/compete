@@ -19,18 +19,14 @@ namespace Compete.Persistence.Repositories
 
     public Configuration GetConfiguration()
     {
-      return _repository.FindById(Guid.Empty);
+      var configuration = _repository.FindById(Guid.Empty);
+      
+      return configuration;
     }
 
     public void SetConfiguration(Configuration configuration)
     {
-      var currentConfiguration = GetConfiguration();
-      if (currentConfiguration != null)
-      {
-        _repository.Remove(currentConfiguration);
-      }
-
-      _repository.Add(configuration);
+      _repository.Update(configuration);
     }
   }
 }

@@ -17,17 +17,28 @@ namespace Compete.Site.Controllers
   {
     readonly ITeamManagementCommands _teamCommands;
     readonly IFormsAuthentication _formsAuthentication;
+    readonly IConfigurationRepository _configurationRepository;
     readonly AssemblyFileRepository _assemblyFileRepository = new AssemblyFileRepository();
 
-    public UploadBotController(ITeamManagementCommands teamCommands, IFormsAuthentication formsAuthentication)
+    public UploadBotController(ITeamManagementCommands teamCommands, IFormsAuthentication formsAuthentication, IConfigurationRepository configurationRepository)
     {
       _teamCommands = teamCommands;
       _formsAuthentication = formsAuthentication;
+      _configurationRepository = configurationRepository;
     }
 
     [AcceptVerbs(HttpVerbs.Post)]
     public ActionResult Index(string teamName, string password)
     {
+      var configuration = _configurationRepository.GetConfiguration();
+
+      if (!configuration.UploadsAreEnabled)
+      {
+        Response.Write("Uploads are currently disabled");
+        Response.StatusCode = (int)HttpStatusCode.Forbidden;
+        return new EmptyResult();
+      }
+
       if (string.IsNullOrEmpty(teamName) || string.IsNullOrEmpty(password))
       {
         teamName = _formsAuthentication.SignedInUserName;

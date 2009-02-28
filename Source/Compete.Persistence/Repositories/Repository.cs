@@ -50,6 +50,12 @@ namespace Compete.Persistence.Repositories
       _db.Commit();
     }
 
+    public void Update(TType obj)
+    {
+      _db.Store(obj);
+      _db.Commit();
+    }
+
     public void Remove(TType obj)
     {
       _db.Delete(obj);

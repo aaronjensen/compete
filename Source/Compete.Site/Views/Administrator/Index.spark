@@ -1,6 +1,13 @@
-﻿<h2>Administrator</h2>
+﻿<viewdata configuration="Compete.Model.Configuration" />
+<h2>Administrator</h2>
 <ul>
 	<li>
 		<a href="~/Competition"><span>Start</span></a>
+	</li>
+	<li if="configuration.UploadsAreEnabled">
+		<a href="~/Configuration/DisableUploads"><span>Disable Uploads</span></a>
+	</li>
+	<li if="!configuration.UploadsAreEnabled">
+		<a href="~/Configuration/EnableUploads"><span>Enable Uploads</span></a>
 	</li>
 </ul>

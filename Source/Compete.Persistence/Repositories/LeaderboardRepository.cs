@@ -22,19 +22,16 @@ namespace Compete.Persistence.Repositories
       var value = _repository.FindById(Guid.Empty);
       if (value == null)
       {
-        return new Leaderboard();
+        value = new Leaderboard();
+        _repository.Add(value);
       }
+
       return value;
     }
 
     public void SetLeaderboard(Leaderboard leaderboard)
     {
-      var value = GetLeaderboard();
-      if (value != null)
-      {
-        _repository.Remove(value);
-      }
-      _repository.Add(leaderboard);
+      _repository.Update(leaderboard);
     }
   }
 }
