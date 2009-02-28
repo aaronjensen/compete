@@ -52,5 +52,13 @@ namespace Compete.Model
     {
       return AdminPassword.Equals(password);
     }
+
+    public void GotoPreviousRound()
+    {
+      if ((roundNumber - 1) >= 1)
+      {
+        roundNumber -= 1;
+      }
+    }
   }
 }

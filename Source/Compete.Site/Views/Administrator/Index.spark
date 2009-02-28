@@ -11,6 +11,6 @@
 		<a href="~/Configuration/EnableUploads"><span>Enable Uploads</span></a>
 	</li>
 	<li>
-	  <span>Current round: ${configuration.RoundNumber}</span> - <a href="~/Configuration/AdvanceToNextRound"><span>Advance To Next Round</span></a>
+	  <span>Current round: ${configuration.RoundNumber}</span> - <test if="configuration.RoundNumber > 1"><a href="~/Configuration/GotoPreviousRound"><span>Goto Previous Round</span></a> /</test> <a href="~/Configuration/AdvanceToNextRound"><span>Advance To Next Round</span></a>
 	</li>
 </ul>
