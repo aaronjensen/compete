@@ -26,7 +26,7 @@ namespace Compete.Uploader
       }
       catch (Exception err)
       {
-        Console.WriteLine("Couldn't upload, check your username and password");
+        Console.WriteLine("Couldn't upload, uploads may be disabled. Also, check your username and password");
         Console.WriteLine("");
         Console.WriteLine("");
         Console.Error.WriteLine("FAIL: " + err);
