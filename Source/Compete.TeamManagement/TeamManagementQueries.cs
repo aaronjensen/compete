@@ -18,6 +18,7 @@ namespace Compete.TeamManagement
     string GetMyTeamName();
     IEnumerable<RecentMatch> GetMyRecentMatches();
     string GetMyTeamDisplayName();
+    bool IsSignedIn { get; }
   }
 
   public class TeamManagementQueries : ITeamManagementQueries
@@ -78,6 +79,11 @@ namespace Compete.TeamManagement
     {
       var teamName = _formsAuthentication.SignedInUserName;
       return _teamRepository.FindByTeamName(teamName).DisplayName;
+    }
+
+    public bool IsSignedIn
+    {
+      get { return _formsAuthentication.IsCurrentlySignedIn; }
     }
   }
 }

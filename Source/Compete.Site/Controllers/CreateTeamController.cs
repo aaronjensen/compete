@@ -24,6 +24,11 @@ namespace Compete.Site.Controllers
     [AcceptVerbs(HttpVerbs.Get)]
     public ActionResult Index()
     {
+      if (_teamManagementQueries.IsSignedIn)
+      {
+        return Redirect(@"~/MyTeam");
+      }
+
       this.ViewData["ErrorMessage"] = "none";
       return View();
     }
