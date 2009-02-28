@@ -1,11 +1,11 @@
 ﻿<viewdata results="IEnumerable<Compete.Site.Controllers.RecentMatch>" currentRound="System.Int32" />
 <h2>${#currentTeam.DisplayName}</h2>
 
-<h4>Insutrctions</h4>
+<h4>Instructions</h4>
 First, download the zip file for the current round:<br />
-<a if="currentRound >= 1" href="~/Content/rounds/11EB991D-8197-4601-8FF3-7BCAF14C8454/round1.zip">round 1</a><br if="currentRound >= 1" />
-<a if="currentRound >= 2" href="~/Content/rounds/A6E3CDF3-8C91-4fec-99C5-E7CBB3C80A6F/round2.zip">round 2</a><br if="currentRound >= 2" />
-<a if="currentRound >= 3" href="~/Content/rounds/CB5F3730-3453-4716-AD86-57D2F14683FC/round3.zip">round 3</a><br if="currentRound >= 3" />
+<a if="currentRound >= 1" href="~/Content/rounds/11EB991D-8197-4601-8FF3-7BCAF14C8454/round1.zip">Round 1</a><br if="currentRound >= 1" />
+<a if="currentRound >= 2" href="~/Content/rounds/A6E3CDF3-8C91-4fec-99C5-E7CBB3C80A6F/round2.zip">Round 2</a><br if="currentRound >= 2" />
+<a if="currentRound >= 3" href="~/Content/rounds/CB5F3730-3453-4716-AD86-57D2F14683FC/round3.zip">Round 3</a><br if="currentRound >= 3" />
 Then, upload your assembly:
 <form method="post" action="~/UploadBot" enctype="multipart/form-data">
   <input type="file" id="file" name="file" />
