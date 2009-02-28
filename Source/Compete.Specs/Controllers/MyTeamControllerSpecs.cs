@@ -66,10 +66,6 @@ namespace Compete.Specs.Controllers
 
   public class when_viewing_the_my_team_page : MyTeamControllerSpecs
   {
-    static string teamName = "foo";
-    static MyTeamController controller;
-    static int round = 1;
-
     Establish context = () =>
     {
       SetUserAsBeingSignedInWithUsername(teamName);
@@ -93,5 +89,9 @@ namespace Compete.Specs.Controllers
 
     It should_provide_match_results_for_my_team = () =>
       ((IEnumerable<RecentMatch>)controller.ViewData["results"]).First().Result.ShouldEqual("Win");
+
+    static string teamName = "foo";
+    static MyTeamController controller;
+    static int round = 1;
   }
 }
