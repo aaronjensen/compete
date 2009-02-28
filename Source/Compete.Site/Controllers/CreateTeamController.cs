@@ -42,6 +42,12 @@ namespace Compete.Site.Controllers
         this.ViewData["ErrorMessage"] = "Passwords do not match";
         return View();
       }
+      
+      if (teamName.Equals(string.Empty))
+      {
+        this.ViewData["ErrorMessage"] = "You cannot create a team with an empty team name. Try again.";
+        return View();
+      }
 
       if (!_teamManagementQueries.TeamNameIsAvailable(teamName))
       {
