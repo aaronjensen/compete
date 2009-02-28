@@ -5,6 +5,11 @@ namespace Compete.Model.Game
 {
   public class GameResult
   {
+    public string Log
+    { 
+      get; private set;
+    }
+
     public BotPlayer Winner
     {
       get; private set;
@@ -25,22 +30,24 @@ namespace Compete.Model.Game
       get; private set;
     }
 
-    public static GameResult Tie(params BotPlayer[] players)
+    public static GameResult Tie(BotPlayer player1, BotPlayer player2, string log)
     {
       return new GameResult
       {
-        Players = players,
-        IsTie = true
+        Players = new[] {player1, player2},
+        IsTie = true,
+        Log = log
       };
     }
 
-    public static GameResult WinnerAndLoser(BotPlayer winner, BotPlayer loser)
+    public static GameResult WinnerAndLoser(BotPlayer winner, BotPlayer loser, string log)
     {
       return new GameResult
       {
         Winner = winner, 
         Loser = loser,
-        Players = new[] {winner, loser}
+        Players = new[] {winner, loser},
+        Log = log
       };
     }
   }

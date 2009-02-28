@@ -12,7 +12,7 @@ namespace Compete.Specs.Model.Game
   {
     Establish context = () =>
     {
-      result = new AggregateResult(new [] { GameResult.WinnerAndLoser(player1, player2) });
+      result = new AggregateResult(new [] { GameResult.WinnerAndLoser(player1, player2, "") });
     };
 
     It should_have_the_same_winner_as_the_single_result = () =>
@@ -27,7 +27,7 @@ namespace Compete.Specs.Model.Game
   {
     Establish context = () =>
     {
-      result = new AggregateResult(new [] { GameResult.Tie(new [] { player1, player2 }) } );
+      result = new AggregateResult(new [] { GameResult.Tie(player1, player2, "") } );
     };
 
     It should_be_a_tie = ()=>
@@ -41,8 +41,8 @@ namespace Compete.Specs.Model.Game
     {
       result = new AggregateResult(new []
       {
-        GameResult.WinnerAndLoser(player1, player2),
-        GameResult.WinnerAndLoser(player2, player1)
+        GameResult.WinnerAndLoser(player1, player2, ""),
+        GameResult.WinnerAndLoser(player2, player1, "")
       } );
     };
 
@@ -57,8 +57,8 @@ namespace Compete.Specs.Model.Game
     {
       result = new AggregateResult(new []
       {
-        GameResult.WinnerAndLoser(player1, player2),
-        GameResult.WinnerAndLoser(player1, player2)
+        GameResult.WinnerAndLoser(player1, player2, ""),
+        GameResult.WinnerAndLoser(player1, player2, "")
       } );
     };
 
