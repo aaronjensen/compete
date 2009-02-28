@@ -110,7 +110,6 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\MyTeamController.cs" />
-    <Compile Include="Controllers\RecentMatch.cs" />
     <Compile Include="Controllers\StandingsController.cs" />
     <Compile Include="Controllers\UploadBotController.cs" />
     <Compile Include="Default.aspx.cs">

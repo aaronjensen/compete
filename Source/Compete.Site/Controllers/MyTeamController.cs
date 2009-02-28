@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Compete.Core.Infrastructure;
+using Compete.Model.Game;
 using Compete.Model.Repositories;
 using Compete.Site.Filters;
 using Compete.Site.Infrastructure;
@@ -20,30 +21,26 @@ namespace Compete.Site.Controllers
     readonly ILeaderboardRepository _leaderboardRepository;
     readonly IFormsAuthentication _formsAuthentication;
     private readonly IConfigurationRepository _configurationRepository;
+    private readonly ITeamManagementQueries _teamManagementQueries;
 
-    public MyTeamController(ITeamRepository teamRepository, ILeaderboardRepository leaderboardRepository, IFormsAuthentication formsAuthentication, IConfigurationRepository configurationRepository)
+    public MyTeamController(IConfigurationRepository configurationRepository, ITeamManagementQueries teamManagementQueries)
     {
-      _teamRepository = teamRepository;
-      _leaderboardRepository = leaderboardRepository;
-      _formsAuthentication = formsAuthentication;
       _configurationRepository = configurationRepository;
+      _teamManagementQueries = teamManagementQueries;
     }
 
     public ActionResult Index()
     {
-      var currentTeam = _teamRepository.FindByTeamName(_formsAuthentication.SignedInUserName);
+      var currentTeam = _teamManagementQueries.GetMyTeamName();
       if (currentTeam == null)
         throw new Exception("Cannot find team " + _formsAuthentication.SignedInUserName);
+      var currentTeamDisplayName = _teamManagementQueries.GetMyTeamDisplayName();
 
-      var leaderboard = _leaderboardRepository.GetLeaderboard();
-      if (leaderboard == null)
-        throw new Exception("Huh, where's the leaderboard?");
-
-      var results = leaderboard.GetMatchResultsForTeam(currentTeam.Name);
-
+      var results = _teamManagementQueries.GetMyRecentMatches();
 
       ViewData["currentTeam"] = currentTeam;
-      ViewData["results"] = results.Select(x => new RecentMatch(currentTeam.Name, x));
+      ViewData["currentTeamDisplayName"] = currentTeamDisplayName;
+      ViewData["results"] = _teamManagementQueries.GetMyRecentMatches();
       ViewData["currentRound"] = _configurationRepository.GetConfiguration().RoundNumber;
 
       return View();

@@ -52,6 +52,7 @@
     <Compile Include="Game\GameResult.cs" />
     <Compile Include="Game\GameState.cs" />
     <Compile Include="Game\IGame.cs" />
+    <Compile Include="Game\RecentMatch.cs" />
     <Compile Include="Leaderboard.cs" />
     <Compile Include="Game\Match.cs" />
     <Compile Include="Game\BotPlayer.cs" />

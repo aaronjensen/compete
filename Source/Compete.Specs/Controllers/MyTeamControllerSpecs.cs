@@ -8,6 +8,7 @@ using Compete.Model;
 using Compete.Model.Game;
 using Compete.Model.Repositories;
 using Compete.Site.Controllers;
+using Compete.TeamManagement;
 using Machine.Specifications;
 using Rhino.Mocks;
 
@@ -19,11 +20,7 @@ namespace Compete.Specs.Controllers
     protected static ILeaderboardRepository leaderboardRepository;
     protected static IFormsAuthentication formsAuthentication;
     protected static IConfigurationRepository configurationRepository;
-
-    Establish context = () =>
-    {
-      
-    };
+    protected static ITeamManagementQueries teamManagementQueries;
 
     protected static void SetUserAsBeingSignedInWithUsername(string name)
     {
@@ -60,6 +57,11 @@ namespace Compete.Specs.Controllers
       }
       configurationRepository.Stub(x => x.GetConfiguration()).Return(config);
     }
+
+    protected static void SetupControllerDependencies()
+    {
+      teamManagementQueries = new TeamManagementQueries(teamRepository, leaderboardRepository, formsAuthentication);
+    }
   }
 
   public class when_viewing_the_my_team_page : MyTeamControllerSpecs
@@ -75,15 +77,16 @@ namespace Compete.Specs.Controllers
       SetupMatchResultsForTeam(teamName);
       SetupMatchResultsForTeam(teamName);
       SetupConfigurationToShowAStartingRoundOf(round);
+      SetupControllerDependencies();
 
-      controller = new MyTeamController(teamRepository, leaderboardRepository, formsAuthentication, configurationRepository);
+      controller = new MyTeamController(configurationRepository, teamManagementQueries);
     };
 
     Because of = () =>
       controller.Index();
 
     It should_should_show_my_team_information = () =>
-      ((Team)controller.ViewData["currentTeam"]).Name.ShouldEqual(teamName);
+      controller.ViewData["currentTeam"].ShouldEqual(teamName);
 
     It should_provide_the_current_round = () =>
       ((int)controller.ViewData["currentRound"]).ShouldEqual(1);

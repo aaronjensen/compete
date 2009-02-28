@@ -1,5 +1,5 @@
 ﻿<viewdata results="IEnumerable<Compete.Site.Controllers.RecentMatch>" currentRound="System.Int32" />
-<h2>${#currentTeam.DisplayName}</h2>
+<h2>${#currentTeamDisplayName}</h2>
 
 <h4>Instructions</h4>
 First, download the zip file for the current round:<br />
@@ -22,6 +22,6 @@ Then, upload your assembly:
 	<tr each='var match in results'>
 		<td>${match.OpponentTeamName}</td>
 		<td>${match.Result}</td>
-		<td><a href="~/GameLog/${#currentTeam.Name}.vs.${match.OpponentTeamName}">Log</a></td>
+		<td><a href="~/GameLog/${#currentTeam}.vs.${match.OpponentTeamName}">Log</a></td>
 	</tr>
 </table>

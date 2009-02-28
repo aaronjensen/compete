@@ -24,7 +24,7 @@ namespace Compete.Site.Controllers
     public ActionResult Index()
     {
       ViewData["TeamStandings"] = JavaScriptConvert.SerializeObject(_teamManagementQueries.GetTeamStandings());
-      ViewData["Username"] = _formsAuthentication.IsCurrentlySignedIn ? _formsAuthentication.SignedInUserName : "not signed in!";
+      ViewData["Username"] = _teamManagementQueries.GetMyTeamName();
       return View();
     }
 
