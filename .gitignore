@@ -13,3 +13,5 @@ _ReSharper.*
 NDependOut
 
 .setup-done
+
+Source/Compete.Site/Content/Packages
