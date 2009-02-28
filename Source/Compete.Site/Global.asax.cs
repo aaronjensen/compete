@@ -30,6 +30,12 @@ namespace Compete.Site
       routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
       routes.MapRoute(
+          "GameLog",                                              // Route name
+          "GameLog/{teamName}.vs.{otherTeamName}",                           // URL with parameters
+          new { controller = "GameLog", action = "Index" }  // Parameter defaults
+      );
+
+      routes.MapRoute(
           "Default",                                              // Route name
           "{controller}/{action}/{id}",                           // URL with parameters
           new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
