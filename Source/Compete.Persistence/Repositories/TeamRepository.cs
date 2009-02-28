@@ -28,7 +28,7 @@ namespace Compete.Persistence.Repositories
     public Team FindByTeamName(string teamName)
     {
       var result = from Team t in _objectContainer
-        where t.Name == teamName
+        where t.Name.Equals(teamName, StringComparison.InvariantCultureIgnoreCase)
         select t;
 
       return result.FirstOrDefault();
