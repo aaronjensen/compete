@@ -84,6 +84,7 @@
     <Compile Include="Model\Game\CompetitionHalfAssedIntegrationSpecs.cs" />
     <Compile Include="Model\TeamSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\NewTeamParamsValidatorSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Compete.Bot\Compete.Bot.csproj">
