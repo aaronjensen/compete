@@ -28,7 +28,7 @@ namespace Compete.TeamManagement
 
     public IEnumerable<TeamSummary> GetTeamSummaries()
     {
-      return _teamRepository.GetAllTeams().Select(team=>new TeamSummary(team.Name, team.LongName, team.TeamMembers.Select(teamMember => teamMember.Name)));
+      return _teamRepository.GetAllTeams().Select(team => new TeamSummary(team.Name, team.LongName, team.TeamMembers.Select(teamMember => teamMember.Name)));
     }
 
     public bool TeamNameIsAvailable(string name)

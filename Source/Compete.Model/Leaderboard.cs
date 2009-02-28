@@ -38,7 +38,7 @@ namespace Compete.Model
     {
       List<string> remainingNames = new List<string>(teamNames);
       int rank = 1;
-      foreach (var group in _scores.Values.OrderByDescending(x => x.Score).GroupBy(x => x.Score))
+      foreach (var group in _scores.Values.GroupBy(x => x.Score).OrderByDescending(x => x.Key))
       {
         foreach (var score in group)
         {
