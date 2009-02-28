@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Compete.Site.Refereeing
@@ -12,6 +13,7 @@ namespace Compete.Site.Refereeing
   public class RefereeThread : IRefereeThread
   {
     static readonly log4net.ILog _log = log4net.LogManager.GetLogger(typeof(RefereeThread));
+    readonly Queue<RoundParameters> _queue = new Queue<RoundParameters>();
     Thread _thread;
     Referee _currentlyRunning;
 
@@ -24,10 +26,10 @@ namespace Compete.Site.Refereeing
     {
       if (_currentlyRunning != null)
       {
+        _queue.Enqueue(parameters);
         _log.Info("Not starting, already running...");
         return false;
       }
-
       _thread = new Thread(Main);
       _log.Info("Starting:");
       _currentlyRunning = new Referee(parameters);
@@ -41,14 +43,15 @@ namespace Compete.Site.Refereeing
       {
         _currentlyRunning.StartRound();
       }
-      catch (Exception error)
-      {
-        System.Diagnostics.Debug.WriteLine(error);
-        throw;
-      }
       finally
       {
         _currentlyRunning = null;
+        if (_queue.Count > 0)
+        {
+          _log.Info("Starting queued round...");
+          Start(RoundParameters.Merge(_queue.ToArray()));
+          _queue.Clear();
+        }
       }
     }
 

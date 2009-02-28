@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 using Compete.Model.Game;
 using Compete.Site.Infrastructure;
 using Compete.Site.Models;
-using System.Linq;
+
+using Microsoft.Practices.ServiceLocation;
 
 namespace Compete.Site.Refereeing
 {
@@ -27,7 +29,7 @@ namespace Compete.Site.Refereeing
         sw.Start();
         var rr = AppDomainHelper.InSeparateAppDomain<RoundParameters, IEnumerable<MatchResult>>(staging.Root, _parameters, RunRound);
         sw.Stop();
-        Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<IScoreKeeper>().Record(rr);
+        ServiceLocator.Current.GetInstance<IScoreKeeper>().Record(rr);
       }
     }
 
