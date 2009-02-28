@@ -13,12 +13,10 @@ namespace Compete.Site.Controllers
   public class StandingsController : CompeteController
   {
     private readonly ITeamManagementQueries _teamManagementQueries;
-    private readonly IFormsAuthentication _formsAuthentication;
 
-    public StandingsController(ITeamManagementQueries teamManagementQueries, IFormsAuthentication formsAuthentication)
+    public StandingsController(ITeamManagementQueries teamManagementQueries)
     {
       _teamManagementQueries = teamManagementQueries;
-      _formsAuthentication = formsAuthentication;
     }
 
     public ActionResult Index()
