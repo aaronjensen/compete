@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6FB8E720-12C2-4590-B1A2-DA9C531C154B}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -44,6 +44,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\Machine\Specifications\Machine.Specifications.NUnit.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.5.0.2, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Machine\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -56,8 +60,26 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC RC\Assemblies\System.Web.Abstractions.dll</HintPath>
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC RC\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC RC\Assemblies\System.Web.Routing.dll</HintPath>
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\MyTeamControllerSpecs.cs" />
     <Compile Include="Model\Game\AggregateResultSpecs.cs" />
     <Compile Include="Model\Game\CompetitionHalfAssedIntegrationSpecs.cs" />
     <Compile Include="Model\TeamSpecs.cs" />
@@ -68,9 +90,29 @@
       <Project>{DFF95378-F0D3-4B1B-AE0D-78388420C235}</Project>
       <Name>Compete.Bot</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Compete.Core\Compete.Core.csproj">
+      <Project>{4CA0C384-4196-47D8-8424-6446D8C7F788}</Project>
+      <Name>Compete.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Compete.Model\Compete.Model.csproj">
       <Project>{7614EA4E-29EB-4F13-A50D-2794244FE934}</Project>
       <Name>Compete.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Compete.Persistence\Compete.Persistence.csproj">
+      <Project>{879823D2-3BC2-4F50-944F-7E1A35CF43EB}</Project>
+      <Name>Compete.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Compete.Site\Compete.Site.csproj">
+      <Project>{1D6C3A93-9403-4670-94C1-9C726FA559EB}</Project>
+      <Name>Compete.Site</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Compete.TeamManagement\Compete.TeamManagement.csproj">
+      <Project>{9ADC69D2-C420-435E-A07D-4B11608F6A4A}</Project>
+      <Name>Compete.TeamManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Compete.Uploader\Compete.Uploader.csproj">
+      <Project>{388E347E-EBEB-4F3E-9A44-AA1E8E4DA5CB}</Project>
+      <Name>Compete.Uploader</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
