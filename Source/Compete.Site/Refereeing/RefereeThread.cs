@@ -6,7 +6,7 @@ namespace Compete.Site.Refereeing
   public interface IRefereeThread
   {
     bool IsRunning { get; }
-    bool Start(Referee referee);
+    bool Start(RoundParameters parameters);
   }
 
   public class RefereeThread : IRefereeThread
@@ -20,7 +20,7 @@ namespace Compete.Site.Refereeing
       get { return _currentlyRunning != null; }
     }
 
-    public bool Start(Referee referee)
+    public bool Start(RoundParameters parameters)
     {
       if (_currentlyRunning != null)
       {
@@ -30,7 +30,7 @@ namespace Compete.Site.Refereeing
 
       _thread = new Thread(Main);
       _log.Info("Starting:");
-      _currentlyRunning = referee;
+      _currentlyRunning = new Referee(parameters);
       _thread.Start(this);
       return true;
     }

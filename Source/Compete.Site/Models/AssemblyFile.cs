@@ -76,5 +76,25 @@ namespace Compete.Site.Models
     {
       _path = path;
     }
+
+    public bool Equals(AssemblyFile obj)
+    {
+      if (ReferenceEquals(null, obj)) return false;
+      if (ReferenceEquals(this, obj)) return true;
+      return Equals(obj._path, _path);
+    }
+
+    public override bool Equals(object obj)
+    {
+      if (ReferenceEquals(null, obj)) return false;
+      if (ReferenceEquals(this, obj)) return true;
+      if (obj.GetType() != typeof(AssemblyFile)) return false;
+      return Equals((AssemblyFile) obj);
+    }
+
+    public override Int32 GetHashCode()
+    {
+      return _path.GetHashCode();
+    }
   }
 }

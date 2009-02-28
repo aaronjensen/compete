@@ -12,53 +12,64 @@ namespace Compete.Site.Refereeing
   public class Referee
   {
     static readonly log4net.ILog _log = log4net.LogManager.GetLogger(typeof(Referee));
-    readonly AssemblyFile[] _files;
-    readonly IEnumerable<string> _teamNames;
+    readonly RoundParameters _parameters;
 
-    public Referee(AssemblyFile[] files, IEnumerable<string> teamNames)
+    public Referee(RoundParameters parameters)
     {
-      _files = files;
-      _teamNames = teamNames;
+      _parameters = parameters;
     }
 
     public void StartRound()
     {
-      using (var staging = new StagingArea(_files))
+      using (var staging = new StagingArea(_parameters.AssemblyFiles))
       {
         var sw = new Stopwatch();
         sw.Start();
-        var rr = AppDomainHelper.InSeparateAppDomain<RoundParameters, IEnumerable<MatchResult>>(staging.Root, new RoundParameters(_files, _teamNames.ToArray()), RunRound);
+        var rr = AppDomainHelper.InSeparateAppDomain<RoundParameters, IEnumerable<MatchResult>>(staging.Root, _parameters, RunRound);
         sw.Stop();
         Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<IScoreKeeper>().Record(rr);
-      }
-    }
-
-    [Serializable]
-    private class RoundParameters
-    {
-      public AssemblyFile[] Files 
-      {
-        get;
-        set;
-      }
-
-      public IEnumerable<string> TeamNames
-      {
-        get; set;
-      }
-
-      public RoundParameters(AssemblyFile[] files, IEnumerable<string> teamNames)
-      {
-        Files = files;
-        TeamNames = teamNames;
       }
     }
 
     private static IEnumerable<MatchResult> RunRound(RoundParameters parameters)
     {
       var competitionFactory = new CompetitionFactory();
-      var competition = competitionFactory.CreateCompetition(parameters.Files);
+      var competition = competitionFactory.CreateCompetition(parameters.AssemblyFiles);
       return competition.PlayRound(parameters.TeamNames);
+    }
+  }
+
+  [Serializable]
+  public class RoundParameters
+  {
+    public AssemblyFile[] AssemblyFiles
+    {
+      get;
+      private set;
+    }
+
+    public string[] TeamNames
+    {
+      get;
+      private set;
+    }
+
+    public RoundParameters(AssemblyFile[] files, string[] teamNames)
+    {
+      AssemblyFiles = files;
+      TeamNames = teamNames;
+    }
+
+    public static RoundParameters Merge(params RoundParameters[] parameters)
+    {
+      List<string> teamNames = new List<string>();
+      List<AssemblyFile> assemblyFiles = new List<AssemblyFile>();
+      foreach (var p in parameters)
+      {
+        teamNames.AddRange(p.TeamNames);
+        assemblyFiles.AddRange(p.AssemblyFiles);
+      }
+      return new RoundParameters(assemblyFiles.Distinct().ToArray(), teamNames.Distinct().ToArray());
     }
   }
 }

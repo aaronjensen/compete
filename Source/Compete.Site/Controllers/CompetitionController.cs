@@ -26,8 +26,8 @@ namespace Compete.Site.Controllers
     public ActionResult Index()
     {
       var teamNames = _teamManagementQueries.GetAllTeamNames();
-      var referee = new Referee(_assemblyFileRepository.FindAllGamesAndPlayers().ToArray(),teamNames);
-      _refereeThread.Start(referee);
+      var parameters = new RoundParameters(_assemblyFileRepository.FindAllGamesAndPlayers().ToArray(), teamNames.ToArray());
+      _refereeThread.Start(parameters);
       return RedirectToReferrer();
     }
   }
