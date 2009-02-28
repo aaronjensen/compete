@@ -10,6 +10,24 @@ namespace Compete.Model
     {
     }
 
+    int? roundNumber;
+    public int RoundNumber
+    {
+      get
+      {
+        if (roundNumber == null)
+        {
+          roundNumber = 1;
+        }
+        return (int)roundNumber;
+      }
+    }
+
+    public void AdvanceToNextRound()
+    {
+      roundNumber++;
+    }
+
     public string AdminPassword
     {
       set; private get;
