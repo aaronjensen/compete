@@ -26,7 +26,7 @@ namespace Compete.Persistence
       configuration.UpdateDepth(4);
       configuration.ObjectClass(typeof(Entity)).ObjectField("_id").Indexed(true);
       configuration.RefreshClasses();
-      _db = Db4oFactory.OpenFile(configuration, Path.Combine(path, "Database.yap"));
+      _db = Db4oFactory.OpenFile(configuration, Path.Combine(path, "c:\\Compete\\Database.yap"));
     }
   }
 }

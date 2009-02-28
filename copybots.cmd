@@ -1,5 +1,5 @@
 @echo off
-del /s C:\Compete
+del /s C:\Compete\*
 Mkdir C:\Compete
 Mkdir C:\Compete\Bots
 Mkdir C:\Compete\Games
