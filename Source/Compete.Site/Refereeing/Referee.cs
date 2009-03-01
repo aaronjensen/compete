@@ -28,7 +28,7 @@ namespace Compete.Site.Refereeing
       {
         var sw = new Stopwatch();
         sw.Start();
-        var rr = AppDomainHelper.InSeparateAppDomain<RoundParameters, IEnumerable<MatchResult>>(staging.Root, _parameters, RunRound);
+        var rr = AppDomainHelper.InSeparateAppDomain<RoundParameters, IEnumerable<MatchResult>>(staging.Root, new RoundParameters(staging.StagedAssemblies, _parameters.TeamNames), RunRound);
         sw.Stop();
         _log.Info("Done: " + sw.Elapsed);
         ServiceLocator.Current.GetInstance<IScoreKeeper>().Record(rr);
