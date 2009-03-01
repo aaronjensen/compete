@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using Compete.Core.Infrastructure;
 using Compete.Model.Game;
 using Compete.Site.Infrastructure;
@@ -72,6 +73,20 @@ namespace Compete.Site.Refereeing
         assemblyFiles.AddRange(p.AssemblyFiles);
       }
       return new RoundParameters(assemblyFiles.Distinct().ToArray(), teamNames.Distinct().ToArray());
+    }
+
+    public override string ToString()
+    {
+      StringBuilder sb = new StringBuilder();
+      foreach (string name in this.TeamNames)
+      {
+        if (sb.Length > 0)
+        {
+          sb.Append(", ");
+        }
+        sb.Append(name);
+      }
+      return sb.ToString();
     }
   }
 }

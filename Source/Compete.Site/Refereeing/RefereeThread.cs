@@ -31,7 +31,7 @@ namespace Compete.Site.Refereeing
         return false;
       }
       _thread = new Thread(Main);
-      _log.Info("Starting:");
+      _log.Info("Starting: " + parameters);
       _currentlyRunning = new Referee(parameters);
       _thread.Start(this);
       return true;
