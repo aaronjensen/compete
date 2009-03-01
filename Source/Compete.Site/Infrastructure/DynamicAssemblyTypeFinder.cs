@@ -29,20 +29,30 @@ namespace Compete.Site.Infrastructure
     {
       foreach (Type type in EnumerateTypesOf<T>())
       {
+        System.Diagnostics.Debug.WriteLine("Creating new: " + type + " " + type.Assembly.Location);
         yield return (T)Activator.CreateInstance(type);
       }
     }
 
     private IEnumerable<Type> EnumerateTypesOf<T>()
     {
+      List<Assembly> loaded = new List<Assembly>();
       foreach (Assembly assembly in _assemblies)
       {
         foreach (Type type in assembly.GetExportedTypes())
         {
           if (typeof(T).IsAssignableFrom(type) && !type.IsAbstract)
           {
+            loaded.Add(type.Assembly);
             yield return type;
           }
+        }
+      }
+      foreach (Assembly assembly in _assemblies)
+      {
+        if (!loaded.Contains(assembly))
+        {
+          System.Diagnostics.Debug.WriteLine("No types were instantiated from: " + assembly.Location);
         }
       }
     }
