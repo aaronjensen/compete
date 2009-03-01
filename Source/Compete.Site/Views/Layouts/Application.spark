@@ -16,11 +16,9 @@
     <div class="content">
       <div id="menu">
         <ul>
-          <if condition="isRunning">
-	          <li>
-	          Round in Progress!
-	          </li>
-          </if>
+          <li id="status">
+	          MATCH RUNNING!
+          </li>
           <li>
             <a href="~/Administrator"><span>Administrator</span></a>
           </li>
@@ -57,6 +55,36 @@
       </div>
     </div>
   </div>
+
+  <if condition="!isRunning">
+  <script type="text/javascript">
+  $(function() {
+    $('#status').hide();
+  });
+  </script>
+  </if>
+  
+  <script type="text/javascript">
+  var fetchMatchStatus = function() {
+    var path = "${Request.ApplicationPath}";
+    if (path[path.length - 1] == '/') {
+      path = path.substring(0, path.length - 1);
+    }
+
+    var standings = $.getJSON(path + "/Match/Status", {}, function(data) {
+      if (data) {
+        $('#status').show();
+      }
+      else {
+        $('#status').hide();
+      }
+    });
+  }
+
+  $(function() {
+    setInterval(fetchMatchStatus, 10000);
+  });
+  </script>
   
 </body>
 </html>

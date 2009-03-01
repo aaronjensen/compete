@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 using Compete.Site.Filters;
 using Compete.Site.Infrastructure;
+using Compete.Site.Refereeing;
 
 namespace Compete.Site.Controllers
 {
@@ -21,6 +22,21 @@ namespace Compete.Site.Controllers
     {
       _matchStarter.QueueForAll();
       return RedirectToReferrer();
+    }
+  }
+
+  public class MatchController : CompeteController
+  {
+    readonly IRefereeThread _refereeThread;
+
+    public MatchController(IRefereeThread refereeThread)
+    {
+      _refereeThread = refereeThread;
+    }
+
+    public ActionResult Status()
+    {
+      return Json(_refereeThread.IsRunning);
     }
   }
 }

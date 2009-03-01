@@ -373,3 +373,13 @@ pre.log {
   color: #222;
   padding: 1em;
 }
+
+#status {
+  font-size: 12px;
+  background-color: #aaffaa;
+  color: #000000;
+  padding-left: 1em;
+  padding-right: 1em;
+  line-height: 23px;
+  font-weight: bold;
+}
