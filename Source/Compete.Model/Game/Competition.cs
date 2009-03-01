@@ -29,7 +29,7 @@ namespace Compete.Model.Game
 
     public IEnumerable<MatchResult> PlayRound(IEnumerable<string> teamNames)
     {
-      var teams = _players.Where(x => teamNames.Contains(x.TeamName));
+      var teams = _players.Where(x => teamNames.Contains(x.TeamName)).Distinct();
 
       return PlayRound(teams);
     }
