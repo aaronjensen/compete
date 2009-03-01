@@ -51,7 +51,7 @@ namespace Compete.Persistence.Repositories
 
     public IDictionary<string, string> GetTeamNamesMap()
     {
-      return _repository.GetAllOf().ToDictionary(x => x.Name, y => y.DisplayName);
+      return _repository.GetAllOf().ToDictionary(x => x.Name.ToLower(), y => y.DisplayName);
     }
   }
 }

@@ -42,20 +42,20 @@ namespace Compete.Model
 
     public IEnumerable<TeamStandingSummary> ToStandingSummary(IDictionary<string, string> teamNames)
     {
-      List<string> remainingNames = new List<string>(teamNames.Keys);
+      List<string> remainingNames = teamNames.Keys.Select(x => x.ToLower()).ToList();
       int rank = 1;
       foreach (var group in _scores.Values.GroupBy(x => x.Score).OrderByDescending(x => x.Key))
       {
         foreach (var score in group)
         {
-          remainingNames.Remove(score.TeamName);
-          yield return new TeamStandingSummary(teamNames[score.TeamName], rank, score.Wins, score.Losses, score.Ties, score.Score);
+          remainingNames.Remove(score.TeamName.ToLower());
+          yield return new TeamStandingSummary(teamNames[score.TeamName.ToLower()], rank, score.Wins, score.Losses, score.Ties, score.Score);
         }
         rank++;
       }
       foreach (string notFound in remainingNames)
       {
-        yield return new TeamStandingSummary(teamNames[notFound]);
+        yield return new TeamStandingSummary(teamNames[notFound.ToLower()]);
       }
     }
 
