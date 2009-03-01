@@ -137,7 +137,11 @@ namespace Compete.Model
 
     public void Add(MatchResult mr)
     {
-      if (mr.LoserTeamName.Equals(_teamName))
+      if (mr.IsTie)
+      {
+        _ties++;
+      }
+      else if (mr.LoserTeamName.Equals(_teamName))
       {
         _losses++;
       }
