@@ -24,6 +24,8 @@ namespace Compete.Model
 
     public void Include(IEnumerable<MatchResult> toBeIncluded)
     {
+      if (toBeIncluded == null) return;
+
       foreach (var old in _last.ToArray())
       {
         foreach (var mr in toBeIncluded)
