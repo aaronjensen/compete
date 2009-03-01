@@ -49,5 +49,5 @@
   
   processStandings(standings);
   
-  setInterval(fetchStandings, 30000);
+  setInterval(fetchStandings, 10000);
 </script>
