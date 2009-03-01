@@ -10,6 +10,7 @@ namespace Compete.TeamManagement
     {
       register.Type<ITeamManagementCommands>().ImplementedBy<TeamManagementCommands>();
       register.Type<ITeamManagementQueries>().ImplementedBy<TeamManagementQueries>();
+      register.Type<INewTeamParamsValidator>().ImplementedBy<NewTeamParamsValidator>();
     }
   }
 }
