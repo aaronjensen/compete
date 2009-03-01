@@ -22,7 +22,8 @@ namespace Compete.Site.Infrastructure
 
     public void Queue(string teamName)
     {
-      Queue(new[] { teamName });
+      var teamNames = _teamManagementQueries.GetAllTeamNames();
+      Queue(teamNames.ToArray());
     }
 
     public void QueueForAll()
