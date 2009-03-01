@@ -50,7 +50,7 @@ namespace Compete.Site.Controllers
     ActionResult CreateTeam(string teamName, string displayName, string password, string passwordAgain, IEnumerable<string> teamMembers)
     {
       var passwordIsValid = _newTeamParamsValidator.PasswordsMatch(password, passwordAgain);
-      var teamNameIsNotEmpty = _newTeamParamsValidator.TeamNameIsNotEmpty(teamName);
+      var teamNameIsNotEmpty = _newTeamParamsValidator.TeamNameIsValid(teamName);
       var teamNameIsAvailable = _newTeamParamsValidator.TeamNameIsAvailable(teamName);
 
       var errors = string.Empty;

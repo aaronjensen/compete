@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Compete.TeamManagement
 {
   public interface INewTeamParamsValidator
   {
     bool PasswordsMatch(string password, string passwordAgain);
-    bool TeamNameIsNotEmpty(string name);
+    bool TeamNameIsValid(string name);
     bool TeamNameIsAvailable(string name);
   }
 
   public class NewTeamParamsValidator : INewTeamParamsValidator
   {
     private readonly ITeamManagementQueries _teamManagementQueries;
+    readonly Regex nonWordCharacters = new Regex(@"\W+");
 
     public NewTeamParamsValidator(ITeamManagementQueries teamManagementQueries)
     {
@@ -26,9 +28,18 @@ namespace Compete.TeamManagement
       return passwordAgain.Equals(password);
     }
 
-    public bool TeamNameIsNotEmpty(string name)
+    public bool TeamNameIsValid(string name)
     {
-      return !name.Equals(string.Empty);
+      if (nonWordCharacters.IsMatch(name))
+        return false;
+
+      if (name.Length > 16)
+        return false;
+
+      if (name.Equals(string.Empty))
+        return false;
+
+      return true;
     }
 
     public bool TeamNameIsAvailable(string name)
