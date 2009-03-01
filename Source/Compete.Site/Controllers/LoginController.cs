@@ -3,21 +3,29 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 
 using Compete.Site.Infrastructure;
+using Compete.TeamManagement;
 
 namespace Compete.Site.Controllers
 {
   public class LoginController : CompeteController
   {
     readonly ISignin _signin;
+    private readonly ITeamManagementQueries _teamManagementQueries;
 
-    public LoginController(ISignin signin)
+    public LoginController(ISignin signin, ITeamManagementQueries teamManagementQueries)
     {
       _signin = signin;
+      _teamManagementQueries = teamManagementQueries;
     }
 
     [AcceptVerbs(HttpVerbs.Get)]
     public ActionResult Index()
     {
+      if (_teamManagementQueries.IsSignedIn)
+      {
+        return Redirect(@"~/MyTeam");
+      }
+
       return View();
     }
 
