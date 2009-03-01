@@ -48,9 +48,9 @@ namespace Compete.Site.Refereeing
         _currentlyRunning = null;
         if (_queue.Count > 0)
         {
-          _log.Info("Starting queued round...");
-          Start(RoundParameters.Merge(_queue.ToArray()));
-          _queue.Clear();
+          // _log.Info("Starting queued round...");
+          // Start(RoundParameters.Merge(_queue.ToArray()));
+          // _queue.Clear();
         }
       }
     }

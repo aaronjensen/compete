@@ -80,7 +80,7 @@ namespace Compete.Site.Controllers
           throw new ArgumentException("only .dll files only, please");
         }
         _assemblyFileRepository.Add(hpf, teamName + ".dll");
-        _matchStarter.Queue(teamName);
+        // _matchStarter.Queue(teamName);
       }
       return Redirect("~/MyTeam");
     }
