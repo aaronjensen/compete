@@ -38,22 +38,22 @@ namespace Compete.Model
       Refresh();
     }
 
-    public IEnumerable<TeamStandingSummary> ToStandingSummary(IEnumerable<string> teamNames)
+    public IEnumerable<TeamStandingSummary> ToStandingSummary(IDictionary<string, string> teamNames)
     {
-      List<string> remainingNames = new List<string>(teamNames);
+      List<string> remainingNames = new List<string>(teamNames.Keys);
       int rank = 1;
       foreach (var group in _scores.Values.GroupBy(x => x.Score).OrderByDescending(x => x.Key))
       {
         foreach (var score in group)
         {
           remainingNames.Remove(score.TeamName);
-          yield return new TeamStandingSummary(score.TeamName, rank, score.Wins, score.Losses, score.Ties, score.Score);
+          yield return new TeamStandingSummary(teamNames[score.TeamName], rank, score.Wins, score.Losses, score.Ties, score.Score);
         }
         rank++;
       }
       foreach (string notFound in remainingNames)
       {
-        yield return new TeamStandingSummary(notFound);
+        yield return new TeamStandingSummary(teamNames[notFound]);
       }
     }
 

@@ -10,5 +10,6 @@ namespace Compete.Model.Repositories
     void Add(Team team);
     int Count();
     IEnumerable<Team> GetAllTeams();
+    IDictionary<string, string> GetTeamNamesMap();
   }
 }

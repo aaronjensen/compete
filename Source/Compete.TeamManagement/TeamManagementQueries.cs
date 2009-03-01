@@ -47,9 +47,9 @@ namespace Compete.TeamManagement
 
     public IEnumerable<TeamStandingSummary> GetTeamStandings()
     {
-      var teams = _teamRepository.GetAllTeams();
+      var teamNames = _teamRepository.GetTeamNamesMap();
       var leaderboard = _leaderboardRepository.GetLeaderboard();
-      return leaderboard.ToStandingSummary(teams.Select(x => x.Name));
+      return leaderboard.ToStandingSummary(teamNames);
     }
 
     public IEnumerable<string> GetAllTeamNames()
