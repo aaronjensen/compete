@@ -30,6 +30,7 @@ namespace Compete.Site.Refereeing
         sw.Start();
         var rr = AppDomainHelper.InSeparateAppDomain<RoundParameters, IEnumerable<MatchResult>>(staging.Root, _parameters, RunRound);
         sw.Stop();
+        _log.Info("Done: " + sw.Elapsed);
         ServiceLocator.Current.GetInstance<IScoreKeeper>().Record(rr);
       }
     }
