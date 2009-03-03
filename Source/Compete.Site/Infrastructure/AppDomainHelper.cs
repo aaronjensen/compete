@@ -35,6 +35,7 @@ namespace Compete.Site.Infrastructure
       }
       catch (Exception error)
       {
+        System.Diagnostics.Debug.WriteLine(error);
         _log.Error(error);
         return default(O);
       }
