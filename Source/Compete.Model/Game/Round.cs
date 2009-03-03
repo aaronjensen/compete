@@ -115,7 +115,7 @@ namespace Compete.Model.Game
 
       var matchResults = new List<MatchResult>();
 
-      for (int i = 0; i < _allPlayers.Count(); ++i)
+      for (int i = 0; i < _allPlayers.Count() - 1; ++i)
       {
         for (int j = i + 1; j < _allPlayers.Count(); ++j)
         {
