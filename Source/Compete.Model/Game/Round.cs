@@ -113,6 +113,11 @@ namespace Compete.Model.Game
       var playerStandings = new Dictionary<BotPlayer, TeamStanding>();
       _allPlayers.Each(x => playerStandings[x] = new TeamStanding(x.TeamName));
 
+      foreach (var player in _allPlayers)
+      {
+        System.Diagnostics.Debug.WriteLine("Player: " + player.TeamName);
+      }
+
       var matchResults = new List<MatchResult>();
 
       for (int i = 0; i < _allPlayers.Count() - 1; ++i)
@@ -122,9 +127,11 @@ namespace Compete.Model.Game
           var player1 = _allPlayers.ElementAt(i);
           var player2 = _allPlayers.ElementAt(j);
 
-          if (!_playersToEvaluate.Contains(player1) 
-            && !_playersToEvaluate.Contains(player2))
+          if (!_playersToEvaluate.Contains(player1) && !_playersToEvaluate.Contains(player2))
+          {
+            System.Diagnostics.Debug.WriteLine("Skipping: " + player1.TeamName + " " + player2.TeamName);
             continue;
+          }
 
           var match = new Match(_game, player1, player2);
 
