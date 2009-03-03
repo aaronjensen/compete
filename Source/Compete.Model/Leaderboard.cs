@@ -149,10 +149,6 @@ namespace Compete.Model
       {
         _wins++;
       }
-      else if (mr.TeamName1.Equals(_teamName) || mr.TeamName2.Equals(_teamName))
-      {
-        _ties++;
-      }
     }
   }
 }
