@@ -383,3 +383,7 @@ pre.log {
   line-height: 23px;
   font-weight: bold;
 }
+
+table.boxy-wrapper th, table.boxy-wrapper td {
+  border-bottom: none;
+}

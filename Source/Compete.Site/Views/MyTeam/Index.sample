@@ -1,4 +1,8 @@
-﻿{ currentTeamDisplayName: "My Team",
+﻿{ 
+  currentTeamDisplayName: "My Team",
   currentTeam: "myteam",
-  results: [ { OpponentTeamName: "otherteam", Result: "Loss" } ]
+  results: 
+  [ 
+    { OpponentTeamName: "otherteam", Result: "Loss" } 
+  ]
 }

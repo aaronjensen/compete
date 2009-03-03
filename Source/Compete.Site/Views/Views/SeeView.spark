@@ -9,24 +9,25 @@
   <script src="~/content/views/${viewName}.js"></script>
   <script type="text/javascript">
     $(function() {
+      
       new Boxy($('#view_dialog').html(), { title: "${viewName}" }).moveTo(null, 600);
       $('#view_dialog').remove();
-      $.getJSON('/Views/${viewName}.sample', function(json) {
-        $("#data").val($.toJSON(json));
+      $.get('/Views/${viewName}.sample', function(json) {
+        $("#data").val(json);
         Update();
       });
     });
     
-    function Update() {
-      var json = $.parseJSON($("#data").val());
+      function Update() {
+        var json = $.parseJSON($("#data").val());
+        
+        var content = Spark.${viewName.Replace("/",".")}.RenderView(json);
+        $("#view_container").html(content);
+      }
       
-      var content = Spark.${viewName.Replace("/",".")}.RenderView(json);
-      $("#view_container").html(content);
-    }
-    
-    function SiteResource(url) {
-      return url;
-    }
+      function SiteResource(url) {
+        return url;
+      }
   </script>
 </content:head>
 
@@ -34,7 +35,10 @@
 </div>
 
 <div id="view_dialog" style="display:none">
-  <p>Viewing ${viewName}</p>
-  <textarea id="data" style="width: 300px; height: 300px; border: solid 1px #000">asdf</textarea>
+  <p>
+    Viewing ${viewName}
+    <a href="#" onclick="Update()">Update</a>
+  </p>
+  <textarea id="data" style="width: 600px; height: 300px; border: solid 1px #000">asdf</textarea>
   <a href="#" onclick="Update()">Update</a>
 </div>
