@@ -35,11 +35,21 @@ namespace Compete.Site
           new { controller = "GameLog", action = "Index" }  // Parameter defaults
       );
 
+      routes.MapRoute("Views", "Content/Views/{controller}/{viewName}.js",
+        new { controller = "Home", action = "GetView", view = "Index" });
+
+      routes.MapRoute(
+        "See Views",
+        "views/{*viewName}",
+        new { controller = "Views", action = "SeeView" }
+      );
+
       routes.MapRoute(
           "Default",                                              // Route name
           "{controller}/{action}/{id}",                           // URL with parameters
           new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
       );
+
       routes.MapRoute(
           "TeamSignup",                                              // Route name
           "TeamSignup",                           // URL with parameters

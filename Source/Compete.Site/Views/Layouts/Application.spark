@@ -1,5 +1,5 @@
-﻿<viewdata isRunning="bool" />
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
   <title>Compete</title>
@@ -9,8 +9,12 @@
   <!--[if lte IE 7]>
   <link rel="stylesheet" type="text/css" href="~/Content/required-fields-star2-ie.css" />
   <![endif]-->
+  <use content="head" />
 
 </head>
+
+<viewdata isRunning="bool" />
+
 <body>
   <div id="top">
     <div class="content">

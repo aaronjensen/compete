@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 
 using Compete.Site.Filters;
+using Spark.Web.Mvc;
 
 namespace Compete.Site.Controllers
 {
@@ -29,6 +30,11 @@ namespace Compete.Site.Controllers
     public ActionResult RedirectToReferrer()
     {
       return RedirectToReferrer(() => RedirectToAction("Index", "Home"));
+    }
+
+    public virtual ActionResult GetView(string viewName)
+    {
+      return new JavascriptViewResult { ViewName = viewName };
     }
   }
 }

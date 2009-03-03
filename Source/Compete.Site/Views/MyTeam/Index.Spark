@@ -1,5 +1,8 @@
 ﻿<viewdata results="IEnumerable<Compete.Model.Game.RecentMatch>" currentRound="System.Int32" />
-<h2>${#currentTeamDisplayName}</h2>
+<viewdata currentTeamDisplayName="string" />
+<viewdata currentTeam="string" />
+
+<h2>${currentTeamDisplayName}</h2>
 
 <h4>Instructions</h4>
 First, download the zip file for the current round:<br />
@@ -12,8 +15,8 @@ Then, upload your assembly:
   <input id="submitButton" type="submit" value="Upload"/>
 </form>
 
-<h3 if="results.Any()">Most recent matches</h3>
-<table if="results.Any()">
+<h3 if="results">Most recent matches</h3>
+<table if="results">
 	<tr>
 		<th>Opponent</th>
 		<th>Result</th>
@@ -22,6 +25,6 @@ Then, upload your assembly:
 	<tr each='var match in results'>
 		<td>${match.OpponentTeamName}</td>
 		<td>${match.Result}</td>
-		<td><a href="~/GameLog/${#currentTeam}.vs.${match.OpponentTeamName}">Log</a></td>
+		<td><a href="~/GameLog/${currentTeam}.vs.${match.OpponentTeamName}">Log</a></td>
 	</tr>
 </table>
